@@ -1,0 +1,446 @@
+{
+  "task": "R60-T002",
+  "label": "baseline",
+  "page": "/public/hft-liquidity-sandbox/index.html",
+  "date": "2026-11-12T13:31:57.926Z",
+  "tools": {
+    "node": "v22.23.4",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "os": "Linux 6.18.44-fc-v378"
+  },
+  "inputs": {
+    "viewports": [
+      "360x800",
+      "1280x800"
+    ],
+    "reducedMotion": "reduce",
+    "randomSeed": "0x2f6b1c3d (mulberry32)",
+    "clock": "Playwright fake clock, 500ms run before checks",
+    "click": "canvas centre-x, 25% height"
+  },
+  "summary": {
+    "total": 22,
+    "passed": 7,
+    "failed": 15,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "360-single-copy-of-page",
+      "status": "fail",
+      "expected": {
+        "containers": 1,
+        "canvases": 1,
+        "ids": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "actual": {
+        "containers": 2,
+        "canvases": 2,
+        "ids": [
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "error": "page content is duplicated\n+ actual - expected\n\n  {\n+   canvases: 2,\n+   containers: 2,\n-   canvases: 1,\n-   containers: 1,\n    ids: [\n+     2,\n+     2,\n+     2,\n+     2\n-     1,\n-     1,\n-     1,\n-     1\n    ]\n  }\n"
+    },
+    {
+      "name": "360-no-unintended-horizontal-overflow",
+      "status": "fail",
+      "expected": {
+        "pageScrollWidth": 360,
+        "outside": []
+      },
+      "actual": {
+        "pageScrollWidth": 812,
+        "outside": [
+          "div.terminal-container",
+          "div.telemetry-panel",
+          "h2",
+          "hr.divider",
+          "div.metric-box",
+          "span.label",
+          "div#lastPriceMetric",
+          "div#spreadMetric",
+          "div#depthMetric",
+          "div#latencyMetric",
+          "div.instruction-pad",
+          "h3"
+        ]
+      },
+      "error": "content is wider than the screen\n+ actual - expected\n\n  {\n+   outside: [\n+     'div.terminal-container',\n+     'div.telemetry-panel',\n+     'h2',\n+     'hr.divider',\n+     'div.metric-box',\n+     'span.label',\n+     'div#lastPriceMetric',\n+     'div#spreadMetric',\n+     'div#depthMetric',\n+     'div#latencyMetric',\n+     'div.instruction-pad',\n+     'h3'\n+   ],\n+   pageScrollWidth: 812\n-   outside: [],\n-   pageScrollWidth: 360\n  }\n"
+    },
+    {
+      "name": "360-metric-lastPriceMetric-visible-not-clipped",
+      "status": "fail",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "insideViewport": false,
+        "painted": false,
+        "textFits": true
+      },
+      "error": "#lastPriceMetric at [-139,141,67,167]\n+ actual - expected\n\n  {\n+   insideViewport: false,\n+   painted: false,\n-   insideViewport: true,\n-   painted: true,\n    textFits: true\n  }\n"
+    },
+    {
+      "name": "360-metric-spreadMetric-visible-not-clipped",
+      "status": "fail",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "insideViewport": false,
+        "painted": false,
+        "textFits": true
+      },
+      "error": "#spreadMetric at [-139,238,67,264]\n+ actual - expected\n\n  {\n+   insideViewport: false,\n+   painted: false,\n-   insideViewport: true,\n-   painted: true,\n    textFits: true\n  }\n"
+    },
+    {
+      "name": "360-metric-depthMetric-visible-not-clipped",
+      "status": "fail",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "insideViewport": false,
+        "painted": false,
+        "textFits": true
+      },
+      "error": "#depthMetric at [-139,335,67,361]\n+ actual - expected\n\n  {\n+   insideViewport: false,\n+   painted: false,\n-   insideViewport: true,\n-   painted: true,\n    textFits: true\n  }\n"
+    },
+    {
+      "name": "360-metric-latencyMetric-visible-not-clipped",
+      "status": "fail",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "insideViewport": false,
+        "painted": false,
+        "textFits": true
+      },
+      "error": "#latencyMetric at [-139,387,67,413]\n+ actual - expected\n\n  {\n+   insideViewport: false,\n+   painted: false,\n-   insideViewport: true,\n-   painted: true,\n    textFits: true\n  }\n"
+    },
+    {
+      "name": "360-controls-text-visible-not-clipped",
+      "status": "fail",
+      "expected": {
+        "top": true,
+        "bottom": true,
+        "noMarkdownStars": true
+      },
+      "actual": {
+        "top": false,
+        "bottom": false,
+        "noMarkdownStars": false
+      },
+      "error": "controls text clipped or raw markdown ({\"top\":{\"rect\":[-141,441,83,456],\"insideViewport\":false,\"painted\":false,\"textFits\":true},\"bottom\":{\"rect\":[-141,461,83,775],\"insideViewport\":false,\"painted\":false,\"textFits\":true}})\n+ actual - expected\n\n  {\n+   bottom: false,\n+   noMarkdownStars: false,\n+   top: false\n-   bottom: true,\n-   noMarkdownStars: true,\n-   top: true\n  }\n"
+    },
+    {
+      "name": "360-canvas-usable-and-drawn",
+      "status": "fail",
+      "expected": {
+        "minWidth": 300,
+        "minHeight": 280,
+        "bufferMatchesCss": true,
+        "drawn": true
+      },
+      "actual": {
+        "css": {
+          "w": 302,
+          "h": 768
+        },
+        "buffer": {
+          "w": 300,
+          "h": 150
+        },
+        "lit": 0,
+        "bufferMatchesCss": false,
+        "drawn": false
+      },
+      "error": "canvas too small, stretched or blank: {\"css\":{\"w\":302,\"h\":768},\"buffer\":{\"w\":300,\"h\":150},\"lit\":0,\"bufferMatchesCss\":false,\"drawn\":false}"
+    },
+    {
+      "name": "360-canvas-click-adds-liquidity",
+      "status": "fail",
+      "expected": {
+        "depthIncreaseAtLeast": 150
+      },
+      "actual": {
+        "before": 0,
+        "after": 0,
+        "increase": 0
+      },
+      "error": "click did not add the 150-lot wall: {\"before\":0,\"after\":0,\"increase\":0}"
+    },
+    {
+      "name": "360-content-order",
+      "status": "fail",
+      "expected": "metrics in order, stacked above the chart",
+      "actual": {
+        "panel": [
+          -180,
+          0,
+          110,
+          853
+        ],
+        "canvas": [
+          130,
+          65,
+          432,
+          833
+        ],
+        "tops": [
+          141,
+          238,
+          335,
+          432
+        ]
+      },
+      "error": "unexpected order/arrangement: {\"panel\":[-180,0,110,853],\"canvas\":[130,65,432,833],\"tops\":[141,238,335,432]}"
+    },
+    {
+      "name": "1280-single-copy-of-page",
+      "status": "fail",
+      "expected": {
+        "containers": 1,
+        "canvases": 1,
+        "ids": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "actual": {
+        "containers": 2,
+        "canvases": 2,
+        "ids": [
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "error": "page content is duplicated\n+ actual - expected\n\n  {\n+   canvases: 2,\n+   containers: 2,\n-   canvases: 1,\n-   containers: 1,\n    ids: [\n+     2,\n+     2,\n+     2,\n+     2\n-     1,\n-     1,\n-     1,\n-     1\n    ]\n  }\n"
+    },
+    {
+      "name": "1280-no-unintended-horizontal-overflow",
+      "status": "pass",
+      "expected": {
+        "pageScrollWidth": 1280,
+        "outside": []
+      },
+      "actual": {
+        "pageScrollWidth": 1280,
+        "outside": []
+      }
+    },
+    {
+      "name": "1280-metric-lastPriceMetric-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "rect": [
+          41,
+          141,
+          247,
+          167
+        ],
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "1280-metric-spreadMetric-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "rect": [
+          41,
+          238,
+          247,
+          264
+        ],
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "1280-metric-depthMetric-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "rect": [
+          41,
+          335,
+          247,
+          361
+        ],
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "1280-metric-latencyMetric-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "rect": [
+          41,
+          387,
+          247,
+          413
+        ],
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "1280-controls-text-visible-not-clipped",
+      "status": "fail",
+      "expected": {
+        "top": true,
+        "bottom": true,
+        "noMarkdownStars": true
+      },
+      "actual": {
+        "top": true,
+        "bottom": true,
+        "noMarkdownStars": false
+      },
+      "error": "controls text clipped or raw markdown ({\"top\":{\"rect\":[39,441,263,456],\"insideViewport\":true,\"painted\":true,\"textFits\":true},\"bottom\":{\"rect\":[39,461,263,775],\"insideViewport\":true,\"painted\":true,\"textFits\":true}})\n+ actual - expected\n\n  {\n    bottom: true,\n+   noMarkdownStars: false,\n-   noMarkdownStars: true,\n    top: true\n  }\n"
+    },
+    {
+      "name": "1280-canvas-usable-and-drawn",
+      "status": "fail",
+      "expected": {
+        "minWidth": 600,
+        "minHeight": 500,
+        "bufferMatchesCss": true,
+        "drawn": true
+      },
+      "actual": {
+        "css": {
+          "w": 310,
+          "h": 768
+        },
+        "buffer": {
+          "w": 300,
+          "h": 150
+        },
+        "lit": 0,
+        "bufferMatchesCss": false,
+        "drawn": false
+      },
+      "error": "canvas too small, stretched or blank: {\"css\":{\"w\":310,\"h\":768},\"buffer\":{\"w\":300,\"h\":150},\"lit\":0,\"bufferMatchesCss\":false,\"drawn\":false}"
+    },
+    {
+      "name": "1280-canvas-click-adds-liquidity",
+      "status": "fail",
+      "expected": {
+        "depthIncreaseAtLeast": 150
+      },
+      "actual": {
+        "before": 0,
+        "after": 0,
+        "increase": 0
+      },
+      "error": "click did not add the 150-lot wall: {\"before\":0,\"after\":0,\"increase\":0}"
+    },
+    {
+      "name": "1280-content-order",
+      "status": "pass",
+      "expected": "metrics in order, sidebar left of the chart",
+      "actual": {
+        "panel": [
+          0,
+          0,
+          290,
+          853
+        ],
+        "canvas": [
+          310,
+          65,
+          620,
+          833
+        ],
+        "tops": [
+          141,
+          238,
+          335,
+          432
+        ]
+      }
+    },
+    {
+      "name": "same-content-at-both-widths",
+      "status": "pass",
+      "expected": "identical headings and labels",
+      "actual": [
+        "HFT MARKET TERMINAL",
+        "LAST PRICE",
+        "BID-ASK SPREAD",
+        "TOTAL LIQUIDITY (DEPTH)",
+        "MATCHING LATENCY",
+        "MARKET CONTROLS",
+        "HFT_VIEW // DEPTH_POLYGON_RENDERER",
+        "HFT MARKET TERMINAL",
+        "LAST PRICE",
+        "BID-ASK SPREAD",
+        "TOTAL LIQUIDITY (DEPTH)",
+        "MATCHING LATENCY",
+        "MARKET CONTROLS",
+        "HFT_VIEW // DEPTH_POLYGON_RENDERER"
+      ]
+    },
+    {
+      "name": "no-page-errors",
+      "status": "fail",
+      "expected": [],
+      "actual": [
+        "[360] pageerror: Unexpected token '}'",
+        "[360] pageerror: Unexpected token '}'",
+        "[1280] pageerror: Unexpected token '}'",
+        "[1280] pageerror: Unexpected token '}'"
+      ],
+      "error": "page errors\n+ actual - expected\n\n+ [\n+   \"[360] pageerror: Unexpected token '}'\",\n+   \"[360] pageerror: Unexpected token '}'\",\n+   \"[1280] pageerror: Unexpected token '}'\",\n+   \"[1280] pageerror: Unexpected token '}'\"\n+ ]\n- []\n"
+    }
+  ]
+}

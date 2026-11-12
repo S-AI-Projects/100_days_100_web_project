@@ -1,0 +1,430 @@
+{
+  "task": "R60-T002",
+  "label": "latest",
+  "page": "/public/hft-liquidity-sandbox/index.html",
+  "date": "2026-11-12T13:41:47.963Z",
+  "tools": {
+    "node": "v26.13.1",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "os": "Darwin 25.6.0"
+  },
+  "inputs": {
+    "viewports": [
+      "360x800",
+      "1280x800"
+    ],
+    "reducedMotion": "reduce",
+    "randomSeed": "0x2f6b1c3d (mulberry32)",
+    "clock": "Playwright fake clock, 500ms run before checks",
+    "click": "canvas centre-x, 25% height"
+  },
+  "summary": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "360-single-copy-of-page",
+      "status": "pass",
+      "expected": {
+        "containers": 1,
+        "canvases": 1,
+        "ids": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "actual": {
+        "containers": 1,
+        "canvases": 1,
+        "ids": [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "name": "360-no-unintended-horizontal-overflow",
+      "status": "pass",
+      "expected": {
+        "pageScrollWidth": 360,
+        "outside": []
+      },
+      "actual": {
+        "pageScrollWidth": 360,
+        "outside": []
+      }
+    },
+    {
+      "name": "360-metric-lastPriceMetric-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "rect": [
+          32,
+          96,
+          328,
+          122
+        ],
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "360-metric-spreadMetric-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "rect": [
+          32,
+          185,
+          328,
+          211
+        ],
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "360-metric-depthMetric-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "rect": [
+          32,
+          274,
+          328,
+          300
+        ],
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "360-metric-latencyMetric-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "rect": [
+          32,
+          363,
+          328,
+          389
+        ],
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "360-controls-text-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "top": true,
+        "bottom": true,
+        "noMarkdownStars": true
+      },
+      "actual": {
+        "top": true,
+        "bottom": true,
+        "noMarkdownStars": true
+      }
+    },
+    {
+      "name": "360-canvas-usable-and-drawn",
+      "status": "pass",
+      "expected": {
+        "minWidth": 300,
+        "minHeight": 280,
+        "bufferMatchesCss": true,
+        "drawn": true
+      },
+      "actual": {
+        "css": {
+          "w": 328,
+          "h": 498
+        },
+        "buffer": {
+          "w": 328,
+          "h": 498
+        },
+        "lit": 463,
+        "bufferMatchesCss": true,
+        "drawn": true
+      }
+    },
+    {
+      "name": "360-canvas-click-adds-liquidity",
+      "status": "pass",
+      "expected": {
+        "depthIncreaseAtLeast": 150
+      },
+      "actual": {
+        "before": 1825,
+        "after": 1975,
+        "increase": 150
+      }
+    },
+    {
+      "name": "360-content-order",
+      "status": "pass",
+      "expected": "metrics in order, stacked above the chart",
+      "actual": {
+        "panel": [
+          0,
+          0,
+          360,
+          563
+        ],
+        "canvas": [
+          16,
+          609,
+          344,
+          1107
+        ],
+        "tops": [
+          96,
+          185,
+          274,
+          363
+        ]
+      }
+    },
+    {
+      "name": "1280-single-copy-of-page",
+      "status": "pass",
+      "expected": {
+        "containers": 1,
+        "canvases": 1,
+        "ids": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "actual": {
+        "containers": 1,
+        "canvases": 1,
+        "ids": [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "name": "1280-no-unintended-horizontal-overflow",
+      "status": "pass",
+      "expected": {
+        "pageScrollWidth": 1280,
+        "outside": []
+      },
+      "actual": {
+        "pageScrollWidth": 1280,
+        "outside": []
+      }
+    },
+    {
+      "name": "1280-metric-lastPriceMetric-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "rect": [
+          41,
+          141,
+          247,
+          167
+        ],
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "1280-metric-spreadMetric-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "rect": [
+          41,
+          238,
+          247,
+          264
+        ],
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "1280-metric-depthMetric-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "rect": [
+          41,
+          335,
+          247,
+          361
+        ],
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "1280-metric-latencyMetric-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      },
+      "actual": {
+        "rect": [
+          41,
+          432,
+          247,
+          458
+        ],
+        "insideViewport": true,
+        "painted": true,
+        "textFits": true
+      }
+    },
+    {
+      "name": "1280-controls-text-visible-not-clipped",
+      "status": "pass",
+      "expected": {
+        "top": true,
+        "bottom": true,
+        "noMarkdownStars": true
+      },
+      "actual": {
+        "top": true,
+        "bottom": true,
+        "noMarkdownStars": true
+      }
+    },
+    {
+      "name": "1280-canvas-usable-and-drawn",
+      "status": "pass",
+      "expected": {
+        "minWidth": 600,
+        "minHeight": 500,
+        "bufferMatchesCss": true,
+        "drawn": true
+      },
+      "actual": {
+        "css": {
+          "w": 950,
+          "h": 730
+        },
+        "buffer": {
+          "w": 950,
+          "h": 730
+        },
+        "lit": 2191,
+        "bufferMatchesCss": true,
+        "drawn": true
+      }
+    },
+    {
+      "name": "1280-canvas-click-adds-liquidity",
+      "status": "pass",
+      "expected": {
+        "depthIncreaseAtLeast": 150
+      },
+      "actual": {
+        "before": 1825,
+        "after": 1975,
+        "increase": 150
+      }
+    },
+    {
+      "name": "1280-content-order",
+      "status": "pass",
+      "expected": "metrics in order, sidebar left of the chart",
+      "actual": {
+        "panel": [
+          0,
+          0,
+          290,
+          800
+        ],
+        "canvas": [
+          310,
+          50,
+          1260,
+          780
+        ],
+        "tops": [
+          141,
+          238,
+          335,
+          432
+        ]
+      }
+    },
+    {
+      "name": "same-content-at-both-widths",
+      "status": "pass",
+      "expected": "identical headings and labels",
+      "actual": [
+        "HFT MARKET TERMINAL",
+        "LAST PRICE",
+        "BID-ASK SPREAD",
+        "TOTAL LIQUIDITY (DEPTH)",
+        "MATCHING LATENCY",
+        "MARKET CONTROLS",
+        "HFT_VIEW // DEPTH_POLYGON_RENDERER"
+      ]
+    },
+    {
+      "name": "no-page-errors",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    }
+  ]
+}
