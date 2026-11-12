@@ -4,6 +4,9 @@
 body {
     margin: 0;
     min-height: 100vh;
+    /* Dark fallback behind the scene image: if images/image.png fails to load,
+       the game stays readable instead of showing a white page. */
+    background-color: #04100a;
     background-image: url(images/image.png);
     background-size: cover;
     background-position: center center;
@@ -154,6 +157,46 @@ p {
     width: 2%;
     height: 6%;
     font-size: 8px;
+}
+
+/* ---- Fallback when the lab scene image cannot load (set by script.js) ---- */
+.scene-status {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    max-width: 90%;
+    padding: 8px 14px;
+    background-color: rgba(0, 0, 0, 0.85);
+    border: 1px solid rgb(71, 231, 63);
+    color: rgb(71, 231, 63);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Without the picture the clue spots are invisible, so outline and label them */
+.scene-missing .hotspot {
+    border: 1px dashed rgba(71, 231, 63, 0.9);
+    background-color: rgba(71, 231, 63, 0.08);
+    min-width: 64px;
+    min-height: 28px;
+    transform: none;
+}
+
+.scene-missing .hotspot::after {
+    content: attr(aria-label);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    padding: 2px 6px;
+    white-space: nowrap;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: rgb(71, 231, 63);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
 }
 
 .first-clue-hint {

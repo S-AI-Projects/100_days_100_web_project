@@ -12,6 +12,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const exit = document.querySelector(".b3");
     const timer = document.querySelector(".timer");
 
+    // The whole lab scene is one background image. If it fails to load, say so
+    // and outline the clue locations so the game is still playable.
+    const sceneUrl = (getComputedStyle(document.body).backgroundImage.match(/url\("?(.*?)"?\)/) || [])[1];
+    if (sceneUrl) {
+        const probe = new Image();
+        probe.onerror = showSceneFallback;
+        probe.src = sceneUrl;
+    }
+
+    function showSceneFallback() {
+        if (document.querySelector(".scene-status")) return;
+        document.body.classList.add("scene-missing");
+        const status = document.createElement("div");
+        status.className = "scene-status";
+        status.setAttribute("role", "status");
+        status.textContent = "LAB SCENE IMAGE FAILED TO LOAD \u2014 EVIDENCE LOCATIONS ARE OUTLINED.";
+        main.appendChild(status);
+    }
+
     let timeLeft = 120;
     let interval;
     let line_index = 0;
@@ -103,7 +122,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const ans = input.value.trim().toUpperCase();
                 const msg = document.createElement("div");
 
-                if (ans === "98770") {
+                if (ans === "") {
+                    // Empty command: explain instead of treating it as a wrong code
+                    msg.innerText = "> NO COMMAND ENTERED. TYPE A CODE FROM THE EVIDENCE YOU FOUND.";
+                } else if (ans === "98770") {
                     pc.style.display = "block";
                     doc.classList.remove("first-clue-hint");
                     msg.innerText = "> ACCESS GRANTED. DIGITAL WORKSTATION HOTSPOT LAYER DEPLOYED.";
