@@ -140,6 +140,19 @@ input, button, select, textarea {
     border: none;
 }
 
+/* Keyboard focus: the reset above removes the browser ring, so give every
+   interactive element a clear ring when it is focused from the keyboard.
+   :focus-visible keeps mouse clicks looking exactly as before. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
 button {
     cursor: pointer;
     background: none;
@@ -2127,6 +2140,20 @@ h4 { font-size: 1rem; }
     }
     .mobile-menu-btn {
         display: flex; /* Show hamburger */
+    }
+    .nav-links.active {
+        /* Opened from the hamburger button */
+        display: flex;
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem 1.5rem 1.5rem;
+        background-color: var(--bg-surface);
+        border-bottom: 1px solid var(--border-color);
     }
     .search-bar {
         display: none; /* Hide search in top bar for simplicity on small screens */

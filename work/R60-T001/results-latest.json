@@ -1,0 +1,345 @@
+{
+  "task": "R60-T001",
+  "label": "latest",
+  "page": "/public/ecommerce-website/index.html",
+  "date": "2026-11-12T13:06:12.521Z",
+  "tools": {
+    "node": "v26.13.1",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "os": "Darwin 25.6.0"
+  },
+  "inputs": {
+    "viewport": [
+      "1280x800",
+      "390x844 (mobile check)"
+    ],
+    "reducedMotion": "reduce",
+    "stubbedHosts": [
+      "fonts.googleapis.com",
+      "images.unsplash.com",
+      "unpkg.com"
+    ],
+    "keys": [
+      "Tab",
+      "Enter",
+      "Space",
+      "Escape",
+      "typed text \"watch\""
+    ]
+  },
+  "summary": {
+    "total": 18,
+    "passed": 18,
+    "failed": 0,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "no-positive-tabindex",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "name": "desktop-header-tab-order",
+      "status": "pass",
+      "expected": [
+        "a.logo:Luxe home",
+        "a.nav-link:Home",
+        "a.nav-link:Shop",
+        "a.nav-link:Orders",
+        "a.nav-link:Contact",
+        "#global-search",
+        "#theme-toggle",
+        "button.icon-btn:Wishlist",
+        "button.icon-btn:Cart"
+      ],
+      "actual": [
+        "a.logo:Luxe home",
+        "a.nav-link:Home",
+        "a.nav-link:Shop",
+        "a.nav-link:Orders",
+        "a.nav-link:Contact",
+        "#global-search",
+        "#theme-toggle",
+        "button.icon-btn:Wishlist",
+        "button.icon-btn:Cart"
+      ]
+    },
+    {
+      "name": "desktop-header-visible-focus",
+      "status": "pass",
+      "expected": "every stop: :focus-visible + outline >= 2px or box-shadow",
+      "actual": [
+        {
+          "who": "a.logo:Luxe home",
+          "style": {
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "boxShadow": "none"
+          }
+        },
+        {
+          "who": "a.nav-link:Home",
+          "style": {
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "boxShadow": "none"
+          }
+        },
+        {
+          "who": "a.nav-link:Shop",
+          "style": {
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "boxShadow": "none"
+          }
+        },
+        {
+          "who": "a.nav-link:Orders",
+          "style": {
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "boxShadow": "none"
+          }
+        },
+        {
+          "who": "a.nav-link:Contact",
+          "style": {
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "boxShadow": "none"
+          }
+        },
+        {
+          "who": "#global-search",
+          "style": {
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+          }
+        },
+        {
+          "who": "#theme-toggle",
+          "style": {
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "boxShadow": "none"
+          }
+        },
+        {
+          "who": "button.icon-btn:Wishlist",
+          "style": {
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "boxShadow": "none"
+          }
+        },
+        {
+          "who": "button.icon-btn:Cart",
+          "style": {
+            "focusVisible": true,
+            "outlineStyle": "solid",
+            "outlineWidth": 3,
+            "boxShadow": "none"
+          }
+        }
+      ]
+    },
+    {
+      "name": "accessible-names",
+      "status": "pass",
+      "expected": "every focusable control in #main-nav and the home view has a name",
+      "actual": []
+    },
+    {
+      "name": "logo-enter-goes-home",
+      "status": "pass",
+      "expected": {
+        "hash": "#home",
+        "active": "view-home"
+      },
+      "actual": {
+        "hash": "#home",
+        "active": "view-home"
+      }
+    },
+    {
+      "name": "nav-link-enter-shop",
+      "status": "pass",
+      "expected": {
+        "hash": "#shop",
+        "active": "view-shop",
+        "navActive": "Shop"
+      },
+      "actual": {
+        "hash": "#shop",
+        "active": "view-shop",
+        "navActive": "Shop"
+      }
+    },
+    {
+      "name": "nav-link-enter-orders",
+      "status": "pass",
+      "expected": {
+        "hash": "#orders",
+        "active": "view-orders",
+        "navActive": "Orders"
+      },
+      "actual": {
+        "hash": "#orders",
+        "active": "view-orders",
+        "navActive": "Orders"
+      }
+    },
+    {
+      "name": "nav-link-enter-contact",
+      "status": "pass",
+      "expected": {
+        "hash": "#contact",
+        "active": "view-contact",
+        "navActive": "Contact"
+      },
+      "actual": {
+        "hash": "#contact",
+        "active": "view-contact",
+        "navActive": "Contact"
+      }
+    },
+    {
+      "name": "nav-link-enter-home",
+      "status": "pass",
+      "expected": {
+        "hash": "#home",
+        "active": "view-home",
+        "navActive": "Home"
+      },
+      "actual": {
+        "hash": "#home",
+        "active": "view-home",
+        "navActive": "Home"
+      }
+    },
+    {
+      "name": "search-typing-filters-shop",
+      "status": "pass",
+      "expected": {
+        "hash": "#shop",
+        "allMatch": true,
+        "count": ">0"
+      },
+      "actual": {
+        "hash": "#shop",
+        "allMatch": true,
+        "count": 2
+      }
+    },
+    {
+      "name": "theme-toggle-enter-and-space",
+      "status": "pass",
+      "expected": [
+        "theme-dark",
+        "theme-light"
+      ],
+      "actual": [
+        "theme-dark",
+        "theme-light"
+      ]
+    },
+    {
+      "name": "wishlist-sidebar-enter-opens-escape-closes",
+      "status": "pass",
+      "expected": {
+        "opened": true,
+        "inViewport": true,
+        "closed": true
+      },
+      "actual": {
+        "opened": true,
+        "inViewport": true,
+        "closed": true
+      }
+    },
+    {
+      "name": "cart-sidebar-enter-opens-escape-closes",
+      "status": "pass",
+      "expected": {
+        "opened": true,
+        "inViewport": true,
+        "closed": true
+      },
+      "actual": {
+        "opened": true,
+        "inViewport": true,
+        "closed": true
+      }
+    },
+    {
+      "name": "hero-view-trending-enter-scrolls",
+      "status": "pass",
+      "expected": {
+        "scrolled": true
+      },
+      "actual": {
+        "featuredTop": -10
+      }
+    },
+    {
+      "name": "category-cards-in-tab-order-with-visible-focus",
+      "status": "pass",
+      "expected": 4,
+      "actual": 4
+    },
+    {
+      "name": "category-card-enter-filters-shop",
+      "status": "pass",
+      "expected": {
+        "hash": "#shop",
+        "filter": "electronics",
+        "allMatch": true
+      },
+      "actual": {
+        "hash": "#shop",
+        "filter": "electronics",
+        "allMatch": true
+      }
+    },
+    {
+      "name": "mobile-menu-keyboard",
+      "status": "pass",
+      "expected": {
+        "named": true,
+        "expandedAfterEnter": "true",
+        "linksVisible": true,
+        "focusAfterOpen": "a.nav-link:Home",
+        "escapeClosed": true,
+        "focusAfterEscape": "button.icon-btn:Menu",
+        "navigated": "#shop"
+      },
+      "actual": {
+        "named": true,
+        "expandedAfterEnter": "true",
+        "linksVisible": true,
+        "focusAfterOpen": "a.nav-link:Home",
+        "escapeClosed": true,
+        "focusAfterEscape": "button.icon-btn:Menu",
+        "navigated": "#shop"
+      }
+    },
+    {
+      "name": "no-page-errors",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    }
+  ]
+}

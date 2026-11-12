@@ -24,13 +24,13 @@
         <header class="navbar" id="main-nav">
             <div class="nav-container">
                 <!-- Logo -->
-                <div class="logo" onclick="navigateTo('home')">
-                    <i class="ph-fill ph-storefront"></i>
+                <a href="#home" class="logo" aria-label="Luxe home" onclick="navigateTo('home')">
+                    <i class="ph-fill ph-storefront" aria-hidden="true"></i>
                     <span>Luxe.</span>
-                </div>
+                </a>
 
                 <!-- Desktop Links -->
-                <nav class="nav-links">
+                <nav class="nav-links" id="primary-nav" aria-label="Primary">
                     <a href="#home" class="nav-link active" onclick="navigateTo('home')">Home</a>
                     <a href="#shop" class="nav-link" onclick="navigateTo('shop')">Shop</a>
                     <a href="#orders" class="nav-link" onclick="navigateTo('orders')">Orders</a>
@@ -40,7 +40,7 @@
                 <!-- Search Bar -->
                 <div class="search-bar">
                     <i class="ph ph-magnifying-glass"></i>
-                    <input type="text" id="global-search" placeholder="Search products...">
+                    <input type="text" id="global-search" placeholder="Search products..." aria-label="Search products">
                 </div>
 
                 <!-- Nav Actions -->
@@ -56,7 +56,7 @@
                         <i class="ph ph-shopping-cart"></i>
                         <span class="badge" id="cart-badge">0</span>
                     </button>
-                    <button class="icon-btn mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <button class="icon-btn mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu" aria-controls="primary-nav" aria-expanded="false">
                         <i class="ph ph-list"></i>
                     </button>
                 </div>
@@ -91,22 +91,22 @@
                         <p>Explore our wide range of premium collections.</p>
                     </div>
                     <div class="category-grid">
-                        <div class="category-card" onclick="filterByCategory('electronics')">
+                        <a href="#shop" class="category-card" onclick="filterByCategory('electronics'); return false;">
                             <i class="ph ph-devices"></i>
                             <h3>Tech & Electronics</h3>
-                        </div>
-                        <div class="category-card" onclick="filterByCategory('fashion')">
+                        </a>
+                        <a href="#shop" class="category-card" onclick="filterByCategory('fashion'); return false;">
                             <i class="ph ph-t-shirt"></i>
                             <h3>Apparel & Fashion</h3>
-                        </div>
-                        <div class="category-card" onclick="filterByCategory('home')">
+                        </a>
+                        <a href="#shop" class="category-card" onclick="filterByCategory('home'); return false;">
                             <i class="ph ph-armchair"></i>
                             <h3>Home & Living</h3>
-                        </div>
-                        <div class="category-card" onclick="filterByCategory('accessories')">
+                        </a>
+                        <a href="#shop" class="category-card" onclick="filterByCategory('accessories'); return false;">
                             <i class="ph ph-watch"></i>
                             <h3>Accessories</h3>
-                        </div>
+                        </a>
                     </div>
                 </section>
 

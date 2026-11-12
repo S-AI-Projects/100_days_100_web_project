@@ -402,14 +402,36 @@ function navigateTo(viewId) {
 // --- MOBILE MENU LOGIC ---
 function toggleMobileMenu() {
     const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
+    const isOpen = navLinks.classList.toggle('active');
+    document.querySelector('.mobile-menu-btn')?.setAttribute('aria-expanded', String(isOpen));
+    // Move keyboard focus into the menu so Tab continues through the links.
+    if (isOpen) navLinks.querySelector('a')?.focus();
 }
 
-function closeMobileMenu() {
+function closeMobileMenu(returnFocus = false) {
     const navLinks = document.querySelector('.nav-links');
     if (navLinks.classList.contains('active')) {
         navLinks.classList.remove('active');
+        const btn = document.querySelector('.mobile-menu-btn');
+        btn?.setAttribute('aria-expanded', 'false');
+        if (returnFocus) btn?.focus();
     }
+}
+
+// Called by the "Shop by Category" cards: open the shop pre-filtered.
+function filterByCategory(category) {
+    const select = document.getElementById('category-filter');
+    if (select) select.value = category;
+    navigateTo('shop');
+    applyFilters();
+}
+
+// Called by the hero "View Trending" button.
+function scrollToFeatured() {
+    const featured = document.getElementById('featured');
+    if (!featured) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    featured.scrollIntoView({ behavior: reduce ? 'instant' : 'smooth', block: 'start' });
 }
 
 // --- THEME TOGGLE LOGIC ---
@@ -687,8 +709,8 @@ function renderProductGrid(productList, containerId) {
                 <div class="product-image">
                     <img src="${product.image}" alt="${product.title}" loading="lazy">
                     <div class="product-actions-overlay">
-                        <button class="btn-icon wishlist-btn" onclick="toggleWishlist(${product.id})"><i class="ph ph-heart"></i></button>
-                        <button class="btn-icon quick-view-btn" onclick="openQuickView(${product.id})"><i class="ph ph-eye"></i></button>
+                        <button class="btn-icon wishlist-btn" onclick="toggleWishlist(${product.id})" aria-label="Add ${product.title} to wishlist"><i class="ph ph-heart"></i></button>
+                        <button class="btn-icon quick-view-btn" onclick="openQuickView(${product.id})" aria-label="Quick view ${product.title}"><i class="ph ph-eye"></i></button>
                     </div>
                 </div>
                 <div class="product-info">
@@ -775,6 +797,7 @@ function updateQvQuantity(change) {
 // Close modal when clicking escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+        closeMobileMenu(true);
         closeQuickView();
         closeCart();
         closeWishlist();
