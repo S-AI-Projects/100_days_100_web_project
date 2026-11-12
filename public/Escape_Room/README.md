@@ -67,3 +67,28 @@ No frameworks, no build tools — just clean, dependency-free front-end code.
 ---
 
 ## 📂 Project Structure
+
+---
+
+## 🧪 Fallbacks and test
+
+| Situation | What the player sees |
+| --- | --- |
+| `images/image.png` (the lab scene) fails to load | A dark backdrop instead of a white page, the message **"LAB SCENE IMAGE FAILED TO LOAD — EVIDENCE LOCATIONS ARE OUTLINED."**, and dashed, labelled outlines on each unlocked clue spot. The timer and TERMINAL button stay readable. |
+| Google Fonts fail to load | The CSS fallbacks (`monospace`, `sans-serif`) are used; the layout still fits. |
+| Enter pressed on an empty terminal prompt | `> NO COMMAND ENTERED. TYPE A CODE FROM THE EVIDENCE YOU FOUND.` instead of "access denied". A valid code afterwards works as normal. |
+
+When the image loads, the game looks and plays exactly as before.
+
+Run locally with the repo's server (`npm run dev`, then open
+http://localhost:3000/public/Escape_Room/), and run the regression test
+(Playwright, pinned in `tests/course/package.json`):
+
+```bash
+npm --prefix tests/course ci
+npx --prefix tests/course playwright install chromium   # first time only
+node tests/course/r60-t003.mjs
+```
+
+It runs the game with the scene image returning 404 and fonts failing, then with
+the assets restored, and exits non-zero on any failed check or page error.

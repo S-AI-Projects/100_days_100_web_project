@@ -1,0 +1,203 @@
+{
+  "task": "R60-T003",
+  "label": "baseline",
+  "page": "/public/Escape_Room/index.html",
+  "date": "2026-11-12T13:50:05.873Z",
+  "tools": {
+    "node": "v22.23.4",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "os": "Linux 6.18.44-fc-v378"
+  },
+  "inputs": {
+    "viewport": "1280x800",
+    "fixtures": {
+      "assets-missing": "/public/Escape_Room/images/image.png -> HTTP 404; fonts.googleapis.com / fonts.gstatic.com -> request failed",
+      "empty-command": "Enter on a blank terminal prompt, then \"98770\"",
+      "assets-restored": "scene image served from disk; fonts -> empty CSS (offline)"
+    },
+    "clock": "Playwright fake clock (typewriter fast-forwarded 30s)"
+  },
+  "summary": {
+    "total": 12,
+    "passed": 6,
+    "failed": 6,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "A-backdrop-is-dark-not-blank",
+      "status": "fail",
+      "expected": {
+        "bodyBackgroundIsDark": true
+      },
+      "actual": {
+        "bodyBackgroundColor": "rgba(0, 0, 0, 0)",
+        "bodyBackgroundIsDark": false
+      },
+      "error": "body background-color is rgba(0, 0, 0, 0) (white page shows through when the image is missing)"
+    },
+    {
+      "name": "A-status-message-explains-missing-image",
+      "status": "fail",
+      "expected": {
+        "visible": true,
+        "mentionsImage": true,
+        "role": "status"
+      },
+      "actual": {
+        "visible": false,
+        "mentionsImage": false,
+        "role": null,
+        "text": null
+      },
+      "error": "no visible status message about the missing scene image"
+    },
+    {
+      "name": "A-intro-text-readable",
+      "status": "pass",
+      "expected": {
+        "headingContrastAtLeast": 4.5,
+        "startButtonVisible": true
+      },
+      "actual": {
+        "heading": {
+          "ratio": 5.67,
+          "fg": "rgb(71, 231, 63)",
+          "bg": "rgb(71, 71, 71)"
+        },
+        "startButtonVisible": true
+      }
+    },
+    {
+      "name": "A-heading-uses-readable-fallback-font",
+      "status": "pass",
+      "expected": {
+        "webFontLoaded": false,
+        "fitsContainer": true
+      },
+      "actual": {
+        "webFontLoaded": false,
+        "family": "Orbitron, sans-serif",
+        "fitsContainer": true,
+        "textWidth": 346
+      }
+    },
+    {
+      "name": "A-timer-and-terminal-button-readable",
+      "status": "fail",
+      "expected": {
+        "minContrast": 4.5
+      },
+      "actual": {
+        "timer": {
+          "ratio": 1.08,
+          "fg": "rgb(255, 255, 255)",
+          "bg": "rgb(232, 251, 231)"
+        },
+        "terminalBtn": {
+          "ratio": 1.45,
+          "fg": "rgb(255, 255, 255)",
+          "bg": "rgb(142, 236, 137)"
+        }
+      },
+      "error": "timer 1.08:1, TERMINAL 1.45:1 against rgb(232, 251, 231)"
+    },
+    {
+      "name": "A-first-clue-location-outlined-and-labelled",
+      "status": "fail",
+      "expected": {
+        "visible": true,
+        "outlined": true,
+        "minSize": 24,
+        "labelShown": true
+      },
+      "actual": {
+        "visible": true,
+        "outlined": false,
+        "minSize": 25,
+        "labelShown": false,
+        "raw": {
+          "display": "block",
+          "w": 53,
+          "h": 25,
+          "borderAlpha": 0.3,
+          "borderWidth": 1,
+          "label": ""
+        }
+      },
+      "error": "clue location not findable without the scene image: {\"display\":\"block\",\"w\":53,\"h\":25,\"borderAlpha\":0.3,\"borderWidth\":1,\"label\":\"\"}"
+    },
+    {
+      "name": "A2-empty-command-shows-empty-state",
+      "status": "fail",
+      "expected": {
+        "message": "> NO COMMAND ENTERED…",
+        "notAccessDenied": true
+      },
+      "actual": {
+        "message": "> ACCESS DENIED. RE-EVALUATE DISCOVERED LABORATORY EVIDENCE.",
+        "notAccessDenied": false
+      },
+      "error": "empty command answered with: \"> ACCESS DENIED. RE-EVALUATE DISCOVERED LABORATORY EVIDENCE.\""
+    },
+    {
+      "name": "A2-valid-code-recovers",
+      "status": "pass",
+      "expected": {
+        "message": "ACCESS GRANTED…",
+        "pcHotspotShown": true
+      },
+      "actual": {
+        "message": "> ACCESS GRANTED. DIGITAL WORKSTATION HOTSPOT LAYER DEPLOYED.",
+        "pcHotspotShown": true
+      }
+    },
+    {
+      "name": "B-restored-scene-image-in-use-no-fallback",
+      "status": "pass",
+      "expected": {
+        "imageLoaded": true,
+        "statusMessage": null,
+        "fallbackClass": false
+      },
+      "actual": {
+        "imageLoaded": true,
+        "bodyBackgroundImage": true,
+        "statusMessage": null,
+        "fallbackClass": false
+      }
+    },
+    {
+      "name": "B-restored-clue-locations-stay-hidden-puzzle",
+      "status": "pass",
+      "expected": {
+        "documentOutlineAlphaBelow": 0.6,
+        "label": ""
+      },
+      "actual": {
+        "borderAlpha": 0.3,
+        "label": ""
+      }
+    },
+    {
+      "name": "B-restored-empty-then-valid-command",
+      "status": "fail",
+      "expected": {
+        "empty": "NO COMMAND ENTERED",
+        "valid": "ACCESS GRANTED"
+      },
+      "actual": {
+        "empty": "> ACCESS DENIED. RE-EVALUATE DISCOVERED LABORATORY EVIDENCE.",
+        "valid": "> ACCESS GRANTED. DIGITAL WORKSTATION HOTSPOT LAYER DEPLOYED."
+      },
+      "error": "empty/valid command handling differs with assets restored"
+    },
+    {
+      "name": "no-page-errors",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "task": "R60-T003",
+  "label": "latest",
+  "page": "/public/Escape_Room/index.html",
+  "date": "2026-11-12T13:52:51.112Z",
+  "tools": {
+    "node": "v26.13.1",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "os": "Darwin 25.6.0"
+  },
+  "inputs": {
+    "viewport": "1280x800",
+    "fixtures": {
+      "assets-missing": "/public/Escape_Room/images/image.png -> HTTP 404; fonts.googleapis.com / fonts.gstatic.com -> request failed",
+      "empty-command": "Enter on a blank terminal prompt, then \"98770\"",
+      "assets-restored": "scene image served from disk; fonts -> empty CSS (offline)"
+    },
+    "clock": "Playwright fake clock (typewriter fast-forwarded 30s)"
+  },
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "A-backdrop-is-dark-not-blank",
+      "status": "pass",
+      "expected": {
+        "bodyBackgroundIsDark": true
+      },
+      "actual": {
+        "bodyBackgroundColor": "rgb(4, 16, 10)",
+        "bodyBackgroundIsDark": true
+      }
+    },
+    {
+      "name": "A-status-message-explains-missing-image",
+      "status": "pass",
+      "expected": {
+        "visible": true,
+        "mentionsImage": true,
+        "role": "status"
+      },
+      "actual": {
+        "visible": true,
+        "mentionsImage": true,
+        "role": "status",
+        "text": "LAB SCENE IMAGE FAILED TO LOAD — EVIDENCE LOCATIONS ARE OUTLINED."
+      }
+    },
+    {
+      "name": "A-intro-text-readable",
+      "status": "pass",
+      "expected": {
+        "headingContrastAtLeast": 4.5,
+        "startButtonVisible": true
+      },
+      "actual": {
+        "heading": {
+          "ratio": 10.96,
+          "fg": "rgb(71, 231, 63)",
+          "bg": "rgb(21, 23, 22)"
+        },
+        "startButtonVisible": true
+      }
+    },
+    {
+      "name": "A-heading-uses-readable-fallback-font",
+      "status": "pass",
+      "expected": {
+        "webFontLoaded": false,
+        "fitsContainer": true
+      },
+      "actual": {
+        "webFontLoaded": false,
+        "family": "Orbitron, sans-serif",
+        "fitsContainer": true,
+        "textWidth": 346
+      }
+    },
+    {
+      "name": "A-timer-and-terminal-button-readable",
+      "status": "pass",
+      "expected": {
+        "minContrast": 4.5
+      },
+      "actual": {
+        "timer": {
+          "ratio": 16.58,
+          "fg": "rgb(255, 255, 255)",
+          "bg": "rgb(6, 36, 11)"
+        },
+        "terminalBtn": {
+          "ratio": 5.92,
+          "fg": "rgb(255, 255, 255)",
+          "bg": "rgb(16, 117, 14)"
+        }
+      }
+    },
+    {
+      "name": "A-first-clue-location-outlined-and-labelled",
+      "status": "pass",
+      "expected": {
+        "visible": true,
+        "outlined": true,
+        "minSize": 24,
+        "labelShown": true
+      },
+      "actual": {
+        "visible": true,
+        "outlined": true,
+        "minSize": 28,
+        "labelShown": true,
+        "raw": {
+          "display": "block",
+          "w": 64,
+          "h": 28,
+          "borderAlpha": 0.9,
+          "borderWidth": 1,
+          "label": "Inspect Document"
+        }
+      }
+    },
+    {
+      "name": "A2-empty-command-shows-empty-state",
+      "status": "pass",
+      "expected": {
+        "message": "> NO COMMAND ENTERED…",
+        "notAccessDenied": true
+      },
+      "actual": {
+        "message": "> NO COMMAND ENTERED. TYPE A CODE FROM THE EVIDENCE YOU FOUND.",
+        "notAccessDenied": true
+      }
+    },
+    {
+      "name": "A2-valid-code-recovers",
+      "status": "pass",
+      "expected": {
+        "message": "ACCESS GRANTED…",
+        "pcHotspotShown": true
+      },
+      "actual": {
+        "message": "> ACCESS GRANTED. DIGITAL WORKSTATION HOTSPOT LAYER DEPLOYED.",
+        "pcHotspotShown": true
+      }
+    },
+    {
+      "name": "B-restored-scene-image-in-use-no-fallback",
+      "status": "pass",
+      "expected": {
+        "imageLoaded": true,
+        "statusMessage": null,
+        "fallbackClass": false
+      },
+      "actual": {
+        "imageLoaded": true,
+        "bodyBackgroundImage": true,
+        "statusMessage": null,
+        "fallbackClass": false
+      }
+    },
+    {
+      "name": "B-restored-clue-locations-stay-hidden-puzzle",
+      "status": "pass",
+      "expected": {
+        "documentOutlineAlphaBelow": 0.6,
+        "label": ""
+      },
+      "actual": {
+        "borderAlpha": 0.3,
+        "label": ""
+      }
+    },
+    {
+      "name": "B-restored-empty-then-valid-command",
+      "status": "pass",
+      "expected": {
+        "empty": "NO COMMAND ENTERED",
+        "valid": "ACCESS GRANTED"
+      },
+      "actual": {
+        "empty": "> NO COMMAND ENTERED. TYPE A CODE FROM THE EVIDENCE YOU FOUND.",
+        "valid": "> ACCESS GRANTED. DIGITAL WORKSTATION HOTSPOT LAYER DEPLOYED."
+      }
+    },
+    {
+      "name": "no-page-errors",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    }
+  ]
+}
