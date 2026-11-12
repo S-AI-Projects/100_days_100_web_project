@@ -32,10 +32,8 @@ HFT Liquidity Sandbox is an interactive web-based simulation that demonstrates h
 hft-liquidity-sandbox/
 │
 ├── index.html
-├── style.css
-├── script.js
-├── assets/
-├── images/
+├── styles.css
+├── app.js
 └── README.md
 ```
 
@@ -59,6 +57,30 @@ Run locally
 
 - Open `index.html`
 - OR use Live Server in Visual Studio Code
+
+---
+
+## 📐 Layout and test
+
+| Width | Layout |
+| --- | --- |
+| Wider than 700px (e.g. 1280×800) | Metrics sidebar on the left, depth chart fills the rest. The sidebar scrolls on its own if the window is short. |
+| 700px or narrower (e.g. 360×800) | Metrics and controls stacked on top, chart below (70% of the screen high); the page scrolls down. |
+
+There is no sideways scrolling at either width. The canvas drawing size follows its
+on-screen size, so clicks on the upper/lower half land where you expect.
+
+Run it with the repo's server (`npm run dev`, then open
+http://localhost:3000/public/hft-liquidity-sandbox/) and check the layout with the
+regression test (Playwright, pinned in `tests/course/package.json`):
+
+```bash
+npm --prefix tests/course ci
+npx --prefix tests/course playwright install chromium   # first time only
+node tests/course/r60-t002.mjs
+```
+
+It checks both 360×800 and 1280×800 and exits non-zero on any failed check or page error.
 
 ---
 
