@@ -32,12 +32,37 @@ function loadFromStorage<T>(key: string, fallback: T): T {
   }
 }
 
+// Unique id for a new todo. Date.now() alone repeats when two todos are added in
+// the same millisecond (or within a browser's reduced timer precision), which
+// gives React duplicate keys and makes one click toggle both todos.
+function createTodoId(): string {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return 'tl' + crypto.randomUUID();
+  }
+  return 'tl' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+}
+
+// Todos saved by older versions may already share an id; give repeats a new one
+// on load so every todo is rendered and updated exactly once.
+function withUniqueIds(list: TodoItem[]): TodoItem[] {
+  const seen = new Set<string>();
+  return list.map((todo) => {
+    if (!seen.has(todo.id)) {
+      seen.add(todo.id);
+      return todo;
+    }
+    const fresh = { ...todo, id: createTodoId() };
+    seen.add(fresh.id);
+    return fresh;
+  });
+}
+
 function Todolist() {
   const inputRef = useRef<HTMLInputElement>(null);
   const tagRef = useRef<HTMLInputElement>(null);
 
   const [items, setItems] = useState<TodoItem[]>(() =>
-    loadFromStorage<TodoItem[]>(STORAGE_KEYS.ITEMS, [])
+    withUniqueIds(loadFromStorage<TodoItem[]>(STORAGE_KEYS.ITEMS, []))
   );
   const [tags, setTags] = useState<string[]>(() =>
     loadFromStorage<string[]>(STORAGE_KEYS.TAGS, DEFAULT_TAGS)
@@ -96,7 +121,7 @@ function Todolist() {
     const title = inputRef.current?.value.trim() ?? '';
     if (!title || !activeTag) return;
     const newItem: TodoItem = {
-      id: 'tl' + Date.now(),
+      id: createTodoId(),
       title,
       pinned: false,
       checked: false,

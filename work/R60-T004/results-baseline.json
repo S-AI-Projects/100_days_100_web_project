@@ -1,0 +1,212 @@
+{
+  "task": "R60-T004",
+  "label": "baseline",
+  "app": "public/TodoList-React-TS-Tailwind",
+  "date": "2026-11-13T04:41:51.694Z",
+  "tools": {
+    "node": "v22.23.4",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "server": "npm run dev (vite, React StrictMode dev build)",
+    "os": "Linux 6.18.44-fc-v445"
+  },
+  "inputs": {
+    "viewport": "1280x900",
+    "actions": [
+      "add \"Buy milk\" + \"Write report\", reload",
+      "add \"Stretch\" twice",
+      "toggle first todo twice",
+      "theme toggle x4, filter tags/all x2",
+      "fixed clock 2026-01-01T10:00:00Z: add \"Alpha\" + \"Beta\"",
+      "seeded storage: two todos sharing id tl1767261600000",
+      "seeded storage: recurring checked todo, lastUpdate \"yesterday\", then check + reload"
+    ],
+    "probe": "counts listeners on window/document/#root and setInterval timers created from /src/"
+  },
+  "summary": {
+    "total": 12,
+    "passed": 8,
+    "failed": 4,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "init-renders-app-once",
+      "status": "pass",
+      "expected": {
+        "rootChildren": 1,
+        "headers": 1,
+        "addInputs": 1,
+        "filters": 1
+      },
+      "actual": {
+        "rootChildren": 1,
+        "headers": 1,
+        "addInputs": 1,
+        "filters": 1
+      }
+    },
+    {
+      "name": "reinit-restores-each-todo-once",
+      "status": "pass",
+      "expected": {
+        "titles": [
+          "Buy milk",
+          "Write report"
+        ],
+        "storedCount": 2
+      },
+      "actual": {
+        "titles": [
+          "Buy milk",
+          "Write report"
+        ],
+        "storedCount": 2
+      }
+    },
+    {
+      "name": "reinit-same-listeners-and-no-app-timers",
+      "status": "pass",
+      "expected": {
+        "sameListenersAsFirstInit": true,
+        "appIntervals": 0
+      },
+      "actual": {
+        "sameListenersAsFirstInit": true,
+        "appIntervals": 0,
+        "firstTotal": 144,
+        "secondTotal": 144
+      }
+    },
+    {
+      "name": "repeat-add-same-title-adds-exactly-one-each",
+      "status": "pass",
+      "expected": {
+        "added": 2,
+        "cards": 4
+      },
+      "actual": {
+        "added": 2,
+        "cards": 4
+      }
+    },
+    {
+      "name": "repeat-toggle-complete-flips-one-todo",
+      "status": "pass",
+      "expected": {
+        "afterFirst": [
+          true,
+          false
+        ],
+        "afterSecond": [
+          false,
+          false
+        ]
+      },
+      "actual": {
+        "afterFirst": [
+          true,
+          false
+        ],
+        "afterSecond": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "name": "repeat-theme-toggle-and-filter-no-growth",
+      "status": "pass",
+      "expected": {
+        "darkAfter4Toggles": "true",
+        "cardsAfterFilters": 4,
+        "listenerTotalUnchanged": true,
+        "appIntervals": 0
+      },
+      "actual": {
+        "darkAfter4Toggles": "true",
+        "cardsAfterFilters": 4,
+        "listenerTotalUnchanged": true,
+        "appIntervals": 0
+      }
+    },
+    {
+      "name": "same-millisecond-adds-get-unique-ids",
+      "status": "fail",
+      "expected": {
+        "uniqueIds": 2,
+        "cards": 2
+      },
+      "actual": {
+        "uniqueIds": 1,
+        "cards": 2
+      },
+      "error": "ids: tl1767261600000, tl1767261600000\n+ actual - expected\n\n  {\n    cards: 2,\n+   uniqueIds: 1\n-   uniqueIds: 2\n  }\n"
+    },
+    {
+      "name": "same-millisecond-toggle-one-changes-one",
+      "status": "fail",
+      "expected": {
+        "Alpha": true,
+        "Beta": false
+      },
+      "actual": {
+        "Alpha": true,
+        "Beta": true
+      },
+      "error": "clicking one todo completed both\n+ actual - expected\n\n  {\n    Alpha: true,\n+   Beta: true\n-   Beta: false\n  }\n"
+    },
+    {
+      "name": "saved-duplicate-ids-render-and-toggle-once",
+      "status": "fail",
+      "expected": {
+        "cards": 2,
+        "toggled": {
+          "Old one": true,
+          "Old two": false
+        }
+      },
+      "actual": {
+        "cards": 2,
+        "toggled": {
+          "Old one": true,
+          "Old two": true
+        }
+      },
+      "error": "saved todos with a shared id toggle together\n+ actual - expected\n\n  {\n    cards: 2,\n    toggled: {\n      'Old one': true,\n+     'Old two': true\n-     'Old two': false\n    }\n  }\n"
+    },
+    {
+      "name": "daily-reset-once-per-day-across-reinit",
+      "status": "pass",
+      "expected": {
+        "afterFirstInit": false,
+        "afterUserChecks": true,
+        "afterReinitSameDay": true
+      },
+      "actual": {
+        "afterFirstInit": false,
+        "afterUserChecks": true,
+        "afterReinitSameDay": true
+      }
+    },
+    {
+      "name": "no-page-errors",
+      "status": "fail",
+      "expected": [],
+      "actual": [
+        "console.error: Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or o",
+        "console.error: Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or o",
+        "console.error: Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or o",
+        "console.error: Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or o",
+        "console.error: Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or o"
+      ],
+      "error": "page errors / console errors\n+ actual - expected\n\n+ [\n+   'console.error: Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or o',\n+   'console.error: Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or o',\n+   'console.error: Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or o',\n+   'console.error: Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or o',\n+   'console.error: Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or o'\n+ ]\n- []\n"
+    },
+    {
+      "name": "cleanup-dev-server-stopped",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    }
+  ]
+}
