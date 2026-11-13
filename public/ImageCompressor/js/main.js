@@ -280,7 +280,7 @@ function renderQueue() {
             <div class="drag-handle"><i class="ph ph-dots-six-vertical"></i></div>
             ${thumbSrc ? `<img src="${thumbSrc}" class="item-thumbnail">` : `<div class="item-thumbnail"></div>`}
             <div class="item-details">
-                <span class="item-name">${item.file.name}</span>
+                <span class="item-name"></span>
                 <div class="item-meta">
                     ${item.status === 'done' ? `<span>${formatBytes(item.result.compressedSize)}</span>` : ''}
                 </div>
@@ -294,6 +294,11 @@ function renderQueue() {
             </div>
         `;
         
+        // The file name comes from the user's computer: insert it as text, never as HTML.
+        const nameEl = el.querySelector('.item-name');
+        nameEl.textContent = item.file.name;
+        nameEl.title = item.file.name;
+
         // Click item to open modal
         el.addEventListener('click', (e) => {
             if (e.target.closest('.remove-btn') || e.target.closest('.drag-handle')) return;

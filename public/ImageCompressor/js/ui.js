@@ -12,10 +12,15 @@ export function showToast(message, type = 'info', iconClass = 'ph-info') {
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
     
-    toast.innerHTML = `
-        <i class="ph ${iconClass}" style="font-size: 1.25rem;"></i>
-        <span>${message}</span>
-    `;
+    // Contract: `message` is plain text (it often contains a user's file name),
+    // so it is inserted with textContent and can never become HTML. Only the
+    // page's own icon is built as an element.
+    const icon = document.createElement('i');
+    icon.className = `ph ${iconClass}`;
+    icon.style.fontSize = '1.25rem';
+    const text = document.createElement('span');
+    text.textContent = message;
+    toast.append(icon, text);
     
     container.appendChild(toast);
     
