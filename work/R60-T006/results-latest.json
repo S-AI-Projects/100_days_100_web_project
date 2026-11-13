@@ -1,0 +1,258 @@
+{
+  "task": "R60-T006",
+  "label": "latest",
+  "page": "/public/dropdown_navbar/index.html",
+  "date": "2026-11-13T05:44:22.134Z",
+  "tools": {
+    "node": "v26.13.1",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "tailwindFixture": "tailwindcss v3.4.17 CLI, page config (tests/course/fixtures/r60-t006/)",
+    "os": "Darwin 25.6.0"
+  },
+  "inputs": {
+    "viewports": {
+      "desktop": "1280x800",
+      "mobile": "390x844"
+    },
+    "paths": {
+      "present": "Tailwind fixture + native backdrop-filter",
+      "absent": "Tailwind fixture + backdrop-filter renamed to x-unsupported-backdrop-filter in page and fixture CSS; CSS.supports() returns false for it",
+      "no-tailwind": "https://cdn.tailwindcss.com request fails",
+      "mobile": "present path at 390x844",
+      "online": "not run (optional, use --online)"
+    },
+    "stubs": "images -> 1x1 PNG, fonts -> empty CSS"
+  },
+  "summary": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "ids-grocery-and-mobile-unique",
+      "status": "pass",
+      "expected": {
+        "grocery": 1,
+        "mobile": 1
+      },
+      "actual": {
+        "grocery": 1,
+        "mobile": 1
+      }
+    },
+    {
+      "name": "present-menus-closed-on-load",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "name": "present-grocery-opens-grocery-dd",
+      "status": "pass",
+      "expected": {
+        "open": [
+          "grocery-dd"
+        ],
+        "links": [
+          "grocery.html#fresh-produce",
+          "grocery.html#dairy-eggs",
+          "grocery.html#beverages"
+        ]
+      },
+      "actual": {
+        "open": [
+          "grocery-dd"
+        ],
+        "links": [
+          "grocery.html#fresh-produce",
+          "grocery.html#dairy-eggs",
+          "grocery.html#beverages"
+        ]
+      }
+    },
+    {
+      "name": "present-mobile-switches-then-outside-click-closes",
+      "status": "pass",
+      "expected": {
+        "afterMobile": [
+          "mobile-dd"
+        ],
+        "afterOutside": []
+      },
+      "actual": {
+        "afterMobile": [
+          "mobile-dd"
+        ],
+        "afterOutside": []
+      }
+    },
+    {
+      "name": "present-glass-uses-backdrop-filter",
+      "status": "pass",
+      "expected": {
+        "supports": true,
+        "navbar": {
+          "backdropFilter": "blur(12px)",
+          "alpha": 0.8
+        },
+        "panel": {
+          "backdropFilter": "blur(12px)",
+          "alpha": 0.8
+        }
+      },
+      "actual": {
+        "supports": true,
+        "navbar": {
+          "backdropFilter": "blur(12px)",
+          "alpha": 0.8
+        },
+        "panel": {
+          "backdropFilter": "blur(12px)",
+          "alpha": 0.8
+        }
+      }
+    },
+    {
+      "name": "absent-stub-in-effect",
+      "status": "pass",
+      "expected": {
+        "supports": false,
+        "navbarBackdropFilter": "none"
+      },
+      "actual": {
+        "supports": false,
+        "navbarBackdropFilter": "none"
+      }
+    },
+    {
+      "name": "absent-menus-closed-on-load",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "name": "absent-grocery-opens-grocery-dd",
+      "status": "pass",
+      "expected": {
+        "open": [
+          "grocery-dd"
+        ],
+        "links": [
+          "grocery.html#fresh-produce",
+          "grocery.html#dairy-eggs",
+          "grocery.html#beverages"
+        ]
+      },
+      "actual": {
+        "open": [
+          "grocery-dd"
+        ],
+        "links": [
+          "grocery.html#fresh-produce",
+          "grocery.html#dairy-eggs",
+          "grocery.html#beverages"
+        ]
+      }
+    },
+    {
+      "name": "absent-mobile-switches-then-outside-click-closes",
+      "status": "pass",
+      "expected": {
+        "afterMobile": [
+          "mobile-dd"
+        ],
+        "afterOutside": []
+      },
+      "actual": {
+        "afterMobile": [
+          "mobile-dd"
+        ],
+        "afterOutside": []
+      }
+    },
+    {
+      "name": "absent-glass-falls-back-to-solid-panels",
+      "status": "pass",
+      "expected": {
+        "navbarAlphaAtLeast": 0.95,
+        "panelAlphaAtLeast": 0.95,
+        "linkContrastAtLeast": 7
+      },
+      "actual": {
+        "navbar": {
+          "backdropFilter": "none",
+          "background": "rgba(15, 23, 42, 0.97)",
+          "alpha": 0.97
+        },
+        "panel": {
+          "backdropFilter": "none",
+          "background": "rgba(15, 23, 42, 0.97)",
+          "alpha": 0.97
+        },
+        "linkContrastOverWhite": 13.49
+      }
+    },
+    {
+      "name": "mobile-hamburger-and-submenu",
+      "status": "pass",
+      "expected": {
+        "desktopNavHidden": true,
+        "menuShown": true,
+        "grocerySubmenuShown": true
+      },
+      "actual": {
+        "desktopNavHidden": true,
+        "menuShown": true,
+        "grocerySubmenuShown": true
+      }
+    },
+    {
+      "name": "no-page-errors-required-paths",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "name": "no-tailwind-explicit-notice-and-no-error",
+      "status": "pass",
+      "expected": {
+        "pageErrors": [],
+        "noticeShown": true
+      },
+      "actual": {
+        "pageErrors": [],
+        "noticeShown": true,
+        "notice": "Styles could not load (Tailwind CDN unavailable), so a basic layout is shown. The menus still work."
+      }
+    },
+    {
+      "name": "no-tailwind-menus-closed-and-work",
+      "status": "pass",
+      "expected": {
+        "onLoad": [],
+        "afterGroceryClick": [
+          "grocery-dd"
+        ]
+      },
+      "actual": {
+        "onLoad": [],
+        "afterGroceryClick": [
+          "grocery-dd"
+        ]
+      }
+    },
+    {
+      "name": "no-tailwind-icons-stay-small",
+      "status": "pass",
+      "expected": {
+        "largestIconPx": "<= 24"
+      },
+      "actual": {
+        "largestIconPx": 20
+      }
+    }
+  ]
+}

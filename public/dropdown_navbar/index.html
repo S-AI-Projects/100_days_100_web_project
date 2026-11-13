@@ -8,7 +8,12 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
+    // The Tailwind Play CDN above can be unavailable (offline, blocked, scripts
+    // off). Configure it only if it loaded; otherwise mark the page so the plain
+    // CSS fallback below is used instead of throwing "tailwind is not defined".
+    if (!window.tailwind) {
+      document.documentElement.classList.add("no-tailwind");
+    } else tailwind.config = {
       theme: {
         extend: {
           colors: {
@@ -98,6 +103,66 @@
     .animate-in {
       animation: slideInUp 0.5s ease-out forwards;
       opacity: 0;
+    }
+
+    /* Glass fallback: browsers without backdrop-filter would show page content
+       through the 80%-opaque panels, so make them (almost) solid instead. */
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .glass {
+        background: rgba(15, 23, 42, 0.97);
+      }
+
+      .glass-light {
+        background: rgba(30, 41, 59, 0.92);
+      }
+    }
+
+    /* Fallback when Tailwind could not load (html.no-tailwind is set above):
+       keep menus closed until opened, keep icons small and text readable. */
+    .no-tailwind body {
+      background: #020617;
+      color: #e2e8f0;
+      font-family: system-ui, sans-serif;
+      padding: 1rem;
+    }
+
+    .no-tailwind a {
+      color: #7dd3fc;
+    }
+
+    .no-tailwind svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .no-tailwind img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .no-tailwind .hidden {
+      display: none;
+    }
+
+    .no-tailwind .invisible {
+      visibility: hidden;
+    }
+
+    .no-tailwind .md\:block {
+      display: block;
+    }
+
+    .no-tailwind .md\:hidden {
+      display: none;
+    }
+
+    .tw-notice {
+      margin: 0 0 1rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid #38bdf8;
+      border-radius: 0.5rem;
+      background: #0f172a;
+      color: #e2e8f0;
     }
 
     ::-webkit-scrollbar {
@@ -381,13 +446,13 @@
       </div>
     </div>
 
-    <section id="grocery" class="py-12 max-w-7xl mx-auto px-4">
+    <section id="grocery-products" class="py-12 max-w-7xl mx-auto px-4">
       <div id="grocery-product-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
     </section>
-    <section id="mobile" class="py-12 max-w-7xl mx-auto px-4">
+    <section id="mobile-products" class="py-12 max-w-7xl mx-auto px-4">
       <div id="mobile-product-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
     </section>
-    <section id="appliances" class="py-12 max-w-7xl mx-auto px-4">
+    <section id="appliances-products" class="py-12 max-w-7xl mx-auto px-4">
       <div id="appliances-product-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
     </section>
   </main>
@@ -588,6 +653,16 @@
       ["grocery", "mobile", "appliances"].forEach((id) =>
         renderProducts(id, id),
       );
+
+      // Say so explicitly when Tailwind is unavailable instead of pretending.
+      if (document.documentElement.classList.contains("no-tailwind")) {
+        const notice = document.createElement("p");
+        notice.className = "tw-notice";
+        notice.setAttribute("role", "status");
+        notice.textContent =
+          "Styles could not load (Tailwind CDN unavailable), so a basic layout is shown. The menus still work.";
+        document.body.prepend(notice);
+      }
     });
   </script>
 </body>
