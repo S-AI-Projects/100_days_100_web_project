@@ -1,0 +1,279 @@
+{
+  "task": "R60-T006",
+  "label": "baseline",
+  "page": "/public/dropdown_navbar/index.html",
+  "date": "2026-11-13T05:39:40.368Z",
+  "tools": {
+    "node": "v22.23.4",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "tailwindFixture": "tailwindcss v3.4.17 CLI, page config (tests/course/fixtures/r60-t006/)",
+    "os": "Linux 6.18.44-fc-v445"
+  },
+  "inputs": {
+    "viewports": {
+      "desktop": "1280x800",
+      "mobile": "390x844"
+    },
+    "paths": {
+      "present": "Tailwind fixture + native backdrop-filter",
+      "absent": "Tailwind fixture + backdrop-filter renamed to x-unsupported-backdrop-filter in page and fixture CSS; CSS.supports() returns false for it",
+      "no-tailwind": "https://cdn.tailwindcss.com request fails",
+      "mobile": "present path at 390x844",
+      "online": "not run (optional, use --online)"
+    },
+    "stubs": "images -> 1x1 PNG, fonts -> empty CSS"
+  },
+  "summary": {
+    "total": 15,
+    "passed": 10,
+    "failed": 5,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "ids-grocery-and-mobile-unique",
+      "status": "fail",
+      "expected": {
+        "grocery": 1,
+        "mobile": 1
+      },
+      "actual": {
+        "grocery": 2,
+        "mobile": 2
+      },
+      "error": "#grocery / #mobile used by more than one element\n+ actual - expected\n\n  {\n+   grocery: 2,\n+   mobile: 2\n-   grocery: 1,\n-   mobile: 1\n  }\n"
+    },
+    {
+      "name": "present-menus-closed-on-load",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "name": "present-grocery-opens-grocery-dd",
+      "status": "pass",
+      "expected": {
+        "open": [
+          "grocery-dd"
+        ],
+        "links": [
+          "grocery.html#fresh-produce",
+          "grocery.html#dairy-eggs",
+          "grocery.html#beverages"
+        ]
+      },
+      "actual": {
+        "open": [
+          "grocery-dd"
+        ],
+        "links": [
+          "grocery.html#fresh-produce",
+          "grocery.html#dairy-eggs",
+          "grocery.html#beverages"
+        ]
+      }
+    },
+    {
+      "name": "present-mobile-switches-then-outside-click-closes",
+      "status": "pass",
+      "expected": {
+        "afterMobile": [
+          "mobile-dd"
+        ],
+        "afterOutside": []
+      },
+      "actual": {
+        "afterMobile": [
+          "mobile-dd"
+        ],
+        "afterOutside": []
+      }
+    },
+    {
+      "name": "present-glass-uses-backdrop-filter",
+      "status": "pass",
+      "expected": {
+        "supports": true,
+        "navbar": {
+          "backdropFilter": "blur(12px)",
+          "alpha": 0.8
+        },
+        "panel": {
+          "backdropFilter": "blur(12px)",
+          "alpha": 0.8
+        }
+      },
+      "actual": {
+        "supports": true,
+        "navbar": {
+          "backdropFilter": "blur(12px)",
+          "alpha": 0.8
+        },
+        "panel": {
+          "backdropFilter": "blur(12px)",
+          "alpha": 0.8
+        }
+      }
+    },
+    {
+      "name": "absent-stub-in-effect",
+      "status": "pass",
+      "expected": {
+        "supports": false,
+        "navbarBackdropFilter": "none"
+      },
+      "actual": {
+        "supports": false,
+        "navbarBackdropFilter": "none"
+      }
+    },
+    {
+      "name": "absent-menus-closed-on-load",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "name": "absent-grocery-opens-grocery-dd",
+      "status": "pass",
+      "expected": {
+        "open": [
+          "grocery-dd"
+        ],
+        "links": [
+          "grocery.html#fresh-produce",
+          "grocery.html#dairy-eggs",
+          "grocery.html#beverages"
+        ]
+      },
+      "actual": {
+        "open": [
+          "grocery-dd"
+        ],
+        "links": [
+          "grocery.html#fresh-produce",
+          "grocery.html#dairy-eggs",
+          "grocery.html#beverages"
+        ]
+      }
+    },
+    {
+      "name": "absent-mobile-switches-then-outside-click-closes",
+      "status": "pass",
+      "expected": {
+        "afterMobile": [
+          "mobile-dd"
+        ],
+        "afterOutside": []
+      },
+      "actual": {
+        "afterMobile": [
+          "mobile-dd"
+        ],
+        "afterOutside": []
+      }
+    },
+    {
+      "name": "absent-glass-falls-back-to-solid-panels",
+      "status": "fail",
+      "expected": {
+        "navbarAlphaAtLeast": 0.95,
+        "panelAlphaAtLeast": 0.95,
+        "linkContrastAtLeast": 7
+      },
+      "actual": {
+        "navbar": {
+          "backdropFilter": "none",
+          "background": "rgba(15, 23, 42, 0.8)",
+          "alpha": 0.8
+        },
+        "panel": {
+          "backdropFilter": "none",
+          "background": "rgba(15, 23, 42, 0.8)",
+          "alpha": 0.8
+        },
+        "linkContrastOverWhite": 7.73
+      },
+      "error": "no @supports fallback: panel alpha 0.8, link contrast over white 7.73:1"
+    },
+    {
+      "name": "mobile-hamburger-and-submenu",
+      "status": "pass",
+      "expected": {
+        "desktopNavHidden": true,
+        "menuShown": true,
+        "grocerySubmenuShown": true
+      },
+      "actual": {
+        "desktopNavHidden": true,
+        "menuShown": true,
+        "grocerySubmenuShown": true
+      }
+    },
+    {
+      "name": "no-page-errors-required-paths",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "name": "no-tailwind-explicit-notice-and-no-error",
+      "status": "fail",
+      "expected": {
+        "pageErrors": [],
+        "noticeShown": true
+      },
+      "actual": {
+        "pageErrors": [
+          "[no-tailwind] pageerror: tailwind is not defined"
+        ],
+        "noticeShown": false,
+        "notice": null
+      },
+      "error": "Tailwind failure is not handled explicitly"
+    },
+    {
+      "name": "no-tailwind-menus-closed-and-work",
+      "status": "fail",
+      "expected": {
+        "onLoad": [],
+        "afterGroceryClick": [
+          "grocery-dd"
+        ]
+      },
+      "actual": {
+        "onLoad": [
+          "grocery-dd",
+          "mobile-dd",
+          "appliances-dd",
+          "vehicle-dd",
+          "travel-dd",
+          "fashion-dd",
+          "user-menu"
+        ],
+        "afterGroceryClick": [
+          "grocery-dd",
+          "mobile-dd",
+          "appliances-dd",
+          "vehicle-dd",
+          "travel-dd",
+          "fashion-dd",
+          "user-menu"
+        ]
+      },
+      "error": "menus unusable without Tailwind\n+ actual - expected\n\n  {\n    afterGroceryClick: [\n      'grocery-dd',\n+     'mobile-dd',\n+     'appliances-dd',\n+     'vehicle-dd',\n+     'travel-dd',\n+     'fashion-dd',\n+     'user-menu'\n    ],\n+   onLoad: [\n+     'grocery-dd',\n+     'mobile-dd',\n+     'appliances-dd',\n+     'vehicle-dd',\n+     'travel-dd',\n+     'fashion-dd',\n+     'user-menu'\n+   ]\n-   onLoad: []\n  }\n"
+    },
+    {
+      "name": "no-tailwind-icons-stay-small",
+      "status": "fail",
+      "expected": {
+        "largestIconPx": "<= 24"
+      },
+      "actual": {
+        "largestIconPx": 1262
+      },
+      "error": "navbar icons 1262px tall without Tailwind"
+    }
+  ]
+}
