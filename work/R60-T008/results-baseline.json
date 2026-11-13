@@ -1,0 +1,222 @@
+{
+  "task": "R60-T008",
+  "label": "baseline",
+  "page": "/public/ImageCompressor/index.html",
+  "date": "2026-11-13T06:19:14.086Z",
+  "tools": {
+    "node": "v22.23.4",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "os": "Linux 6.18.44-fc-v445"
+  },
+  "inputs": {
+    "fixtureFiles": [
+      {
+        "name": "<img src=x onerror=\"window.__pwned=(window.__pwned||0)+1\">photo.png",
+        "type": "image/png",
+        "bytes": 160,
+        "note": "real 8x8 PNG; exercises queue list, compression toasts, modal"
+      },
+      {
+        "name": "<b data-injected=\"1\">notes</b>.txt",
+        "type": "text/plain",
+        "bytes": 5,
+        "note": "wrong type; exercises \"Skipped … - Invalid format\" toast"
+      }
+    ],
+    "context": "1280x900, dark scheme, reduced motion; CDN scripts/fonts stubbed empty"
+  },
+  "summary": {
+    "total": 11,
+    "passed": 4,
+    "failed": 7,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "baseline-page-clean",
+      "status": "pass",
+      "expected": {
+        "injected": {
+          "imgWithOnerror": 0,
+          "injectedB": 0,
+          "imgSrcX": 0,
+          "pwned": 0
+        },
+        "globalStatsHidden": true
+      },
+      "actual": {
+        "injected": {
+          "imgWithOnerror": 0,
+          "injectedB": 0,
+          "imgSrcX": 0,
+          "pwned": 0
+        },
+        "globalStatsHidden": true
+      }
+    },
+    {
+      "name": "skipped-toast-shows-name-as-text",
+      "status": "fail",
+      "expected": {
+        "text": "Skipped <b data-injected=\"1\">notes</b>.txt - Invalid format"
+      },
+      "actual": {
+        "text": "Skipped notes.txt - Invalid format"
+      },
+      "error": "file name not shown literally in the toast\n+ actual - expected\n\n  {\n+   text: 'Skipped notes.txt - Invalid format'\n-   text: 'Skipped <b data-injected=\"1\">notes</b>.txt - Invalid format'\n  }\n"
+    },
+    {
+      "name": "skipped-toast-no-injected-element",
+      "status": "fail",
+      "expected": {
+        "injected": {
+          "imgWithOnerror": 0,
+          "injectedB": 0,
+          "imgSrcX": 0,
+          "pwned": 0
+        },
+        "toastStructure": [
+          [
+            "I",
+            "SPAN"
+          ]
+        ]
+      },
+      "actual": {
+        "injected": {
+          "imgWithOnerror": 0,
+          "injectedB": 1,
+          "imgSrcX": 0,
+          "pwned": 0
+        },
+        "toastStructure": [
+          [
+            "I",
+            "SPAN"
+          ]
+        ]
+      },
+      "error": "file name was parsed as HTML in the toast\n+ actual - expected\n\n  {\n    injected: {\n      imgSrcX: 0,\n      imgWithOnerror: 0,\n+     injectedB: 1,\n-     injectedB: 0,\n      pwned: 0\n    },\n    toastStructure: [\n      [\n        'I',\n"
+    },
+    {
+      "name": "queue-shows-name-as-text",
+      "status": "fail",
+      "expected": {
+        "itemName": "<img src=x onerror=\"window.__pwned=(window.__pwned||0)+1\">photo.png",
+        "items": 1
+      },
+      "actual": {
+        "itemName": "photo.png",
+        "items": 1
+      },
+      "error": "queue does not show the file name literally\n+ actual - expected\n\n  {\n+   itemName: 'photo.png',\n-   itemName: '<img src=x onerror=\"window.__pwned=(window.__pwned||0)+1\">photo.png',\n    items: 1\n  }\n"
+    },
+    {
+      "name": "queue-name-has-no-child-elements",
+      "status": "fail",
+      "expected": {
+        "childElements": 0
+      },
+      "actual": {
+        "childElements": 1
+      },
+      "error": "file name created elements inside .item-name\n+ actual - expected\n\n  {\n+   childElements: 1\n-   childElements: 0\n  }\n"
+    },
+    {
+      "name": "no-injected-element-or-handler-run",
+      "status": "fail",
+      "expected": {
+        "injected": {
+          "imgWithOnerror": 0,
+          "injectedB": 0,
+          "imgSrcX": 0,
+          "pwned": 0
+        },
+        "requestsForX": 0
+      },
+      "actual": {
+        "injected": {
+          "imgWithOnerror": 1,
+          "injectedB": 1,
+          "imgSrcX": 1,
+          "pwned": 2
+        },
+        "requestsForX": 2
+      },
+      "error": "markup in the file name became a live element / ran its handler\n+ actual - expected\n\n  {\n    injected: {\n+     imgSrcX: 1,\n+     imgWithOnerror: 1,\n+     injectedB: 1,\n+     pwned: 2\n-     imgSrcX: 0,\n-     imgWithOnerror: 0,\n-     injectedB: 0,\n-     pwned: 0\n    },\n+   requestsForX: 2\n-   requestsForX: 0\n  }\n"
+    },
+    {
+      "name": "stats-anchors-render-as-text",
+      "status": "pass",
+      "expected": {
+        "globalStatsVisible": true,
+        "totalSavedStatPlainText": true
+      },
+      "actual": {
+        "globalStatsVisible": true,
+        "totalSavedStatPlainText": true,
+        "totalSavedStat": "37 Bytes"
+      }
+    },
+    {
+      "name": "rich-html-contract-icons-still-elements",
+      "status": "fail",
+      "expected": {
+        "everyToastIsIconPlusText": true,
+        "queueHasTrashIcon": true
+      },
+      "actual": {
+        "everyToastIsIconPlusText": false,
+        "queueHasTrashIcon": true
+      },
+      "error": "intended icon markup changed\n+ actual - expected\n\n  {\n+   everyToastIsIconPlusText: false,\n-   everyToastIsIconPlusText: true,\n    queueHasTrashIcon: true\n  }\n"
+    },
+    {
+      "name": "modal-title-shows-name-as-text",
+      "status": "pass",
+      "expected": {
+        "modalFilename": "<img src=x onerror=\"window.__pwned=(window.__pwned||0)+1\">photo.png",
+        "childElements": 0
+      },
+      "actual": {
+        "modalFilename": "<img src=x onerror=\"window.__pwned=(window.__pwned||0)+1\">photo.png",
+        "childElements": 0
+      }
+    },
+    {
+      "name": "theme-toggle-and-icon",
+      "status": "pass",
+      "expected": {
+        "first": [
+          "light",
+          "ph ph-moon"
+        ],
+        "second": [
+          "dark",
+          "ph ph-sun"
+        ]
+      },
+      "actual": {
+        "first": [
+          "light",
+          "ph ph-moon"
+        ],
+        "second": [
+          "dark",
+          "ph ph-sun"
+        ]
+      }
+    },
+    {
+      "name": "no-page-errors",
+      "status": "fail",
+      "expected": [],
+      "actual": [
+        "console.error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "console.error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "error": "unexpected page errors\n+ actual - expected\n\n+ [\n+   'console.error: Failed to load resource: the server responded with a status of 404 (Not Found)',\n+   'console.error: Failed to load resource: the server responded with a status of 404 (Not Found)'\n+ ]\n- []\n"
+    }
+  ]
+}
