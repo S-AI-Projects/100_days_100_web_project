@@ -1,0 +1,273 @@
+{
+  "task": "R60-T009",
+  "label": "baseline",
+  "page": "/public/Stydy-Sync/index.html",
+  "date": "2026-11-13T06:44:56.880Z",
+  "tools": {
+    "node": "v22.23.4",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "os": "Linux 6.18.44-fc-v445"
+  },
+  "inputs": {
+    "viewports": [
+      "1280x800",
+      "390x844"
+    ],
+    "reducedMotion": [
+      "reduce",
+      "no-preference"
+    ],
+    "keyboard": "Tab through all stops from the top; Shift+Tab through all stops from the bottom",
+    "focusRule": ":focus-visible and (browser auto ring, or outline/box-shadow ring ≥2px with ≥3:1 contrast vs the colour behind) and not under the sticky header",
+    "stubs": "Font Awesome and Google Fonts CSS → empty (offline)"
+  },
+  "summary": {
+    "total": 15,
+    "passed": 7,
+    "failed": 8,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "1280-reduce-no-smooth-scroll-or-transitions",
+      "status": "fail",
+      "expected": {
+        "scrollBehavior": "auto",
+        "maxTransitionSeconds": "<= 0.01",
+        "keyframeAnimations": 0
+      },
+      "actual": {
+        "scrollBehavior": "smooth",
+        "maxTransitionSeconds": 0.5,
+        "keyframeAnimations": 0
+      },
+      "error": "motion not reduced: {\"scrollBehavior\":\"smooth\",\"maxTransitionSeconds\":0.5,\"keyframeAnimations\":0}"
+    },
+    {
+      "name": "1280-reduce-no-hover-movement",
+      "status": "fail",
+      "expected": {
+        "card": "none",
+        "startNow": "none",
+        "heroImage": "none"
+      },
+      "actual": {
+        "card": "matrix(1, 0, 0, 1, 0, -6)",
+        "startNow": "matrix(1, 0, 0, 1, 0, -3)",
+        "heroImage": "matrix(1.03, 0, 0, 1.03, 0, 0)"
+      },
+      "error": "elements still move on hover with reduced motion\n+ actual - expected\n\n  {\n+   card: 'matrix(1, 0, 0, 1, 0, -6)',\n+   heroImage: 'matrix(1.03, 0, 0, 1.03, 0, 0)',\n+   startNow: 'matrix(1, 0, 0, 1, 0, -3)'\n-   card: 'none',\n-   heroImage: 'none',\n-   startNow: 'none'\n  }\n"
+    },
+    {
+      "name": "1280-reduce-information-and-controls-usable",
+      "status": "pass",
+      "expected": "all key content visible, opacity 1, controls enabled",
+      "actual": 9
+    },
+    {
+      "name": "1280-focus-visible-every-tab-stop-forward",
+      "status": "fail",
+      "expected": {
+        "stops": "> 5",
+        "invisibleOrHidden": []
+      },
+      "actual": {
+        "stops": 28,
+        "bad": [
+          {
+            "who": "#name",
+            "focusVisible": true,
+            "kind": "box-shadow",
+            "ringContrast": 1.15,
+            "coveredByStickyHeader": false,
+            "inViewport": true
+          }
+        ]
+      },
+      "error": "focus not visible on: #name (box-shadow, 1.15:1)"
+    },
+    {
+      "name": "1280-focus-visible-every-tab-stop-backward",
+      "status": "fail",
+      "expected": {
+        "invisibleOrHidden": []
+      },
+      "actual": {
+        "stops": 28,
+        "bad": [
+          {
+            "who": "button:Submit",
+            "focusVisible": true,
+            "kind": "browser-auto",
+            "ringContrast": 21,
+            "coveredByStickyHeader": true,
+            "inViewport": true
+          },
+          {
+            "who": "#name",
+            "focusVisible": true,
+            "kind": "box-shadow",
+            "ringContrast": 1.15,
+            "coveredByStickyHeader": true,
+            "inViewport": true
+          }
+        ]
+      },
+      "error": "focus hidden/invisible going backwards: button:Submit (browser-auto, 21:1, under sticky header); #name (box-shadow, 1.15:1, under sticky header)"
+    },
+    {
+      "name": "1280-static-layout-p1-p4",
+      "status": "pass",
+      "expected": "p1 above p2 above p3 above p4; text left of image; #p2 57.6px",
+      "actual": {
+        "tops": [
+          179,
+          238,
+          388,
+          552
+        ],
+        "p2FontPx": 57.6,
+        "textRight": 644,
+        "imageLeft": 708,
+        "textBottom": 591,
+        "imageTop": 185,
+        "p2Centered": false,
+        "pageScrollWidth": 1280
+      }
+    },
+    {
+      "name": "1280-no-preference-motion-kept",
+      "status": "pass",
+      "expected": {
+        "scrollBehavior": "smooth",
+        "maxTransitionSeconds": 0.5,
+        "cardHover": "matrix(1, 0, 0, 1, 0, -6)"
+      },
+      "actual": {
+        "scrollBehavior": "smooth",
+        "maxTransitionSeconds": 0.5,
+        "cardHover": "matrix(1, 0, 0, 1, 0, -6)"
+      }
+    },
+    {
+      "name": "390-reduce-no-smooth-scroll-or-transitions",
+      "status": "fail",
+      "expected": {
+        "scrollBehavior": "auto",
+        "maxTransitionSeconds": "<= 0.01",
+        "keyframeAnimations": 0
+      },
+      "actual": {
+        "scrollBehavior": "smooth",
+        "maxTransitionSeconds": 0.5,
+        "keyframeAnimations": 0
+      },
+      "error": "motion not reduced: {\"scrollBehavior\":\"smooth\",\"maxTransitionSeconds\":0.5,\"keyframeAnimations\":0}"
+    },
+    {
+      "name": "390-reduce-no-hover-movement",
+      "status": "fail",
+      "expected": {
+        "card": "none",
+        "startNow": "none",
+        "heroImage": "none"
+      },
+      "actual": {
+        "card": "matrix(1, 0, 0, 1, 0, -6)",
+        "startNow": "matrix(1, 0, 0, 1, 0, -3)",
+        "heroImage": "matrix(1.03, 0, 0, 1.03, 0, 0)"
+      },
+      "error": "elements still move on hover with reduced motion\n+ actual - expected\n\n  {\n+   card: 'matrix(1, 0, 0, 1, 0, -6)',\n+   heroImage: 'matrix(1.03, 0, 0, 1.03, 0, 0)',\n+   startNow: 'matrix(1, 0, 0, 1, 0, -3)'\n-   card: 'none',\n-   heroImage: 'none',\n-   startNow: 'none'\n  }\n"
+    },
+    {
+      "name": "390-reduce-information-and-controls-usable",
+      "status": "pass",
+      "expected": "all key content visible, opacity 1, controls enabled",
+      "actual": 9
+    },
+    {
+      "name": "390-focus-visible-every-tab-stop-forward",
+      "status": "fail",
+      "expected": {
+        "stops": "> 5",
+        "invisibleOrHidden": []
+      },
+      "actual": {
+        "stops": 22,
+        "bad": [
+          {
+            "who": "#name",
+            "focusVisible": true,
+            "kind": "box-shadow",
+            "ringContrast": 1.15,
+            "coveredByStickyHeader": false,
+            "inViewport": true
+          }
+        ]
+      },
+      "error": "focus not visible on: #name (box-shadow, 1.15:1)"
+    },
+    {
+      "name": "390-focus-visible-every-tab-stop-backward",
+      "status": "fail",
+      "expected": {
+        "invisibleOrHidden": []
+      },
+      "actual": {
+        "stops": 22,
+        "bad": [
+          {
+            "who": "#name",
+            "focusVisible": true,
+            "kind": "box-shadow",
+            "ringContrast": 1.15,
+            "coveredByStickyHeader": false,
+            "inViewport": true
+          }
+        ]
+      },
+      "error": "focus hidden/invisible going backwards: #name (box-shadow, 1.15:1)"
+    },
+    {
+      "name": "390-static-layout-p1-p4",
+      "status": "pass",
+      "expected": "p1 above p2 above p3 above p4; centred; image below text; #p2 32px",
+      "actual": {
+        "tops": [
+          127,
+          186,
+          280,
+          506
+        ],
+        "p2FontPx": 32,
+        "textRight": 366,
+        "imageLeft": 24,
+        "textBottom": 545,
+        "imageTop": 593,
+        "p2Centered": true,
+        "pageScrollWidth": 390
+      }
+    },
+    {
+      "name": "390-no-preference-motion-kept",
+      "status": "pass",
+      "expected": {
+        "scrollBehavior": "smooth",
+        "maxTransitionSeconds": 0.5,
+        "cardHover": "matrix(1, 0, 0, 1, 0, -6)"
+      },
+      "actual": {
+        "scrollBehavior": "smooth",
+        "maxTransitionSeconds": 0.5,
+        "cardHover": "matrix(1, 0, 0, 1, 0, -6)"
+      }
+    },
+    {
+      "name": "no-page-errors",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    }
+  ]
+}

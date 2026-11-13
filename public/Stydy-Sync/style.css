@@ -36,6 +36,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keep focused/scrolled-to elements below the sticky header (≈ 76px tall) */
+  scroll-padding-top: 6rem;
   font-size: 16px;
 }
 
@@ -621,6 +623,13 @@ nav ul li a:hover {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
+/* The rule above removes the outline and its 10% glow is almost invisible
+   (about 1.15:1), so keyboard users get a clear ring as well. */
+.khabar form input[type='email']:focus-visible {
+  outline: 3px solid var(--primary-dark);
+  outline-offset: 2px;
+}
+
 .khabar form button {
   padding: 0.8rem 1.5rem;
   background: var(--primary);
@@ -945,5 +954,34 @@ footer {
 
   .bottom {
     padding-top: 2rem;
+  }
+}
+
+/* ── Reduced motion ──
+   Users who ask their system for less motion get no smooth scrolling,
+   (near-)instant transitions and no hover movement. Nothing is hidden:
+   colours, shadows and all content stay the same. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .button:hover,
+  .s1:hover,
+  .s2:hover,
+  .img-cont:hover .i1,
+  .card:hover,
+  .review:hover,
+  .khabar form button:hover,
+  .ic:hover {
+    transform: none;
   }
 }

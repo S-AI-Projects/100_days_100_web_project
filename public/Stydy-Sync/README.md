@@ -103,6 +103,29 @@ The website is optimized for:
 
 ---
 
+## ♿ Motion, focus and test
+
+**Motion on this page:** there are no keyframe animations. Motion comes from smooth scrolling (`html { scroll-behavior: smooth }`), 0.25–0.5s transitions, and hover lifts (cards and reviews 6px, buttons 1–3px, hero image zoom 1.03).
+
+| Preference | Behaviour |
+| --- | --- |
+| No preference | Unchanged: smooth scroll, transitions and hover lifts. |
+| `prefers-reduced-motion: reduce` | No smooth scrolling, near-instant transitions, no hover movement. All text, links and the newsletter form stay visible and usable. |
+
+**Keyboard focus:** every link, the email field and the Submit button show a visible focus indicator. The email field gets a 3px ring, because its old 10% glow was almost invisible. `scroll-padding-top` keeps focused elements below the sticky header when tabbing backwards.
+
+Run with the repo's server (`npm run dev`, then open <http://localhost:3000/public/Stydy-Sync/>). Test from the repository root:
+
+```bash
+npm --prefix tests/course ci
+npx --prefix tests/course playwright install chromium   # first time only
+node tests/course/r60-t009.mjs
+```
+
+The test checks reduced and normal motion, Tab and Shift+Tab focus at 1280px and 390px, and the layout of the hero text (`#p1`–`#p4`). It exits non-zero on any failure or page error.
+
+---
+
 ## 📄 License
 
 This project is open-source and available under the MIT License.
