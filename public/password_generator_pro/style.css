@@ -173,3 +173,28 @@ input[type="range"] {
 .generateButton:hover {
   transform: scale(1.03);
 }
+
+/* LIGHT THEME (toggled by #themeToggle) */
+body.light {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+body.light .card {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+}
+
+body.light #themeToggle {
+  background: rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+}
+
+body.light .output input,
+body.light #customWordInput {
+  background: #e2e8f0;
+}
+
+body.light .bar {
+  background: rgba(15, 23, 42, 0.15);
+}

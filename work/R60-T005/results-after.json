@@ -1,0 +1,229 @@
+{
+  "task": "R60-T005",
+  "label": "after",
+  "page": "/public/password_generator_pro/index.html",
+  "date": "2026-11-13T05:15:59.180Z",
+  "tools": {
+    "node": "v22.23.4",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "os": "Linux 6.18.44-fc-v445"
+  },
+  "inputs": {
+    "context": {
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "deviceScaleFactor": 1,
+      "colorScheme": "dark",
+      "locale": "en-US",
+      "timezoneId": "UTC",
+      "reducedMotion": "reduce"
+    },
+    "fixtures": {
+      "randomness": "crypto.getRandomValues + Math.random seeded (mulberry32, seed 0x5eed1234)",
+      "clock": "Date fixed at 2026-01-01T00:00:00.000Z",
+      "network": "all non-local requests blocked and recorded",
+      "fonts": "no web fonts; local sans-serif fallback",
+      "clipboard": "navigator.clipboard.writeText stub: records text (allow) or rejects NotAllowedError (deny)"
+    },
+    "session": [
+      "generate (default: lowercase, 10)",
+      "upper+lower+numbers, length 16, generate",
+      "theme toggle x2",
+      "no options, generate"
+    ],
+    "expectedPasswords": {
+      "defaultLower10": "kgvqcgoegs",
+      "upperLowerNumbers16": "2YCYrtkTpjBoY4aN"
+    }
+  },
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "initial-state",
+      "status": "pass",
+      "expected": {
+        "password": "",
+        "lengthLabel": "10",
+        "checked": [
+          "lowercase"
+        ],
+        "strength": "Weak",
+        "indicatorPercent": 0,
+        "cardWidth": 380
+      },
+      "actual": {
+        "password": "",
+        "lengthLabel": "10",
+        "checked": [
+          "lowercase"
+        ],
+        "strength": "Weak",
+        "indicatorPercent": 0,
+        "cardWidth": 380
+      }
+    },
+    {
+      "name": "seeded-default-password-exact",
+      "status": "pass",
+      "expected": {
+        "password": "kgvqcgoegs",
+        "strength": "Weak",
+        "indicatorPercent": 25
+      },
+      "actual": {
+        "password": "kgvqcgoegs",
+        "strength": "Weak",
+        "indicatorPercent": 25
+      }
+    },
+    {
+      "name": "seeded-upper-lower-numbers-16-exact",
+      "status": "pass",
+      "expected": {
+        "password": "2YCYrtkTpjBoY4aN",
+        "lengthLabel": "16",
+        "strength": "Medium",
+        "indicatorPercent": 75,
+        "classes": "upper+lower+digit, no symbol"
+      },
+      "actual": {
+        "password": "2YCYrtkTpjBoY4aN",
+        "lengthLabel": "16",
+        "strength": "Medium",
+        "indicatorPercent": 75,
+        "classes": "upper+lower+digit, no symbol"
+      }
+    },
+    {
+      "name": "no-options-shows-message",
+      "status": "pass",
+      "expected": {
+        "password": "Select options!",
+        "strength": "Weak",
+        "indicatorPercent": 0
+      },
+      "actual": {
+        "password": "Select options!",
+        "strength": "Weak",
+        "indicatorPercent": 0
+      }
+    },
+    {
+      "name": "theme-toggle-switches-and-back",
+      "status": "pass",
+      "expected": {
+        "first": {
+          "lightTheme": true,
+          "themeIcon": "🌙"
+        },
+        "second": {
+          "lightTheme": false,
+          "themeIcon": "☀️"
+        },
+        "backgroundChanged": true
+      },
+      "actual": {
+        "first": {
+          "lightTheme": true,
+          "themeIcon": "🌙"
+        },
+        "second": {
+          "lightTheme": false,
+          "themeIcon": "☀️"
+        },
+        "backgroundChanged": true
+      }
+    },
+    {
+      "name": "two-fresh-contexts-identical-dom-state",
+      "status": "pass",
+      "expected": "context A === context B for every step",
+      "actual": [
+        "initial",
+        "defaultLower10",
+        "upperLowerNumbers16",
+        "afterThemeToggle",
+        "afterSecondThemeToggle",
+        "noOptions"
+      ]
+    },
+    {
+      "name": "copy-writes-exact-password",
+      "status": "pass",
+      "expected": {
+        "copied": [
+          "kgvqcgoegs"
+        ]
+      },
+      "actual": {
+        "copied": [
+          "kgvqcgoegs"
+        ]
+      }
+    },
+    {
+      "name": "copy-success-feedback",
+      "status": "pass",
+      "expected": {
+        "buttonText": "✅"
+      },
+      "actual": {
+        "buttonText": "✅"
+      }
+    },
+    {
+      "name": "copy-denied-handled-with-feedback",
+      "status": "pass",
+      "expected": {
+        "newPageErrors": 0,
+        "buttonText": "⚠️",
+        "passwordSelected": true
+      },
+      "actual": {
+        "newPageErrors": 0,
+        "buttonText": "⚠️",
+        "passwordSelected": true
+      }
+    },
+    {
+      "name": "no-external-requests-or-web-fonts",
+      "status": "pass",
+      "expected": {
+        "externalRequests": [],
+        "webFontsLoaded": 0
+      },
+      "actual": {
+        "externalRequests": [],
+        "webFontsLoaded": 0
+      }
+    },
+    {
+      "name": "control-unseeded-contexts-differ",
+      "status": "pass",
+      "expected": {
+        "differ": true
+      },
+      "actual": {
+        "differ": true,
+        "passwords": [
+          "sigtwmufeu",
+          "xigbpgonbj"
+        ]
+      }
+    },
+    {
+      "name": "no-page-errors",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    }
+  ]
+}

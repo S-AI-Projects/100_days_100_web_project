@@ -70,6 +70,32 @@ Run locally
 
 ---
 
+## 🧪 Deterministic test
+
+The page uses real randomness (`crypto.getRandomValues`) and the clipboard, so a plain browser test would see a different password every run. The regression test replaces those with local fixtures:
+
+| Fixture | What it replaces |
+| --- | --- |
+| Seeded `crypto.getRandomValues` / `Math.random` (mulberry32, seed `0x5eed1234`) | real randomness, so passwords are known exactly (`kgvqcgoegs` for the default, `2YCYrtkTpjBoY4aN` for upper+lower+numbers at 16) |
+| Fixed `Date` (2026-01-01T00:00:00Z) | the clock |
+| Blocked non-local requests | the network (the page needs none; the "Inter" font is never loaded, so the local sans-serif fallback is used) |
+| `navigator.clipboard.writeText` stub (records text, or rejects as "permission denied") | the clipboard permission |
+| Viewport 1280×800, scale 1, dark colour scheme, en-US, UTC | screen and locale differences |
+
+The same session runs in two fresh browser contexts, and their DOM state must match. From the repository root:
+
+```bash
+npm --prefix tests/course ci
+npx --prefix tests/course playwright install chromium   # first time only
+node tests/course/r60-t005.mjs
+```
+
+It exits non-zero on any failed check or page error.
+
+The ☀️ / 🌙 button switches between the dark and light themes and remembers the choice. If copying is refused, the 📋 button shows ⚠️ and selects the password so it can be copied by hand.
+
+---
+
 ## 🎯 Features Demonstrated
 
 - Random Password Generation

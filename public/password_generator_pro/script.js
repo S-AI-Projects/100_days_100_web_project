@@ -5,6 +5,35 @@ const copyBtn = document.querySelector("[data-copy]");
 const indicator = document.querySelector("[data-indicator]");
 const strengthText = document.querySelector("[data-strengthText]");
 const generateBtn = document.querySelector(".generateButton");
+const themeToggle = document.getElementById("themeToggle");
+
+// ---- Theme toggle (☀️ = switch to light, 🌙 = switch back to dark) ----
+function readSavedTheme() {
+  try {
+    return localStorage.getItem("pgTheme") === "light" ? "light" : "dark";
+  } catch {
+    return "dark"; // storage blocked: keep the default
+  }
+}
+
+function applyTheme(theme) {
+  document.body.classList.toggle("light", theme === "light");
+  themeToggle.textContent = theme === "light" ? "🌙" : "☀️";
+  themeToggle.setAttribute("aria-label", theme === "light" ? "Switch to dark theme" : "Switch to light theme");
+}
+
+let currentTheme = readSavedTheme();
+applyTheme(currentTheme);
+
+themeToggle.addEventListener("click", () => {
+  currentTheme = currentTheme === "light" ? "dark" : "light";
+  applyTheme(currentTheme);
+  try {
+    localStorage.setItem("pgTheme", currentTheme);
+  } catch {
+    /* storage blocked: theme still switches for this visit */
+  }
+});
 
 // update slider UI
 lengthSlider.addEventListener("input", () => {
@@ -106,8 +135,27 @@ function checkStrength(pass) {
 
 generateBtn.addEventListener("click", generatePassword);
 
-copyBtn.addEventListener("click", () => {
-  if (passwordBox.value) {
-    navigator.clipboard.writeText(passwordBox.value);
+// Copy: the clipboard can be refused (no permission, insecure page), so handle
+// failure instead of leaving an uncaught error, and tell the user either way.
+let copyResetTimer;
+copyBtn.addEventListener("click", async () => {
+  const text = passwordBox.value;
+  if (!text || text === "Select options!") return;
+
+  try {
+    await navigator.clipboard.writeText(text);
+    copyBtn.textContent = "✅";
+    copyBtn.title = "Copied";
+  } catch {
+    copyBtn.textContent = "⚠️";
+    copyBtn.title = "Copy failed - the password is selected, press Ctrl/Cmd+C";
+    passwordBox.focus();
+    passwordBox.select();
   }
+
+  clearTimeout(copyResetTimer);
+  copyResetTimer = setTimeout(() => {
+    copyBtn.textContent = "📋";
+    copyBtn.title = "Copy password";
+  }, 1500);
 });
