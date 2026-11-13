@@ -1,0 +1,198 @@
+{
+  "task": "R60-T010",
+  "label": "baseline",
+  "page": "/public/CyberPulse-AI/index.html",
+  "date": "2026-11-13T07:33:53.782Z",
+  "tools": {
+    "node": "v22.23.4",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "os": "Linux 6.18.44-fc-v445"
+  },
+  "inputs": {
+    "viewport": "1280x800",
+    "urls": {
+      "phishy": "http://secure-login.bank-verify.example.com@192.168.0.1",
+      "safe": "https://example.com"
+    },
+    "mutations": {
+      "M1": {
+        "kind": "event binding",
+        "file": "/public/CyberPulse-AI/script.js",
+        "change": "form.addEventListener('submit' -> \"form.addEventListener('sumbit'\"",
+        "mustFail": [
+          "submit-runs-scan-and-shows-threat-verdict",
+          "second-scan-safe-url-replaces-result"
+        ],
+        "reasonContains": "submit was not handled"
+      },
+      "M2": {
+        "kind": "style rule",
+        "file": "/public/CyberPulse-AI/style.css",
+        "change": "/\\.result-grid\\[hidden\\]\\s*\\{[^}]*\\}/ -> \"\"",
+        "mustFail": [
+          "results-hidden-before-any-scan"
+        ],
+        "reasonContains": "a verdict is shown before any scan"
+      }
+    },
+    "stubs": "Math.random seeded (matrix rain); Google Fonts stubbed"
+  },
+  "summary": {
+    "total": 10,
+    "passed": 6,
+    "failed": 4,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "correct-matrix-canvas-fills-window-and-draws",
+      "status": "pass",
+      "expected": "pass on the unmodified page",
+      "actual": {
+        "buffer": [
+          1280,
+          800
+        ],
+        "css": [
+          1280,
+          800
+        ],
+        "lit": 193,
+        "pointerEvents": "auto"
+      }
+    },
+    {
+      "name": "correct-boot-log-four-lines",
+      "status": "pass",
+      "expected": "pass on the unmodified page",
+      "actual": [
+        "[ OK ] loading threat-signature database...",
+        "[ OK ] initializing heuristic engine...",
+        "[ OK ] calibrating AI explanation module...",
+        "> PhishGuard AI Terminal ready."
+      ]
+    },
+    {
+      "name": "correct-results-hidden-before-any-scan",
+      "status": "fail",
+      "expected": "pass on the unmodified page",
+      "actual": {
+        "resultGridDisplay": "grid",
+        "emptyStateShown": true,
+        "verdictTextVisible": true
+      },
+      "error": "a verdict is shown before any scan (result grid display: grid)"
+    },
+    {
+      "name": "correct-empty-submit-does-not-scan",
+      "status": "pass",
+      "expected": "pass on the unmodified page",
+      "actual": {
+        "liveLogLines": 0,
+        "inputInvalid": true
+      }
+    },
+    {
+      "name": "correct-submit-runs-scan-and-shows-threat-verdict",
+      "status": "pass",
+      "expected": "pass on the unmodified page",
+      "actual": {
+        "liveLog": [
+          "> scanning target: http://secure-login.bank-verify.example.com@192.168.0.1",
+          "> checking keyword patterns...",
+          "> checking URL structure & encoding tricks...",
+          "> evaluating protocol & domain composition...",
+          "> ALERT: high-risk indicators found."
+        ],
+        "lastLogClass": "log-bad",
+        "resultGridDisplay": "grid",
+        "verdict": "THREAT DETECTED",
+        "verdictClass": "verdict-badge verdict--threat",
+        "score": "100",
+        "fillWidth": "100%",
+        "confidence": "95%",
+        "reasons": 5,
+        "emptyStateShown": false,
+        "buttonEnabledAfter": true,
+        "buttonDisabledDuringScan": true,
+        "pageReloaded": false,
+        "url": "http://127.0.0.1:35089/public/CyberPulse-AI/index.html"
+      }
+    },
+    {
+      "name": "correct-second-scan-safe-url-replaces-result",
+      "status": "pass",
+      "expected": "pass on the unmodified page",
+      "actual": {
+        "verdict": "SAFE SIGNAL",
+        "score": "0",
+        "confidence": "95%",
+        "reasons": [
+          "No suspicious patterns detected in keywords, structure, or protocol."
+        ],
+        "liveLogLines": 5
+      }
+    },
+    {
+      "name": "correct-no-page-errors",
+      "status": "pass",
+      "expected": "pass on the unmodified page",
+      "actual": []
+    },
+    {
+      "name": "mutation-M1-event-binding-caught",
+      "status": "fail",
+      "expected": {
+        "fixtureApplied": true,
+        "failedAssertions": [
+          "submit-runs-scan-and-shows-threat-verdict",
+          "second-scan-safe-url-replaces-result"
+        ],
+        "reasonContains": "submit was not handled"
+      },
+      "actual": {
+        "fixtureApplied": true,
+        "failedAssertions": [
+          "results-hidden-before-any-scan",
+          "submit-runs-scan-and-shows-threat-verdict",
+          "second-scan-safe-url-replaces-result"
+        ],
+        "targetReason": "submit was not handled: the page reloaded (http://127.0.0.1:35089/public/CyberPulse-AI/index.html?) and no verdict appeared"
+      },
+      "error": "expected exactly [\"submit-runs-scan-and-shows-threat-verdict\",\"second-scan-safe-url-replaces-result\"] to fail, got: [\"results-hidden-before-any-scan\",\"submit-runs-scan-and-shows-threat-verdict\",\"second-scan-safe-url-replaces-result\"]"
+    },
+    {
+      "name": "mutation-M2-style-rule-caught",
+      "status": "fail",
+      "expected": {
+        "fixtureApplied": true,
+        "failedAssertions": [
+          "results-hidden-before-any-scan"
+        ],
+        "reasonContains": "a verdict is shown before any scan"
+      },
+      "actual": {
+        "fixtureApplied": false,
+        "failedAssertions": [
+          "results-hidden-before-any-scan"
+        ],
+        "targetReason": "a verdict is shown before any scan (result grid display: grid)"
+      },
+      "error": "fixture could not be applied (pattern not found in /public/CyberPulse-AI/style.css)"
+    },
+    {
+      "name": "application-files-contain-no-mutation",
+      "status": "fail",
+      "expected": {
+        "submitBinding": true,
+        "hiddenRule": true
+      },
+      "actual": {
+        "submitBinding": true,
+        "hiddenRule": false
+      },
+      "error": "source on disk: {\"submitBinding\":true,\"hiddenRule\":false}"
+    }
+  ]
+}

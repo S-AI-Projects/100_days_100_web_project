@@ -1,92 +1,53 @@
-# 💰 Expense Tracker
+# 🛡️ PhishGuard AI Terminal (CyberPulse-AI)
 
-A modern and responsive Expense Tracker application that helps users efficiently manage their personal finances. Users can record income and expenses, monitor their financial health through an interactive dashboard, and visualize spending patterns with insightful charts and statistics.
+A terminal-style web page that checks a URL against simple, rule-based phishing heuristics. It looks at suspicious keywords, `@` tricks, HTTP instead of HTTPS, excessive subdomains, hyphenated domains and raw IP hosts, then explains its verdict.
 
----
+> Educational tool only: rule-based heuristics, not a guaranteed phishing detector.
 
-# ✨ Features
+## What you see
 
-* Add income and expense transactions
-* Record amount, category, date, and description
-* Real-time balance calculation
-* Dashboard with financial summary
-* Total Income, Total Expenses, Savings Rate
-* Average transaction statistics
-* Category-wise expense breakdown
-* Circular indicator for highest spending category
-* Transaction history
-* Backup data option
-* Clear all data option
-* Fully responsive UI
-* Dark mode interface
+| Region | Behaviour |
+| --- | --- |
+| `#matrix-canvas` | Full-window "matrix rain" background, redrawn on a timer (slower with `prefers-reduced-motion`). |
+| `#bootLog` | Four boot lines on load, ending with `> PhishGuard AI Terminal ready.` |
+| `#scanPanel` / `#scanForm` | Enter a URL and press **RUN ANALYSIS** or Enter. A five-line live log runs, then the result grid shows the verdict (🟢 SAFE SIGNAL / 🟡 SUSPICIOUS ACTIVITY / 🔴 THREAT DETECTED), threat score /100, AI confidence and the reasons. |
 
----
+Before any scan, only the "awaiting input…" message is shown. The result grid stays hidden: `.result-grid[hidden] { display: none }` is needed because `.result-grid { display: grid }` would otherwise override the `hidden` attribute.
 
-# 🛠 Technologies Used
+Example: `http://secure-login.bank-verify.example.com@192.168.0.1` gives **THREAT DETECTED**, score 100, confidence 95%, with 5 reasons. `https://example.com` gives **SAFE SIGNAL**, score 0, confidence 95%.
 
-* HTML5
-* CSS3
-* JavaScript (ES6)
-* Local Storage API
+## Run locally
 
----
+From the repository root:
 
-# 🚀 Installation
-
-1. Clone the repository.
-2. Navigate to the `expense_Tracker` folder.
-3. Open `index.html` in your browser.
-
-No installation or dependencies are required.
-
----
-
-# 📖 Usage
-
-* Add income or expense entries.
-* View your updated balance instantly.
-* Monitor spending through charts and summaries.
-* Backup your data whenever needed.
-* Clear stored data if required.
-
----
-
-# 📁 Project Structure
-
-```text
-expense_Tracker/
-│── index.html
-│── style.css
-│── script.js
-└── README.md
+```bash
+npm run dev    # serves the repo on http://localhost:3000
 ```
 
----
+Then open <http://localhost:3000/public/CyberPulse-AI/>. Opening `index.html` directly also works, because the page has no build step or dependencies.
 
-# 📸 Screenshots
+## Test
 
-Add screenshots or GIFs of the application here.
+```bash
+npm --prefix tests/course ci
+npx --prefix tests/course playwright install chromium   # first time only
+node tests/course/r60-t010.mjs
+```
 
----
+The test runs its behavioural assertions three times:
+- against the real page, which must pass;
+- against a temporary fixture with the `submit` binding broken, which must fail with "submit was not handled";
+- against a temporary fixture without the `.result-grid[hidden]` rule, which must fail with "a verdict is shown before any scan".
 
-# 🚀 Future Enhancements
+The fixtures change only what the test's server sends to the browser, never the files. The test exits non-zero if the real page fails, a fixture goes unnoticed, or the files on disk contain a mutation.
 
-* Monthly analytics
-* Export to PDF/Excel
-* Authentication
-* Cloud synchronization
-* Budget planning
-* Multiple currencies
-* Expense reminders
+## Files
 
----
+```text
+CyberPulse-AI/
+├── index.html   # markup: canvas, boot log, scan panel, result grid
+├── style.css    # terminal theme, result cards, responsive grid
+└── script.js    # matrix rain, boot log, analyzeUrl() rules, UI wiring
+```
 
-# 🤝 Contributing
-
-Contributions are welcome. Feel free to fork the repository, create a feature branch, and submit a Pull Request.
-
----
-
-# 📄 License
-
-This project is part of the **100 Days 100 Web Projects** collection.
+Built by [Sapna Jha](https://github.com/sapnajha757).

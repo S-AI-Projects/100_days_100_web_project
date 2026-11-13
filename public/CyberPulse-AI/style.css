@@ -244,6 +244,12 @@ html, body {
   gap: 14px;
 }
 
+/* `display: grid` above would override the HTML `hidden` attribute and show
+   "SAFE SIGNAL 0/100" before anything was scanned, so honour `hidden` here. */
+.result-grid[hidden] {
+  display: none;
+}
+
 .result-card {
   background: var(--bg-panel-2);
   border: 1px solid var(--line);
