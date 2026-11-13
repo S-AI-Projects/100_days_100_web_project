@@ -1,0 +1,202 @@
+{
+  "task": "R60-T004",
+  "label": "latest",
+  "app": "public/TodoList-React-TS-Tailwind",
+  "date": "2026-11-13T04:52:47.163Z",
+  "tools": {
+    "node": "v26.13.1",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "server": "npm run dev (vite, React StrictMode dev build)",
+    "os": "Darwin 25.6.0"
+  },
+  "inputs": {
+    "viewport": "1280x900",
+    "actions": [
+      "add \"Buy milk\" + \"Write report\", reload",
+      "add \"Stretch\" twice",
+      "toggle first todo twice",
+      "theme toggle x4, filter tags/all x2",
+      "fixed clock 2026-01-01T10:00:00Z: add \"Alpha\" + \"Beta\"",
+      "seeded storage: two todos sharing id tl1767261600000",
+      "seeded storage: recurring checked todo, lastUpdate \"yesterday\", then check + reload"
+    ],
+    "probe": "counts listeners on window/document/#root and setInterval timers created from /src/"
+  },
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "init-renders-app-once",
+      "status": "pass",
+      "expected": {
+        "rootChildren": 1,
+        "headers": 1,
+        "addInputs": 1,
+        "filters": 1
+      },
+      "actual": {
+        "rootChildren": 1,
+        "headers": 1,
+        "addInputs": 1,
+        "filters": 1
+      }
+    },
+    {
+      "name": "reinit-restores-each-todo-once",
+      "status": "pass",
+      "expected": {
+        "titles": [
+          "Buy milk",
+          "Write report"
+        ],
+        "storedCount": 2
+      },
+      "actual": {
+        "titles": [
+          "Buy milk",
+          "Write report"
+        ],
+        "storedCount": 2
+      }
+    },
+    {
+      "name": "reinit-same-listeners-and-no-app-timers",
+      "status": "pass",
+      "expected": {
+        "sameListenersAsFirstInit": true,
+        "appIntervals": 0
+      },
+      "actual": {
+        "sameListenersAsFirstInit": true,
+        "appIntervals": 0,
+        "firstTotal": 144,
+        "secondTotal": 144
+      }
+    },
+    {
+      "name": "repeat-add-same-title-adds-exactly-one-each",
+      "status": "pass",
+      "expected": {
+        "added": 2,
+        "cards": 4
+      },
+      "actual": {
+        "added": 2,
+        "cards": 4
+      }
+    },
+    {
+      "name": "repeat-toggle-complete-flips-one-todo",
+      "status": "pass",
+      "expected": {
+        "afterFirst": [
+          true,
+          false
+        ],
+        "afterSecond": [
+          false,
+          false
+        ]
+      },
+      "actual": {
+        "afterFirst": [
+          true,
+          false
+        ],
+        "afterSecond": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "name": "repeat-theme-toggle-and-filter-no-growth",
+      "status": "pass",
+      "expected": {
+        "darkAfter4Toggles": "true",
+        "cardsAfterFilters": 4,
+        "listenerTotalUnchanged": true,
+        "appIntervals": 0
+      },
+      "actual": {
+        "darkAfter4Toggles": "true",
+        "cardsAfterFilters": 4,
+        "listenerTotalUnchanged": true,
+        "appIntervals": 0
+      }
+    },
+    {
+      "name": "same-millisecond-adds-get-unique-ids",
+      "status": "pass",
+      "expected": {
+        "uniqueIds": 2,
+        "cards": 2
+      },
+      "actual": {
+        "uniqueIds": 2,
+        "cards": 2
+      }
+    },
+    {
+      "name": "same-millisecond-toggle-one-changes-one",
+      "status": "pass",
+      "expected": {
+        "Alpha": true,
+        "Beta": false
+      },
+      "actual": {
+        "Alpha": true,
+        "Beta": false
+      }
+    },
+    {
+      "name": "saved-duplicate-ids-render-and-toggle-once",
+      "status": "pass",
+      "expected": {
+        "cards": 2,
+        "toggled": {
+          "Old one": true,
+          "Old two": false
+        }
+      },
+      "actual": {
+        "cards": 2,
+        "toggled": {
+          "Old one": true,
+          "Old two": false
+        }
+      }
+    },
+    {
+      "name": "daily-reset-once-per-day-across-reinit",
+      "status": "pass",
+      "expected": {
+        "afterFirstInit": false,
+        "afterUserChecks": true,
+        "afterReinitSameDay": true
+      },
+      "actual": {
+        "afterFirstInit": false,
+        "afterUserChecks": true,
+        "afterReinitSameDay": true
+      }
+    },
+    {
+      "name": "no-page-errors",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "name": "cleanup-dev-server-stopped",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    }
+  ]
+}

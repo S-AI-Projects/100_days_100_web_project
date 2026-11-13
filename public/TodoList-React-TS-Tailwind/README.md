@@ -222,6 +222,23 @@ useEffect(() => {
 
 ---
 
+## 🧪 Repeat-initialization test
+
+Every todo gets a unique id (`crypto.randomUUID()`, with a random fallback where that is unavailable). Before this change the id was `'tl' + Date.now()`, so two todos added in the same millisecond, or within a browser's reduced timer precision, shared an id. React then warned about duplicate keys, and clicking one todo completed both. Saved lists that already contain a repeated id are repaired when the app loads.
+
+The regression test starts the app with its own dev server (`npm run dev`). It initializes the app twice (load, then reload; React StrictMode also mounts effects twice in dev) and repeats interactions. It checks that each action makes exactly one update, and that no listeners, timers or DOM nodes are duplicated. From the repository root:
+
+```bash
+npm --prefix public/TodoList-React-TS-Tailwind ci          # app dependencies
+npm --prefix tests/course ci                               # pinned Playwright
+npx --prefix tests/course playwright install chromium      # first time only
+node tests/course/r60-t004.mjs
+```
+
+The test always stops the dev server and exits non-zero on any failed check, page error or React warning.
+
+---
+
 ## 🔮 Future Enhancements
 
 - [ ] **Drag-and-drop** task reordering
