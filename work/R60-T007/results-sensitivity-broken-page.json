@@ -1,0 +1,315 @@
+{
+  "task": "R60-T007",
+  "label": "sensitivity-broken-page",
+  "page": "/public/Glassmorphism-Generator/index.html",
+  "date": "2026-11-13T06:03:27.223Z",
+  "tools": {
+    "node": "v22.23.4",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "os": "Linux 6.18.44-fc-v445"
+  },
+  "inputs": {
+    "walkthroughSource": "public/Glassmorphism-Generator/README.md (walkthrough:start … walkthrough:end)",
+    "context": "fresh Chromium context, 1280x800 then 390x844, light colour scheme, reduced motion",
+    "stubs": "navigator.clipboard.writeText records text (clipboard needs a permission); non-local requests blocked (none needed)"
+  },
+  "summary": {
+    "total": 13,
+    "passed": 11,
+    "failed": 2,
+    "fatal": null
+  },
+  "results": [
+    {
+      "name": "readme-has-entry-point-and-setup-command",
+      "status": "pass",
+      "expected": {
+        "entryPoint": true,
+        "setupCommand": true
+      },
+      "actual": {
+        "entryPoint": true,
+        "setupCommand": true
+      }
+    },
+    {
+      "name": "readme-code-fences-balanced",
+      "status": "pass",
+      "expected": {
+        "unclosedFences": 0
+      },
+      "actual": {
+        "fences": 4,
+        "unclosedFences": 0
+      }
+    },
+    {
+      "name": "readme-walkthrough-present",
+      "status": "pass",
+      "expected": {
+        "steps": ">= 5",
+        "everyStepHasActionAndExpectation": true
+      },
+      "actual": {
+        "steps": 8,
+        "everyStepHasActionAndExpectation": true
+      }
+    },
+    {
+      "name": "readme-screenshot-exists",
+      "status": "pass",
+      "expected": "every image the README references exists",
+      "actual": {
+        "refs": [
+          "docs/walkthrough-step4.png"
+        ],
+        "missing": []
+      }
+    },
+    {
+      "name": "walkthrough-step-1",
+      "status": "fail",
+      "expected": {
+        "action": "open 1280x800",
+        "expected": [
+          "text #blur-val = 10px",
+          "css #preview-card backdrop-filter = blur(10px)",
+          "value #css-output contains backdrop-filter: blur(10px);",
+          "left-of .preview-section .controls-section"
+        ]
+      },
+      "actual": [
+        {
+          "expectation": "text #blur-val = 10px",
+          "ok": false,
+          "actual": "10"
+        },
+        {
+          "expectation": "css #preview-card backdrop-filter = blur(10px)",
+          "ok": true,
+          "actual": "blur(10px)"
+        },
+        {
+          "expectation": "value #css-output contains backdrop-filter: blur(10px);",
+          "ok": true,
+          "actual": "background: rgba(255, 255, 255, 0.2);\nbackdrop-filter: blur(10px);\n-webkit-backdrop-filter: blur(10px);\nborder: 1px solid rgba(255, 255, 255, 0.3);\nbox-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);"
+        },
+        {
+          "expectation": "left-of .preview-section .controls-section",
+          "ok": true,
+          "actual": {
+            ".preview-section": {
+              "x": 140,
+              "y": 100,
+              "width": 468,
+              "height": 600
+            },
+            ".controls-section": {
+              "x": 608,
+              "y": 100,
+              "width": 532,
+              "height": 600
+            }
+          }
+        }
+      ],
+      "error": "step 1 (Open the page in a 1280×800 window): \"text #blur-val = 10px\" got \"10\""
+    },
+    {
+      "name": "walkthrough-step-2",
+      "status": "fail",
+      "expected": {
+        "action": "fill #blur 24",
+        "expected": [
+          "text #blur-val = 24px",
+          "css #preview-card backdrop-filter = blur(24px)",
+          "value #css-output contains backdrop-filter: blur(24px);",
+          "value #css-output contains -webkit-backdrop-filter: blur(24px);"
+        ]
+      },
+      "actual": [
+        {
+          "expectation": "text #blur-val = 24px",
+          "ok": false,
+          "actual": "24"
+        },
+        {
+          "expectation": "css #preview-card backdrop-filter = blur(24px)",
+          "ok": true,
+          "actual": "blur(24px)"
+        },
+        {
+          "expectation": "value #css-output contains backdrop-filter: blur(24px);",
+          "ok": true,
+          "actual": "background: rgba(255, 255, 255, 0.2);\nbackdrop-filter: blur(24px);\n-webkit-backdrop-filter: blur(24px);\nborder: 1px solid rgba(255, 255, 255, 0.3);\nbox-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);"
+        },
+        {
+          "expectation": "value #css-output contains -webkit-backdrop-filter: blur(24px);",
+          "ok": true,
+          "actual": "background: rgba(255, 255, 255, 0.2);\nbackdrop-filter: blur(24px);\n-webkit-backdrop-filter: blur(24px);\nborder: 1px solid rgba(255, 255, 255, 0.3);\nbox-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);"
+        }
+      ],
+      "error": "step 2 (Drag **Blur** to 24): \"text #blur-val = 24px\" got \"24\""
+    },
+    {
+      "name": "walkthrough-step-3",
+      "status": "pass",
+      "expected": {
+        "action": "fill #opacity 0.5",
+        "expected": [
+          "text #opacity-val = 0.5",
+          "css #preview-card background-color = rgba(255, 255, 255, 0.5)"
+        ]
+      },
+      "actual": [
+        {
+          "expectation": "text #opacity-val = 0.5",
+          "ok": true,
+          "actual": "0.5"
+        },
+        {
+          "expectation": "css #preview-card background-color = rgba(255, 255, 255, 0.5)",
+          "ok": true,
+          "actual": "rgba(255, 255, 255, 0.5)"
+        }
+      ]
+    },
+    {
+      "name": "walkthrough-step-4",
+      "status": "pass",
+      "expected": {
+        "action": "fill #color #3b82f6",
+        "expected": [
+          "css #preview-card background-color = rgba(59, 130, 246, 0.5)",
+          "value #css-output contains background: rgba(59, 130, 246, 0.5);"
+        ]
+      },
+      "actual": [
+        {
+          "expectation": "css #preview-card background-color = rgba(59, 130, 246, 0.5)",
+          "ok": true,
+          "actual": "rgba(59, 130, 246, 0.5)"
+        },
+        {
+          "expectation": "value #css-output contains background: rgba(59, 130, 246, 0.5);",
+          "ok": true,
+          "actual": "background: rgba(59, 130, 246, 0.5);\nbackdrop-filter: blur(24px);\n-webkit-backdrop-filter: blur(24px);\nborder: 1px solid rgba(255, 255, 255, 0.3);\nbox-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);"
+        }
+      ]
+    },
+    {
+      "name": "walkthrough-step-5",
+      "status": "pass",
+      "expected": {
+        "action": "click #copy-btn",
+        "expected": [
+          "text #copy-btn = Copied!",
+          "copied contains background: rgba(59, 130, 246, 0.5);"
+        ]
+      },
+      "actual": [
+        {
+          "expectation": "text #copy-btn = Copied!",
+          "ok": true,
+          "actual": "Copied!"
+        },
+        {
+          "expectation": "copied contains background: rgba(59, 130, 246, 0.5);",
+          "ok": true,
+          "actual": [
+            "background: rgba(59, 130, 246, 0.5);\nbackdrop-filter: blur(24px);\n-webkit-backdrop-filter: blur(24px);\nborder: 1px solid rgba(255, 255, 255, 0.3);\nbox-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "walkthrough-step-6",
+      "status": "pass",
+      "expected": {
+        "action": "click #theme-toggle",
+        "expected": [
+          "class body has dark",
+          "text #theme-toggle = ☀️",
+          "css #preview-card backdrop-filter = blur(24px)"
+        ]
+      },
+      "actual": [
+        {
+          "expectation": "class body has dark",
+          "ok": true,
+          "actual": "dark present"
+        },
+        {
+          "expectation": "text #theme-toggle = ☀️",
+          "ok": true,
+          "actual": "☀️"
+        },
+        {
+          "expectation": "css #preview-card backdrop-filter = blur(24px)",
+          "ok": true,
+          "actual": "blur(24px)"
+        }
+      ]
+    },
+    {
+      "name": "walkthrough-step-7",
+      "status": "pass",
+      "expected": {
+        "action": "click #theme-toggle",
+        "expected": [
+          "class body lacks dark",
+          "text #theme-toggle = 🌙"
+        ]
+      },
+      "actual": [
+        {
+          "expectation": "class body lacks dark",
+          "ok": true,
+          "actual": "dark absent"
+        },
+        {
+          "expectation": "text #theme-toggle = 🌙",
+          "ok": true,
+          "actual": "🌙"
+        }
+      ]
+    },
+    {
+      "name": "walkthrough-step-8",
+      "status": "pass",
+      "expected": {
+        "action": "viewport 390x844",
+        "expected": [
+          "above .preview-section .controls-section"
+        ]
+      },
+      "actual": [
+        {
+          "expectation": "above .preview-section .controls-section",
+          "ok": true,
+          "actual": {
+            ".preview-section": {
+              "x": 16,
+              "y": 16,
+              "width": 358,
+              "height": 300
+            },
+            ".controls-section": {
+              "x": 16,
+              "y": 316,
+              "width": 358,
+              "height": 575.78125
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "no-page-errors",
+      "status": "pass",
+      "expected": [],
+      "actual": []
+    }
+  ]
+}
