@@ -81,3 +81,12 @@ Opens the app and immediately searches for "ephemeral".
 ## Author / Contributor
 
 Enhanced as part of the GSSoC project collection.
+## Running the browser test
+
+This test checks that opening and closing the sidebar twice does not duplicate list items or cause page errors.
+
+1. Install the packages: `npm install`
+2. Install the browser: `npx playwright install chromium`
+3. Run the test from the project root: `node tests/course/r60-t044.mjs`
+
+The test starts its own local server on port 3000 and stops it when finished, so stop any other server on that port first. It exits with a non-zero code if any check fails.

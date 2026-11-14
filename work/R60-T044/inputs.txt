@@ -1,0 +1,4 @@
+Page: http://localhost:3000/public/dictionary-app/
+Browser: Chromium (Playwright), fresh browser context
+Actions: click the menu button (#sidebarToggle) to open the sidebar, then click the dark overlay (.sidebar-overlay) to close it. Repeated twice.
+Checked each round: sidebar open class, left edge position when open, off-screen when closed, one item in each list, one overlay element, no page errors.
