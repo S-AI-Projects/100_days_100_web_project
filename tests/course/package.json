@@ -1,0 +1,12 @@
+{
+  "name": "s-ai-course-checks",
+  "private": true,
+  "description": "Browser regression checks for S&AI coursework tasks (tests/course/r60-t0NN.mjs).",
+  "type": "module",
+  "scripts": {
+    "r60-t001": "node r60-t001.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}
