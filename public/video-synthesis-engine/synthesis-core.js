@@ -4,9 +4,15 @@
  */
 (function () {
   const canvas = document.getElementById('synthesisCanvas');
-  const ctx = canvas.getContext('2d');
+  if (!canvas) return;
 
-  // Element caching
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    console.warn('Canvas 2D context not available.');
+    return;
+  }
+
+  // Element caching (Source anchors)
   const latencyMetric = document.getElementById('metric-latency');
   const frameMetric = document.getElementById('metric-frame');
   const interpolationMode = document.getElementById('interpolationMode');
@@ -18,12 +24,20 @@
   const height = canvas.height;
 
   // Create a blank data pixel buffer matching the dimension bounds
-  const imgData = ctx.createImageData(width, height);
-  const data = imgData.data;
+  const imgData = ctx.createImageData ? ctx.createImageData(width, height) : null;
+  const data = imgData ? imgData.data : null;
 
   let frameIndex = 0;
   let isScrubbing = false;
   let animationId = null;
+
+  // Ensure initial metrics are properly formatted
+  if (latencyMetric && (!latencyMetric.textContent || latencyMetric.textContent.trim() === '')) {
+    latencyMetric.textContent = '0.00';
+  }
+  if (frameMetric && (!frameMetric.textContent || frameMetric.textContent.trim() === '')) {
+    frameMetric.textContent = '0';
+  }
 
   // ==========================================
   // TIMELINE INTERPOLATION MATHEMATICS
@@ -84,12 +98,20 @@
     }
 
     // Paint the calculated mathematical pixel matrix block directly onto the canvas view
-    ctx.putImageData(imgData, 0, 0);
+    if (ctx && imgData) {
+      ctx.putImageData(imgData, 0, 0);
+    }
 
     // Track frame execution profiling performance markers down to fractions of a millisecond
     const endTime = performance.now();
-    latencyMetric.textContent = (endTime - startTime).toFixed(2);
-    frameMetric.textContent = frameIndex++;
+    const duration = Math.max(0, endTime - startTime);
+    if (latencyMetric) {
+      latencyMetric.textContent = isFinite(duration) ? duration.toFixed(2) : '0.00';
+    }
+    if (frameMetric) {
+      frameMetric.textContent = String(frameIndex);
+    }
+    frameIndex++;
 
     // Continuously schedule the next engine loop tick frame natively
     if (!isScrubbing) {
