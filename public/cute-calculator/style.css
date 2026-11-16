@@ -60,6 +60,16 @@ body::after {
   position: relative;
   z-index: 1;
 }
+
+/* Opaque background fallback when backdrop-filter is unsupported */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .calculator {
+    background: #ffffff;
+  }
+  .confirm-dialog {
+    background: #ffffff;
+  }
+}
  
 /* ── Display area ── */
 .display-wrapper {

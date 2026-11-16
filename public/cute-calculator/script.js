@@ -30,12 +30,13 @@ document.querySelectorAll("button").forEach(btn => {
   });
 });
 
-/* ── Saved history helpers ── */
+/* ── Saved history helpers (with in-memory fallback on SecurityError/QuotaExceededError) ── */
 function loadHistory() {
   try {
     const savedHistory = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY));
     history = Array.isArray(savedHistory) ? savedHistory.slice(0, 10) : [];
-  } catch {
+  } catch (err) {
+    // Fall back cleanly to in-memory history if localStorage access is denied or unavailable
     history = [];
   }
 }
@@ -43,8 +44,8 @@ function loadHistory() {
 function saveHistory() {
   try {
     localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(history));
-  } catch {
-    // History still works for the current session if storage is unavailable.
+  } catch (err) {
+    // In-memory history remains fully functional if localStorage throws SecurityError or QuotaExceededError
   }
 }
 
@@ -52,8 +53,8 @@ function clearStoredHistory() {
   history = [];
   try {
     localStorage.removeItem(HISTORY_STORAGE_KEY);
-  } catch {
-    // Nothing else to clean up when storage is unavailable.
+  } catch (err) {
+    // History array is cleared in memory even if localStorage throws
   }
   renderHistory();
 }
