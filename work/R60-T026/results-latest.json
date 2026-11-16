@@ -1,0 +1,74 @@
+{
+  "taskId": "R60-T026",
+  "timestamp": "2026-11-16T19:24:26.165Z",
+  "passed": true,
+  "checks": [
+    {
+      "name": "@supports not block provides #ffffff opaque fallback for .calculator when backdrop-filter is missing",
+      "passed": true,
+      "data": {
+        "hasBackdropFallback": true
+      }
+    },
+    {
+      "name": "[Normal Context] Source anchors exist (#expression, #display, #historyPanel, #clearHistoryBtn)",
+      "passed": true,
+      "data": {
+        "expression": true,
+        "display": true,
+        "historyPanel": true,
+        "clearHistoryBtn": true
+      }
+    },
+    {
+      "name": "[Normal Context] Performs arithmetic '8*5=40' correctly",
+      "passed": true,
+      "data": {
+        "display": "40",
+        "expression": "8×5 ="
+      }
+    },
+    {
+      "name": "[Normal Context] Dialogs and history function without uncaught exceptions",
+      "passed": true,
+      "data": {
+        "normalHistoryHasItem": true,
+        "normalOverlayOpen": true,
+        "normalClearedState": {
+          "overlayClosed": true,
+          "emptyDisplayed": true,
+          "historyItemsCount": 0
+        },
+        "errorCount": 0,
+        "errors": []
+      }
+    },
+    {
+      "name": "[Restricted Context] Performs arithmetic '8*5=40' without uncaught exceptions when storage throws",
+      "passed": true,
+      "data": {
+        "restrictedCalcResult": {
+          "display": "40",
+          "expression": "8×5 ="
+        },
+        "errorCount": 0,
+        "errors": []
+      }
+    },
+    {
+      "name": "[Restricted Context] In-memory history and dialogs function without uncaught exceptions on throwing storage",
+      "passed": true,
+      "data": {
+        "restrictedHistoryInMemWorked": true,
+        "restrictedOverlayOpen": true,
+        "restrictedClearedState": {
+          "overlayClosed": true,
+          "emptyDisplayed": true,
+          "historyItemsCount": 0
+        },
+        "errorCount": 0,
+        "errors": []
+      }
+    }
+  ]
+}
