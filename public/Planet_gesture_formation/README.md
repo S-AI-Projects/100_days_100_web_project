@@ -27,18 +27,38 @@ An interactive, browser-based space visualization that renders a Saturn-like pla
 
 ### 🖐️ Hand Gestures
 
-| Gesture | Action | Description |
-| :--- | :--- | :--- |
-| 🖐️ **Open Hand** | **Idle Scatter** | Particles drift apart into a loose starfield cloud. |
-| ✊ **Fist** | **Saturn Formation** | Particles compress and orbit to form Saturn's core and rings. |
-| ↔️ **Move Fist L/R** | **Rotate Planet** | Rotates the entire planet along the Y-axis. |
-| ↕️ **Closer / Farther** | **Zoom In / Out** | Scales the camera viewport size based on hand distance from webcam. |
-| 👍 **Thumbs Up** | **Supernova Charge** | Accelerates particles to high velocities for a cosmic shockwave. |
+| Gesture                 | Action               | Description                                                         |
+| :---------------------- | :------------------- | :------------------------------------------------------------------ |
+| 🖐️ **Open Hand**        | **Idle Scatter**     | Particles drift apart into a loose starfield cloud.                 |
+| ✊ **Fist**             | **Saturn Formation** | Particles compress and orbit to form Saturn's core and rings.       |
+| ↔️ **Move Fist L/R**    | **Rotate Planet**    | Rotates the entire planet along the Y-axis.                         |
+| ↕️ **Closer / Farther** | **Zoom In / Out**    | Scales the camera viewport size based on hand distance from webcam. |
+| 👍 **Thumbs Up**        | **Supernova Charge** | Accelerates particles to high velocities for a cosmic shockwave.    |
 
-### ⌨️ Keyboard Shortcuts
+### ⌨️ Keyboard Shortcuts & Traversal
 
 - `T` — Toggle Hand Tracking (Enable/Disable Webcam feed)
 - `I` — Toggle Instructions Overlay
+- <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> — Sequentially navigate through the skip-to-canvas link, dropdown triggers (`#cameraNavItem`, `#instructionsNavItem`), and interactive controls (`#trackingToggle`).
+- <kbd>Enter</kbd> / <kbd>Space</kbd> — Activate focused buttons or checkboxes.
+- `Escape` — Close open dropdowns and menus.
+
+---
+
+## 🧪 Testing & Verification
+
+Automated accessibility and keyboard traversal verification is executed using Playwright in headless Chromium:
+
+```bash
+node tests/course/r60-t021.mjs
+```
+
+The test validates:
+
+1. Sequential keyboard navigation reaches the skip link and all interactive controls.
+2. High-contrast visible focus indicators (`:focus-visible`) appear on all interactive elements.
+3. No positive `tabindex` attributes are present.
+4. Output results are saved to `work/R60-T021/results-latest.json`.
 
 ---
 
@@ -47,26 +67,32 @@ An interactive, browser-based space visualization that renders a Saturn-like pla
 To protect your privacy, web browsers restrict webcam access to secure contexts (`https://` or `localhost`). You must run this project through a local web server:
 
 ### Option 1: Python HTTP Server (Easiest)
+
 If you have Python installed, run this command in your project folder:
+
 ```bash
 python -m http.server 8080
 ```
+
 Then open your browser and navigate to: [http://localhost:8080](http://localhost:8080)
 
 ### Option 2: Node.js (Static Server)
+
 If you prefer Node.js, you can install and use `serve`:
+
 ```bash
 npx serve .
 ```
+
 Then open your browser to the URL printed in the terminal (usually `http://localhost:3000`).
 
 ---
 
 ## 🔧 Troubleshooting
 
-* **Camera Permission Denied:** Ensure you grant camera permission in your browser settings. The tracking status indicator will display "Camera Off" if permission is missing.
-* **Model Failed to Load:** Since MediaPipe model files are loaded via CDN, ensure you have an active internet connection.
-* **Performance Lag:** If the frame rate drops, close other browser tabs or background applications. Mobile devices may automatically scale down particle counts for smoother performance.
+- **Camera Permission Denied:** Ensure you grant camera permission in your browser settings. The tracking status indicator will display "Camera Off" if permission is missing.
+- **Model Failed to Load:** Since MediaPipe model files are loaded via CDN, ensure you have an active internet connection.
+- **Performance Lag:** If the frame rate drops, close other browser tabs or background applications. Mobile devices may automatically scale down particle counts for smoother performance.
 
 ---
 

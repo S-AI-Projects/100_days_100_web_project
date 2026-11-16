@@ -1,0 +1,171 @@
+{
+  "taskId": "R60-T021",
+  "timestamp": "2026-11-16T18:01:26.814Z",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Source anchors exist (#app, #scene, #navbar, #gestureIndicator)",
+      "passed": true,
+      "data": {
+        "app": true,
+        "scene": true,
+        "navbar": true,
+        "gestureIndicator": true
+      }
+    },
+    {
+      "name": "Skip link before #scene (<a href=\"#scene\" class=\"skip-link\">Skip to Canvas</a>)",
+      "passed": true,
+      "data": {
+        "exists": true,
+        "beforeScene": true,
+        "href": "#scene",
+        "text": "Skip to Canvas"
+      }
+    },
+    {
+      "name": "Dropdown triggers (#cameraNavItem, #instructionsNavItem) are keyboard-accessible buttons",
+      "passed": true,
+      "data": {
+        "cameraBtn": {
+          "exists": true,
+          "tagName": "BUTTON",
+          "type": "button",
+          "ariaExpanded": "false"
+        },
+        "instructionsBtn": {
+          "exists": true,
+          "tagName": "BUTTON",
+          "type": "button",
+          "ariaExpanded": "false"
+        }
+      }
+    },
+    {
+      "name": "No positive tabindex exists",
+      "passed": true,
+      "data": {
+        "count": 0,
+        "items": []
+      }
+    },
+    {
+      "name": "Skip link is initially hidden offscreen before focus",
+      "passed": true,
+      "data": {
+        "skipInitiallyHidden": true
+      }
+    },
+    {
+      "name": "Tab reaches skip link, which becomes visible on focus with high-contrast indicator",
+      "passed": true,
+      "data": {
+        "skipVisibleOnFocus": true,
+        "skipFocusHasContrast": true,
+        "tab1": {
+          "isSkipLink": true,
+          "tagName": "A",
+          "className": "skip-link",
+          "rect": {
+            "top": 16,
+            "bottom": 57,
+            "width": 140.390625,
+            "height": 41
+          },
+          "outline": "2px solid rgb(56, 189, 248)",
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(56, 189, 248)",
+          "visibility": "visible",
+          "display": "block"
+        },
+        "contrastRatio": 9.226234897817006
+      }
+    },
+    {
+      "name": "Tab reaches #cameraNavItem button with visible focus indicator",
+      "passed": true,
+      "data": {
+        "tab2": {
+          "isCameraBtn": true,
+          "tagName": "BUTTON",
+          "id": "cameraNavItem",
+          "rect": {
+            "top": 0,
+            "bottom": 59,
+            "width": 147.46875,
+            "height": 59
+          },
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(56, 189, 248)"
+        },
+        "contrastRatio": 9.226234897817006
+      }
+    },
+    {
+      "name": "Tab reaches #trackingToggle input with visible focus when camera dropdown is open",
+      "passed": true,
+      "data": {
+        "cameraExpandedState": "true",
+        "tab3": {
+          "isToggle": true,
+          "tagName": "INPUT",
+          "id": "trackingToggle",
+          "type": "checkbox",
+          "checked": false,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(56, 189, 248)"
+        },
+        "contrastRatio": 8.972800538900866
+      }
+    },
+    {
+      "name": "Space key toggles #trackingToggle checkbox state",
+      "passed": true,
+      "data": {
+        "beforeCheck": false,
+        "afterCheck": true
+      }
+    },
+    {
+      "name": "Tab reaches #instructionsNavItem button with visible focus indicator",
+      "passed": true,
+      "data": {
+        "tab4": {
+          "isInstructionsBtn": true,
+          "tagName": "BUTTON",
+          "id": "instructionsNavItem",
+          "rect": {
+            "top": 0,
+            "bottom": 59,
+            "width": 103.09375,
+            "height": 59
+          },
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(56, 189, 248)"
+        },
+        "contrastRatio": 9.226234897817006
+      }
+    },
+    {
+      "name": "Enter key on #instructionsNavItem opens dropdown and sets aria-expanded=\"true\"",
+      "passed": true,
+      "data": {
+        "ariaExpanded": "true",
+        "visibility": "visible",
+        "opacity": "1"
+      }
+    },
+    {
+      "name": "Escape key closes open dropdown menu",
+      "passed": true,
+      "data": {
+        "escapeClosed": true
+      }
+    }
+  ],
+  "details": {}
+}
