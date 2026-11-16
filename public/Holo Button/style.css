@@ -245,11 +245,13 @@ body[data-theme='amber'] {
     inset 0 0 32px var(--accent-soft);
 }
 
+.project-back-button:focus-visible,
+#holoButton:focus-visible,
 .holo-button:focus-visible,
 .theme-option:focus-visible,
 .utility-button:focus-visible {
-  outline: 3px solid var(--accent-strong);
-  outline-offset: 5px;
+  outline: 3px solid var(--accent-strong, #8afcff);
+  outline-offset: 4px;
 }
 
 .holo-button.is-active .button-ring {
@@ -444,3 +446,24 @@ body[data-theme='amber'] {
     font-size: 0.86rem;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-image-bg,
+  .button-ring,
+  .holo-button.is-active .button-ring {
+    animation: none !important;
+    animation-name: none !important;
+  }
+
+  .project-back-button,
+  .holo-button,
+  .holo-button:hover .button-ring,
+  .holo-button:focus-visible .button-ring,
+  .utility-button,
+  .utility-button:hover,
+  .toast {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
