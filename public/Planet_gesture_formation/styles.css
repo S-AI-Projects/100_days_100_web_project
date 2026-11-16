@@ -11,6 +11,56 @@
   --navbar-h: 60px;
 }
 
+/* ── Skip link ── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  background: #080a12;
+  color: #38bdf8;
+  padding: 10px 18px;
+  border: 2px solid #38bdf8;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 16px;
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+/* ── Focus indicators (contrast >= 3:1) ── */
+:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.skip-link:focus-visible,
+.nav-item-btn:focus-visible,
+.mobile-menu-btn:focus-visible,
+.mobile-panel-close:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+label input[type="checkbox"]:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
 /* ── Reset ── */
 *,
 *::before,
@@ -31,10 +81,10 @@ html {
 
 body {
   font-family:
-    'Inter',
+    "Inter",
     -apple-system,
     BlinkMacSystemFont,
-    'Segoe UI',
+    "Segoe UI",
     Roboto,
     sans-serif;
   background: var(--bg-dark);
@@ -146,48 +196,60 @@ canvas#scene {
   font-size: 13px;
   font-weight: 500;
   color: var(--text-primary);
-  cursor: pointer;
-  padding: 0 10px;
-  transition: color 0.2s;
   white-space: nowrap;
 }
 
-.nav-item:hover {
+.nav-item-btn {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+  white-space: nowrap;
+  border-radius: 6px;
+}
+
+.nav-item-btn:hover,
+.nav-item:hover .nav-item-btn {
   color: var(--accent);
 }
 
 /* ── Dropdown panel ── */
 .dropdown {
-  position: static !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-  border-radius: 0 !important;
-  border: none !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
-  box-shadow: none !important;
-  width: 100% !important;
-  background: rgba(0, 0, 0, 0.25) !important;
-  min-width: 0 !important;
-
-  max-height: 0;
-  overflow: hidden;
-  padding: 0 16px !important;
-  transition:
-    max-height 0.3s ease,
-    padding 0.3s ease;
-}
-
-.nav-item.mobile-active .dropdown {
-  max-height: 600px;
-  padding: 14px 16px !important;
+  position: absolute;
+  top: var(--navbar-h);
+  right: 0;
+  background: var(--panel-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0 0 12px 12px;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  cursor: default;
+  min-width: 220px;
+  pointer-events: none;
 }
 
 .nav-item:hover .dropdown,
-.nav-item.active .dropdown {
+.nav-item.active .dropdown,
+.nav-item:focus-within .dropdown,
+.nav-item-btn[aria-expanded="true"] + .dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
 .instructions-dropdown {
@@ -216,7 +278,7 @@ canvas#scene {
 }
 
 .preview::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
@@ -240,7 +302,7 @@ label {
   user-select: none;
 }
 
-label input[type='checkbox'] {
+label input[type="checkbox"] {
   appearance: none;
   width: 20px;
   height: 20px;
@@ -250,18 +312,21 @@ label input[type='checkbox'] {
   background: rgba(0, 0, 0, 0.3);
   position: relative;
   cursor: pointer;
-  transition: all 0.2s;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
   flex-shrink: 0;
 }
 
-label input[type='checkbox']:checked {
+label input[type="checkbox"]:checked {
   background: var(--accent);
   border-color: var(--accent);
   box-shadow: 0 0 10px var(--accent-glow);
 }
 
-label input[type='checkbox']:checked::after {
-  content: '✓';
+label input[type="checkbox"]:checked::after {
+  content: "✓";
   position: absolute;
   color: #000;
   font-size: 14px;
@@ -344,7 +409,7 @@ label input[type='checkbox']:checked::after {
 }
 
 kbd {
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
   font-size: 11px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.1);
@@ -524,6 +589,7 @@ kbd {
     margin-bottom: 8px;
   }
 
+  .nav-item-btn,
   .nav-item > span {
     width: 100%;
     padding: 13px 16px;
@@ -531,9 +597,16 @@ kbd {
     align-items: center;
     justify-content: space-between;
     background: rgba(255, 255, 255, 0.03);
+    border: none;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+    text-align: left;
     transition: background 0.2s;
   }
 
+  .nav-item-btn:hover,
   .nav-item > span:hover {
     background: rgba(255, 255, 255, 0.06);
   }
@@ -548,10 +621,21 @@ kbd {
     border: none !important;
     border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
     box-shadow: none !important;
-    padding: 14px 16px !important;
     width: 100% !important;
     background: rgba(0, 0, 0, 0.25) !important;
     min-width: 0 !important;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 16px !important;
+    pointer-events: auto !important;
+    transition:
+      max-height 0.3s ease,
+      padding 0.3s ease;
+  }
+
+  .nav-item.mobile-active .dropdown {
+    max-height: 600px;
+    padding: 14px 16px !important;
   }
 
   .instructions-dropdown {
@@ -613,6 +697,7 @@ kbd {
     height: 34px;
   }
 
+  .nav-item-btn,
   .nav-item > span {
     padding: 11px 14px;
     font-size: 12px;

@@ -1,10 +1,11 @@
 // app.js — main application logic (ES module)
-const canvas = document.getElementById('scene');
-const ctx = canvas.getContext('2d');
-const video = document.getElementById('video');
-const gestureLabel = document.getElementById('gesture');
-const trackingToggle = document.getElementById('trackingToggle');
-const instructionsNavItem = document.getElementById('instructionsNavItem');
+const canvas = document.getElementById("scene");
+const ctx = canvas.getContext("2d");
+const video = document.getElementById("video");
+const gestureLabel = document.getElementById("gesture");
+const trackingToggle = document.getElementById("trackingToggle");
+const cameraNavItem = document.getElementById("cameraNavItem");
+const instructionsNavItem = document.getElementById("instructionsNavItem");
 
 let DPR = Math.max(1, window.devicePixelRatio || 1);
 let width = 1280,
@@ -17,8 +18,8 @@ function resize() {
   const h = window.innerHeight;
   canvas.width = w * DPR;
   canvas.height = h * DPR;
-  canvas.style.width = w + 'px';
-  canvas.style.height = h + 'px';
+  canvas.style.width = w + "px";
+  canvas.style.height = h + "px";
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
   width = w;
@@ -28,7 +29,7 @@ function resize() {
   const scale = Math.max(0.5, Math.min(width / 1280, 1.2));
   for (const p of particles) {
     if (p.baseTargetRadius) {
-      if (p.type === 'ring') {
+      if (p.type === "ring") {
         p.targetRadius = p.baseTargetRadius * scale;
       } else {
         p.targetRadius = p.baseTargetRadius;
@@ -36,7 +37,7 @@ function resize() {
     }
   }
 }
-window.addEventListener('resize', resize);
+window.addEventListener("resize", resize);
 resize();
 
 // ---------------- Starfield ----------------
@@ -98,30 +99,30 @@ class Particle {
     this.angle = Math.random() * Math.PI * 2;
     // shrink particles to star-like size (0.3-0.8px)
     this.size =
-      this.type === 'ring'
+      this.type === "ring"
         ? 0.3 + Math.random() * 0.4
         : 0.4 + Math.random() * 0.5;
-    this.color = this.pickColor(this.type !== 'ring');
+    this.color = this.pickColor(this.type !== "ring");
     this.radius =
-      this.type === 'ring' ? 120 + Math.random() * 160 : Math.random() * 36;
+      this.type === "ring" ? 120 + Math.random() * 160 : Math.random() * 36;
     // scattered starting positions (may be overridden in initParticles)
     this.px = cx + (Math.random() - 0.5) * this.radius * 4;
     this.py = cy + (Math.random() - 0.5) * this.radius * 4;
-    this.vx = (Math.random() - 0.5) * (this.type === 'ring' ? 0.8 : 1.6);
-    this.vy = (Math.random() - 0.5) * (this.type === 'ring' ? 0.8 : 1.6);
+    this.vx = (Math.random() - 0.5) * (this.type === "ring" ? 0.8 : 1.6);
+    this.vy = (Math.random() - 0.5) * (this.type === "ring" ? 0.8 : 1.6);
     this.ax = 0;
     this.ay = 0;
     // Perlin-like noise for smooth Brownian motion
     this.noiseX = Math.random();
     this.noiseY = Math.random();
-    this.state = 'scatter';
+    this.state = "scatter";
     this.targetRadius = this.radius;
     this.stagger = 0; // set by initializer for wave-like convergence
     this.orbitalSpeed =
-      this.type === 'ring'
+      this.type === "ring"
         ? 0.008 + Math.random() * 0.04
         : 0.016 + Math.random() * 0.08;
-    this.prevMode = 'scatter'; // track mode change for scatter impulse
+    this.prevMode = "scatter"; // track mode change for scatter impulse
   }
   pickColor(core = false) {
     // Futuristic neon cyan/blue palette with subtle variations
@@ -143,12 +144,12 @@ class Particle {
   }
   update(cx, cy, mode) {
     this.angle += this.orbitalSpeed;
-    const isConverging = mode === 'converge';
+    const isConverging = mode === "converge";
     // detect mode change (converge->scatter) to add scatter impulse
-    const modeChanged = this.prevMode === 'converge' && !isConverging;
+    const modeChanged = this.prevMode === "converge" && !isConverging;
     this.prevMode = mode;
 
-    if (this.type === 'ring') {
+    if (this.type === "ring") {
       const targetRadius = this.targetRadius || this.radius;
       const targetX = cx + Math.cos(this.angle) * targetRadius;
       const targetY = cy + Math.sin(this.angle) * targetRadius * 0.35; // Heavily tilted Saturn rings
@@ -228,14 +229,14 @@ class Particle {
       0,
       this.px,
       this.py,
-      glowRadius
+      glowRadius,
     );
     grad.addColorStop(
       0,
-      `rgba(${this.color.rgb},${Math.min(1, this.color.alpha * 1.1)})`
+      `rgba(${this.color.rgb},${Math.min(1, this.color.alpha * 1.1)})`,
     );
     grad.addColorStop(0.5, `rgba(${this.color.rgb},${this.color.alpha * 0.3})`);
-    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    grad.addColorStop(1, "rgba(0,0,0,0)");
 
     ctx.beginPath();
     ctx.fillStyle = grad;
@@ -258,14 +259,14 @@ function initParticles() {
     cy = h / 2;
   const coreCount = Math.floor(PARTICLE_COUNT * 0.35); // reduce core ratio
   for (let i = 0; i < PARTICLE_COUNT; i++) {
-    const type = i < coreCount ? 'core' : 'ring';
+    const type = i < coreCount ? "core" : "ring";
     const p = new Particle(cx, cy, type);
     // scatter across viewport
     p.px = Math.random() * w;
     p.py = Math.random() * h;
 
     // target orbit radius: Saturn-like structure with distinct rings
-    if (type === 'ring') {
+    if (type === "ring") {
       const ringIndex = i - coreCount; // index within ring particles
       const totalRings = PARTICLE_COUNT - coreCount;
       const ringRatio = ringIndex / totalRings;
@@ -301,11 +302,11 @@ class Shockwave {
     this.y = y;
     this.type = type;
     this.radius =
-      type === 'explode' ? 10 : Math.max(canvas.width, canvas.height) * 0.8;
+      type === "explode" ? 10 : Math.max(canvas.width, canvas.height) * 0.8;
     this.life = 1.0;
   }
   update() {
-    if (this.type === 'explode') {
+    if (this.type === "explode") {
       this.radius += 40;
     } else {
       this.radius -= 60; // converge faster
@@ -328,7 +329,7 @@ let shockwaves = [];
 let hand1 = {
   x: canvas.width / 2 / DPR,
   y: canvas.height / 2 / DPR,
-  gesture: 'open',
+  gesture: "open",
   confidence: 0,
   prevX: 0,
   prevY: 0,
@@ -338,22 +339,22 @@ let hand1 = {
 let zoomFactor = 1.0;
 let userRotationSpeed = 0.003;
 let chargeTimer = 0;
-let mode = 'scatter';
+let mode = "scatter";
 // rotation state
 
 function setGesture1(g) {
   if (hand1.gesture !== g) {
     // Explode if dropped ThumbsUp into Open
     if (
-      g === 'open' &&
-      (hand1.gesture === 'fist' || hand1.gesture === 'thumbs_up')
+      g === "open" &&
+      (hand1.gesture === "fist" || hand1.gesture === "thumbs_up")
     ) {
       shockwaves.push(
         new Shockwave(
           canvas.width / DPR / 2,
           canvas.height / DPR / 2,
-          'explode'
-        )
+          "explode",
+        ),
       );
     }
     hand1.gesture = g;
@@ -382,11 +383,11 @@ let cameraFeed = null;
 
 async function setupMediaPipe() {
   if (
-    typeof window.Hands !== 'function' ||
-    typeof window.Camera !== 'function'
+    typeof window.Hands !== "function" ||
+    typeof window.Camera !== "function"
   ) {
-    console.error('MediaPipe Hands or Camera failed to load.');
-    if (gestureLabel) gestureLabel.textContent = 'tracking unavailable';
+    console.error("MediaPipe Hands or Camera failed to load.");
+    if (gestureLabel) gestureLabel.textContent = "tracking unavailable";
     trackingToggle.checked = false;
     return false;
   }
@@ -412,10 +413,10 @@ async function setupMediaPipe() {
     await cameraFeed.start();
     return true;
   } catch (error) {
-    console.error('Failed to initialize MediaPipe Hands.', error);
+    console.error("Failed to initialize MediaPipe Hands.", error);
     hands = null;
     cameraFeed = null;
-    if (gestureLabel) gestureLabel.textContent = 'tracking unavailable';
+    if (gestureLabel) gestureLabel.textContent = "tracking unavailable";
     trackingToggle.checked = false;
     return false;
   }
@@ -442,7 +443,7 @@ function classifyHand(landmarks) {
 
   const handSize = Math.hypot(
     landmarks[0].x - landmarks[9].x,
-    landmarks[0].y - landmarks[9].y
+    landmarks[0].y - landmarks[9].y,
   );
   // Thumb tip should be higher than its own joint by some margin
   const isThumbPointingUp = thumbIpY - thumbTipY > handSize * 0.1;
@@ -450,18 +451,18 @@ function classifyHand(landmarks) {
 
   const thumbUp = isThumbPointingUp && isThumbAboveIndex && fingersExt === 0;
 
-  if (fingersExt >= 3) return 'open';
-  if (thumbUp) return 'thumbs_up';
+  if (fingersExt >= 3) return "open";
+  if (thumbUp) return "thumbs_up";
 
   // Ensure we don't return 'fist' if no fingers are explicitly detected but the hand is very relaxed/pointing down
   // Fallback map everything else to fist for simplicity, but thumbs up takes precedence only when clearly separated.
-  return 'fist';
+  return "fist";
 }
 
 function onResults(results) {
   if (!results.multiHandLandmarks || results.multiHandLandmarks.length === 0) {
     hand1.confidence = 0;
-    setGesture1('none');
+    setGesture1("none");
     return;
   }
 
@@ -521,31 +522,31 @@ function updatePhysicsAndDraw(dt) {
   if (hand1.confidence) dx = hand1.x - hand1.prevX;
 
   // mode selection & logic
-  if (hand1.gesture === 'open' || !hand1.confidence) {
-    mode = 'scatter';
+  if (hand1.gesture === "open" || !hand1.confidence) {
+    mode = "scatter";
     chargeTimer = 0;
     userRotationSpeed = userRotationSpeed * 0.95 + 0.003 * 0.05;
-  } else if (hand1.gesture === 'fist') {
-    mode = 'converge';
+  } else if (hand1.gesture === "fist") {
+    mode = "converge";
     chargeTimer = Math.max(0, chargeTimer - dt); // cool down gracefully
     userRotationSpeed -= dx * 0.0005; // X movement maps to rotation speed
     userRotationSpeed *= 0.95; // friction
-  } else if (hand1.gesture === 'thumbs_up') {
-    mode = 'converge';
+  } else if (hand1.gesture === "thumbs_up") {
+    mode = "converge";
     chargeTimer += dt;
     userRotationSpeed -= dx * 0.0005;
     userRotationSpeed *= 0.95;
 
     if (chargeTimer > 3500) {
       // boom after 3.5s
-      mode = 'scatter';
-      shockwaves.push(new Shockwave(cx, cy, 'explode'));
+      mode = "scatter";
+      shockwaves.push(new Shockwave(cx, cy, "explode"));
       for (const p of particles) {
         p.vx += (Math.random() - 0.5) * 120; // massive blast
         p.vy += (Math.random() - 0.5) * 120;
       }
       chargeTimer = -1500; // 1.5s cooldown before charging again
-      setGesture1('open'); // temporary override to reset gesture state
+      setGesture1("open"); // temporary override to reset gesture state
     }
   }
 
@@ -562,32 +563,32 @@ function updatePhysicsAndDraw(dt) {
 
     grd.addColorStop(0, `rgba(${r}, ${g}, 0, ${progress * 0.9})`);
     grd.addColorStop(0.5, `rgba(${r}, ${g}, 0, ${progress * 0.4})`);
-    grd.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    grd.addColorStop(1, "rgba(0, 0, 0, 0)");
     ctx.fillStyle = grd;
-    ctx.globalCompositeOperation = 'lighter';
+    ctx.globalCompositeOperation = "lighter";
     ctx.arc(cx, cy, glowRad, 0, Math.PI * 2);
     ctx.fill();
-    ctx.globalCompositeOperation = 'source-over';
+    ctx.globalCompositeOperation = "source-over";
   }
 
   // Update particles (stay stationary relative to screen center)
   for (const p of particles) {
-    if (mode === 'converge') {
-      p.angle += userRotationSpeed * (p.type === 'core' ? 1.5 : 1);
+    if (mode === "converge") {
+      p.angle += userRotationSpeed * (p.type === "core" ? 1.5 : 1);
     }
-    p.update(cx, cy, mode === 'converge' ? 'converge' : 'scatter');
+    p.update(cx, cy, mode === "converge" ? "converge" : "scatter");
   }
 
   // draw particles
-  ctx.globalCompositeOperation = 'lighter';
+  ctx.globalCompositeOperation = "lighter";
   for (const p of particles) {
     p.draw(ctx);
   }
-  ctx.globalCompositeOperation = 'source-over';
+  ctx.globalCompositeOperation = "source-over";
 
   // small UI overlay: crosshair centered
   ctx.beginPath();
-  ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+  ctx.strokeStyle = "rgba(255,255,255,0.06)";
   ctx.lineWidth = 1;
   ctx.arc(cx, cy, 6, 0, Math.PI * 2);
   ctx.stroke();
@@ -606,98 +607,140 @@ function loop(now) {
 requestAnimationFrame(loop);
 
 // --------------- UI & Controls ---------------
-trackingToggle.addEventListener('change', () => {
+trackingToggle.addEventListener("change", () => {
   if (trackingToggle.checked) {
     if (!hands) {
       setupMediaPipe().catch((err) => {
-        console.error('Failed to setup MediaPipe on toggle', err);
+        console.error("Failed to setup MediaPipe on toggle", err);
       });
     }
   } else {
-    setGesture1('none');
+    setGesture1("none");
   }
 });
 
-if (instructionsNavItem) {
-  instructionsNavItem.addEventListener('click', (e) => {
-    // On desktop: toggle active dropdown
-    // On mobile: handled by accordion (clicks inside panel are fine)
-    if (window.innerWidth > 768) {
-      if (e.target.closest('#instructionsDropdown')) return;
-      instructionsNavItem.classList.toggle('active');
-    }
+function toggleDropdown(button) {
+  if (!button) return;
+  const parent = button.closest(".nav-item");
+  if (!parent) return;
+
+  if (window.innerWidth > 768) {
+    const isCurrentlyOpen = parent.classList.contains("active");
+    document.querySelectorAll(".nav-item").forEach((item) => {
+      if (item !== parent) {
+        item.classList.remove("active");
+        const b = item.querySelector(".nav-item-btn");
+        if (b) b.setAttribute("aria-expanded", "false");
+      }
+    });
+    const willOpen = !isCurrentlyOpen;
+    parent.classList.toggle("active", willOpen);
+    button.setAttribute("aria-expanded", String(willOpen));
+  } else {
+    const mobileNavList = document.querySelectorAll(".nav-item");
+    mobileNavList.forEach((navItem) => {
+      if (navItem !== parent) {
+        navItem.classList.remove("mobile-active");
+        const b = navItem.querySelector(".nav-item-btn");
+        if (b) b.setAttribute("aria-expanded", "false");
+      }
+    });
+    const willOpen = !parent.classList.contains("mobile-active");
+    parent.classList.toggle("mobile-active", willOpen);
+    button.setAttribute("aria-expanded", String(willOpen));
+  }
+}
+
+if (cameraNavItem) {
+  cameraNavItem.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleDropdown(cameraNavItem);
   });
 }
 
-// Close instructions dropdown if clicked outside (desktop only)
-window.addEventListener('click', (e) => {
-  if (
-    window.innerWidth > 768 &&
-    instructionsNavItem &&
-    !instructionsNavItem.contains(e.target)
-  ) {
-    instructionsNavItem.classList.remove('active');
+if (instructionsNavItem) {
+  instructionsNavItem.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleDropdown(instructionsNavItem);
+  });
+}
+
+// Close dropdowns if clicked outside (desktop only)
+window.addEventListener("click", (e) => {
+  if (window.innerWidth > 768) {
+    document.querySelectorAll(".nav-item").forEach((item) => {
+      if (!item.contains(e.target)) {
+        item.classList.remove("active");
+        const btn = item.querySelector(".nav-item-btn");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      }
+    });
   }
 });
 
 // --------------- Mobile Hamburger Menu ---------------
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navMenu = document.getElementById('navMenu');
-const mobileOverlay = document.getElementById('mobileOverlay');
-const mobilePanelClose = document.getElementById('mobilePanelClose');
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const navMenu = document.getElementById("navMenu");
+const mobileOverlay = document.getElementById("mobileOverlay");
+const mobilePanelClose = document.getElementById("mobilePanelClose");
 
 function openMobileMenu() {
-  navMenu.classList.add('mobile-open');
-  mobileMenuBtn.classList.add('open');
-  mobileMenuBtn.setAttribute('aria-expanded', 'true');
-  mobileOverlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  navMenu.classList.add("mobile-open");
+  mobileMenuBtn.classList.add("open");
+  mobileMenuBtn.setAttribute("aria-expanded", "true");
+  mobileOverlay.classList.add("active");
+  document.body.style.overflow = "hidden";
 }
 
 function closeMobileMenu() {
-  navMenu.classList.remove('mobile-open');
-  mobileMenuBtn.classList.remove('open');
-  mobileMenuBtn.setAttribute('aria-expanded', 'false');
-  mobileOverlay.classList.remove('active');
-  document.body.style.overflow = '';
+  navMenu.classList.remove("mobile-open");
+  mobileMenuBtn.classList.remove("open");
+  mobileMenuBtn.setAttribute("aria-expanded", "false");
+  mobileOverlay.classList.remove("active");
+  document.body.style.overflow = "";
 
-  mobileNavItems.forEach((item) => item.classList.remove('mobile-active'));
+  mobileNavItems.forEach((item) => item.classList.remove("mobile-active"));
 }
 
 if (mobileMenuBtn) {
-  mobileMenuBtn.addEventListener('click', (e) => {
+  mobileMenuBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    navMenu.classList.contains('mobile-open')
+    navMenu.classList.contains("mobile-open")
       ? closeMobileMenu()
       : openMobileMenu();
   });
 }
 
 if (mobilePanelClose) {
-  mobilePanelClose.addEventListener('click', closeMobileMenu);
+  mobilePanelClose.addEventListener("click", closeMobileMenu);
 }
 
 if (mobileOverlay) {
-  mobileOverlay.addEventListener('click', closeMobileMenu);
+  mobileOverlay.addEventListener("click", closeMobileMenu);
 }
 
 // Close mobile menu on resize back to desktop
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   if (window.innerWidth > 768) closeMobileMenu();
 });
 
-window.addEventListener('keydown', (e) => {
-  if (e.key.toLowerCase() === 't') {
+window.addEventListener("keydown", (e) => {
+  if (e.key.toLowerCase() === "t") {
     trackingToggle.checked = !trackingToggle.checked;
-    trackingToggle.dispatchEvent(new Event('change'));
+    trackingToggle.dispatchEvent(new Event("change"));
   }
-  if (e.key.toLowerCase() === 'i') {
+  if (e.key.toLowerCase() === "i") {
     if (instructionsNavItem) {
-      instructionsNavItem.classList.toggle('active');
+      toggleDropdown(instructionsNavItem);
     }
   }
-  if (e.key === 'Escape') {
+  if (e.key === "Escape") {
     closeMobileMenu();
+    document.querySelectorAll(".nav-item").forEach((item) => {
+      item.classList.remove("active");
+      const btn = item.querySelector(".nav-item-btn");
+      if (btn) btn.setAttribute("aria-expanded", "false");
+    });
   }
 });
 
@@ -712,7 +755,7 @@ window.addEventListener('keydown', (e) => {
   // start mediapipe camera
   if (trackingToggle.checked)
     setupMediaPipe().catch((err) => {
-      console.warn('MediaPipe init failed', err);
+      console.warn("MediaPipe init failed", err);
       trackingToggle.checked = false;
     });
 })();
@@ -727,22 +770,24 @@ window.__Aevai = {
   },
 };
 
-const mobileNavItems = document.querySelectorAll('.nav-item');
+const mobileNavItems = document.querySelectorAll(".nav-item");
 
 mobileNavItems.forEach((item) => {
-  const header = item.querySelector('span');
+  const header =
+    item.querySelector(".nav-item-btn") || item.querySelector("span");
+  if (!header || header.classList.contains("nav-item-btn")) return;
 
-  header.addEventListener('click', (e) => {
+  header.addEventListener("click", (e) => {
     if (window.innerWidth > 768) return;
 
     e.stopPropagation();
 
     mobileNavItems.forEach((navItem) => {
       if (navItem !== item) {
-        navItem.classList.remove('mobile-active');
+        navItem.classList.remove("mobile-active");
       }
     });
 
-    item.classList.toggle('mobile-active');
+    item.classList.toggle("mobile-active");
   });
 });

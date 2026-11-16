@@ -17,7 +17,8 @@
   </head>
   <body>
     <div id="app">
-      <canvas id="scene"></canvas>
+      <a href="#scene" class="skip-link">Skip to Canvas</a>
+      <canvas id="scene" tabindex="-1"></canvas>
 
       <nav id="navbar">
         <div class="nav-brand">
@@ -50,9 +51,18 @@
             ✕
           </button>
 
-          <div class="nav-item" id="cameraNavItem">
-            <span>Camera &amp; Tracking ▾</span>
-            <div class="dropdown">
+          <div class="nav-item">
+            <button
+              id="cameraNavItem"
+              class="nav-item-btn"
+              type="button"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-controls="cameraDropdown"
+            >
+              <span>Camera &amp; Tracking ▾</span>
+            </button>
+            <div class="dropdown" id="cameraDropdown">
               <div class="preview">
                 <video
                   id="video"
@@ -72,8 +82,17 @@
             </div>
           </div>
 
-          <div id="instructionsNavItem" class="nav-item">
-            <span>Instructions ▾</span>
+          <div class="nav-item">
+            <button
+              id="instructionsNavItem"
+              class="nav-item-btn"
+              type="button"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-controls="instructionsDropdown"
+            >
+              <span>Instructions ▾</span>
+            </button>
             <div
               id="instructionsDropdown"
               class="dropdown instructions-dropdown"
