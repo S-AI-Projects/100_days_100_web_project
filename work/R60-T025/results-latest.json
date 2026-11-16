@@ -1,0 +1,84 @@
+{
+  "taskId": "R60-T025",
+  "timestamp": "2026-11-16T19:18:04.193Z",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Source anchors exist (#theme-toggle, #prev, #next)",
+      "passed": true,
+      "data": {
+        "themeToggle": true,
+        "prevBtn": true,
+        "nextBtn": true
+      }
+    },
+    {
+      "name": "External CDN calls (three.js) intercepted with local stub",
+      "passed": true,
+      "data": {
+        "interceptedCallsCount": 2,
+        "interceptedCalls": [
+          {
+            "type": "threejs-cdn",
+            "url": "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+          },
+          {
+            "type": "google-fonts",
+            "url": "https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Poppins:wght@300;400;500;600&display=swap"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Viewport locked at 1280x800",
+      "passed": true,
+      "data": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "name": "Initial slide is active at index 0 (Sun)",
+      "passed": true,
+      "data": {
+        "totalSlides": 9,
+        "activeIndex": 0,
+        "activeSlideClass": "slide active",
+        "activeMiniIndex": "0"
+      }
+    },
+    {
+      "name": "Clicking #next transitions deterministically to index 1 (Mercury)",
+      "passed": true,
+      "data": {
+        "activeIndex": 1,
+        "activeSlideClass": "slide active",
+        "activeMiniIndex": "1",
+        "sunIsActive": false,
+        "mercuryIsActive": true
+      }
+    },
+    {
+      "name": "Bidirectional navigation (#next -> Venus -> #prev -> Mercury) is deterministic",
+      "passed": true,
+      "data": {
+        "venusIndex": 2,
+        "backToMercuryIndex": 1
+      }
+    },
+    {
+      "name": "Single showSlide function declaration in index.js (duplicate removed)",
+      "passed": true,
+      "data": {
+        "declarationsFound": 1
+      }
+    },
+    {
+      "name": "showSlide respects prefers-reduced-motion for window.scrollTo behavior",
+      "passed": true,
+      "data": {
+        "hasReducedMotionCheck": true
+      }
+    }
+  ]
+}

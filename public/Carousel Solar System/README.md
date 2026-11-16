@@ -128,6 +128,22 @@ The website works smoothly on:
 
 ---
 
+## 🧪 Deterministic Testing & CDN Stubbing
+
+### Local Deterministic Test Runner
+To ensure reliable, flake-free CI and local testing, an automated Playwright suite is provided:
+```bash
+node tests/course/r60-t025.mjs
+```
+
+### CDN Stubbing Strategy
+- **Offline & Zero-Latency**: External CDN assets such as `three.min.js` (from `cdnjs.cloudflare.com`) and Google Fonts are intercepted and fulfilled with a lightweight, compliant Three.js local stub.
+- **Reliable Transitions**: Slide transitions are verified at a locked viewport (1280×800) by asserting synchronous and deterministic DOM state changes (`.slide.active`, `.mini-planet.active`) when `#next` or `#prev` is triggered.
+- **Reduced Motion Support**: Carousel scrolling respects `prefers-reduced-motion`, automatically switching from `behavior: 'smooth'` to `behavior: 'auto'` to eliminate timing delays during automated test runs.
+- **Single Definition**: The duplicate `showSlide` function declaration in `index.js` has been removed, ensuring predictable and hoisted-safe execution.
+
+---
+
 ## 📸 Screenshot
 
 <img src = "https://files.catbox.moe/z1zlyt.JPG">
