@@ -140,6 +140,32 @@ const searchInput =
   document.getElementById("searchInput");
 
 // =====================================
+// UTILITY FUNCTIONS & ERROR HANDLING
+// =====================================
+
+function escapeHtml(str) {
+  if (typeof str !== "string") return "";
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function renderErrorState(container, message) {
+  if (!container) return;
+  container.innerHTML = `
+    <div class="error-state" role="alert" aria-live="assertive">
+      <span class="error-state__icon" aria-hidden="true">⚠️</span>
+      <h3 class="error-state__title">Failed to Load Matches</h3>
+      <p class="error-state__message">${escapeHtml(message)}</p>
+      <button class="error-state__retry-btn" type="button" onclick="fetchMatches()">🔄 Try Again</button>
+    </div>
+  `;
+}
+
+// =====================================
 // FETCH MATCHES
 // =====================================
 
@@ -165,10 +191,18 @@ async function fetchMatches() {
 
   } catch (error) {
     console.error(error);
-    liveMatchesContainer.innerHTML =
-      "<p style='color:red'>Failed to load live matches.</p>";
-    upcomingMatchesContainer.innerHTML =
-      "<p style='color:red'>Failed to load upcoming fixtures.</p>";
+    renderErrorState(
+      liveMatchesContainer,
+      "Unable to fetch live cricket scores. Please check your connection and try again."
+    );
+    renderErrorState(
+      upcomingMatchesContainer,
+      "Unable to fetch upcoming fixtures. Please check your connection and try again."
+    );
+    renderErrorState(
+      recentMatchesContainer,
+      "Unable to fetch recent match results. Please check your connection and try again."
+    );
   }
 }
 
@@ -180,6 +214,7 @@ function renderMatches(matches) {
   liveMatchesContainer.innerHTML = "";
   upcomingMatchesContainer.innerHTML = "";
   recentMatchesContainer.innerHTML = "";
+
   const liveMatches =
     matches.filter(match =>
       match.isLive || match.matchStarted
@@ -188,9 +223,10 @@ function renderMatches(matches) {
     matches.filter(match =>
       !match.isLive && !match.matchStarted
     );
+
   if (!liveMatches.length) {
     liveMatchesContainer.innerHTML =
-      "<p>No live matches available.</p>";
+      '<div class="empty-state" role="status"><p class="empty-state__message">No live matches available at this moment.</p></div>';
   } else {
     liveMatches.forEach(match => {
       liveMatchesContainer.appendChild(
@@ -198,9 +234,10 @@ function renderMatches(matches) {
       );
     });
   }
+
   if (!upcomingMatches.length) {
     upcomingMatchesContainer.innerHTML =
-      "<p>No upcoming fixtures available.</p>";
+      '<div class="empty-state" role="status"><p class="empty-state__message">No upcoming fixtures scheduled.</p></div>';
   } else {
     upcomingMatches.forEach(match => {
       upcomingMatchesContainer.appendChild(
@@ -208,15 +245,20 @@ function renderMatches(matches) {
       );
     });
   }
-if (!recentMatches.length) {
+
+  if (!recentMatches.length) {
     recentMatchesContainer.innerHTML =
-      "<p>No recent matches available.</p>";
+      '<div class="empty-state" role="status"><p class="empty-state__message">No recent match results available.</p></div>';
   } else {
     recentMatches.forEach(match => {
       recentMatchesContainer.appendChild(
         createMatchCard(match, "recent")
       );
     });
+  }
+
+  if (searchInput && searchInput.value.trim()) {
+    filterCards(searchInput.value);
   }
 }
 
@@ -312,14 +354,58 @@ function toggleTheme() {
 }
 
 // =====================================
-// SEARCH FILTER
+// SEARCH FILTER & EMPTY STATE
 // =====================================
 
 function filterCards(query) {
-  const allCards = document.querySelectorAll(".match-card");
-  allCards.forEach(card => {
-    const teamName = card.querySelector(".match-teams").textContent.toLowerCase();
-    card.style.display = teamName.includes(query) ? "block" : "none";
+  const rawQuery = (query || "").trim();
+  const normalizedQuery = rawQuery.toLowerCase();
+
+  const sections = [
+    { container: liveMatchesContainer, label: "live matches" },
+    { container: upcomingMatchesContainer, label: "upcoming fixtures" },
+    { container: recentMatchesContainer, label: "recent matches" }
+  ];
+
+  sections.forEach(({ container }) => {
+    if (!container) return;
+
+    const cards = container.querySelectorAll(".match-card");
+    if (!cards.length) return;
+
+    let matchCount = 0;
+    cards.forEach(card => {
+      const teamEl = card.querySelector(".match-teams");
+      const teamText = teamEl ? teamEl.textContent.toLowerCase() : "";
+      const isMatch = !normalizedQuery || teamText.includes(normalizedQuery);
+      if (isMatch) {
+        card.style.display = "";
+        matchCount++;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    // Remove any previously rendered search empty-state
+    const prevEmpty = container.querySelector(".empty-state--search");
+    if (prevEmpty) {
+      prevEmpty.remove();
+    }
+
+    // When a search term matches 0 matches, display a clear, accessible empty-state message inside matches containers
+    if (normalizedQuery && matchCount === 0) {
+      const emptyDiv = document.createElement("div");
+      emptyDiv.className = "empty-state empty-state--search";
+      emptyDiv.setAttribute("role", "status");
+      emptyDiv.setAttribute("aria-live", "polite");
+      emptyDiv.innerHTML = `
+        <span class="empty-state__icon" aria-hidden="true">🔍</span>
+        <h3 class="empty-state__title">No Matches Found</h3>
+        <p class="empty-state__message">No matches found for "<span class="empty-state__query">${escapeHtml(rawQuery)}</span>"</p>
+        <p class="empty-state__hint">Try searching with a different team name or keyword.</p>
+      `;
+      container.appendChild(emptyDiv);
+    }
   });
 }
 
@@ -337,8 +423,15 @@ document.addEventListener(
       toggleTheme
     );
     searchInput.addEventListener("input", () => {
-      const query = searchInput.value.toLowerCase();
-      filterCards(query);
+      filterCards(searchInput.value);
     });
   }
 );
+
+// Expose for testing and external integrations
+if (typeof window !== "undefined") {
+  window.fetchMatches = fetchMatches;
+  window.renderErrorState = renderErrorState;
+  window.renderMatches = renderMatches;
+  window.filterCards = filterCards;
+}

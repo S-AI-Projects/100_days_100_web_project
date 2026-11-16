@@ -228,6 +228,120 @@ body {
   font-style: italic;
   color: var(--text-muted);
   grid-column: 1 / -1;
+  padding: 1.5rem 0;
+}
+
+/* =========================
+  EMPTY & ERROR STATES
+========================= */
+
+.empty-state,
+.error-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: var(--shadow-sm);
+  margin: 0.5rem 0;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.empty-state {
+  border: 2px dashed #d1d5db;
+}
+
+body.dark .empty-state {
+  border-color: #4b5563;
+}
+
+.empty-state__icon,
+.error-state__icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
+
+.empty-state__title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.empty-state__message {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state__query {
+  font-weight: 700;
+  color: var(--text-main);
+  word-break: break-word;
+}
+
+.empty-state__hint {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.error-state {
+  border: 1px solid #fca5a5;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+body.dark .error-state {
+  background: #2b1113;
+  border-color: #7f1d1d;
+  color: #fca5a5;
+}
+
+.error-state__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #991b1b;
+}
+
+body.dark .error-state__title {
+  color: #f87171;
+}
+
+.error-state__message {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #7f1d1d;
+}
+
+body.dark .error-state__message {
+  color: #fca5a5;
+}
+
+.error-state__retry-btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #dc2626;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.error-state__retry-btn:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}
+
+.error-state__retry-btn:focus-visible {
+  outline: 3px solid #f87171;
+  outline-offset: 2px;
 }
 /* =========================
   MOBILE
