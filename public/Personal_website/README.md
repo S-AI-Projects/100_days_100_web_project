@@ -77,6 +77,42 @@ Run locally
 - Smooth Navigation
 - Modern UI/UX
 
+## 🛡️ Safe Text Rendering Contract
+
+All dynamic insertions, fixture data, and user input (e.g. project card injection into `#projects-container` via `addProjectCard`, contact form feedback) adhere to a strict safe text rendering contract:
+- **No `innerHTML` for Dynamic Text**: All dynamic strings are injected exclusively using `textContent` or `document.createTextNode`.
+- **XSS Vector Neutralization**: Potential script injection payloads, including `<img src=x onerror=...>`, `<script>`, or malformed markup, are rendered strictly as literal text. They never execute arbitrary JavaScript or spawn unexpected DOM elements.
+- **Source Anchors**: Core sections (`#about`, `#experience`, `#projects`, `#projects-container`) remain structured and intact.
+
+---
+
+## 🧪 Testing Instructions
+
+### Manual Testing
+1. Open `index.html` in a web browser.
+2. Open Browser Developer Tools Console (`F12`).
+3. In the console, execute:
+   ```javascript
+   window.addProjectCard('<img src=x onerror="window.__xss_fired=true">', 'Test Description');
+   ```
+4. Verify:
+   - The card title appears visually as literal text: `<img src=x onerror="window.__xss_fired=true">`.
+   - In the console, evaluate `window.__xss_fired`; it must remain `undefined`.
+   - Inspect `#projects-container`; confirm that no `<img>` element was spawned.
+5. In the contact form, submit a message with an XSS string in the Name field and verify the feedback message renders strictly as text.
+
+### Automated Testing
+Run the automated Playwright test suite:
+```bash
+node tests/course/r60-t028.mjs
+```
+The test verifies:
+- Source anchors (`#about`, `#experience`, `#projects`, `#projects-container`) exist.
+- Dynamic card insertion with XSS vector `<img src=x onerror="window.__xss_fired=true">` leaves `window.__xss_fired` undefined.
+- Payload is rendered strictly as text (`textContent`) without generating unexpected `<img>` elements.
+- Contact form submission with XSS vector renders safely as text.
+- Report is saved to `work/R60-T028/results-latest.json`.
+
 ---
 
 ## 🔮 Future Enhancements

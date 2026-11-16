@@ -397,6 +397,17 @@ body {
     transform: translateY(-1px);
 }
 
+.form-feedback {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid #10b981;
+    color: #10b981;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
 .portfolio-footer {
     text-align: center;
     padding: 2.5rem 16px;
