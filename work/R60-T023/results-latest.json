@@ -1,0 +1,69 @@
+{
+  "taskId": "R60-T023",
+  "timestamp": "2026-11-16T18:34:24.199Z",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Source anchors exist (#toggleTheme, #searchInput, #live-matches, #upcoming-matches)",
+      "passed": true,
+      "data": {
+        "toggleTheme": true,
+        "searchInput": true,
+        "liveMatches": true,
+        "upcomingMatches": true
+      }
+    },
+    {
+      "name": "Initial match cards rendered from data source",
+      "passed": true,
+      "data": {
+        "initialCardCount": 9
+      }
+    },
+    {
+      "name": "Empty-state message appears within matches sections with query 'NO_MATCH_XYZ' reflected",
+      "passed": true,
+      "data": {
+        "hasEmptyInLive": true,
+        "hasEmptyInUpcoming": true,
+        "liveText": "\n        🔍\n        No Matches Found\n        No matches found for \"NO_MATCH_XYZ\"\n        Try searching with a different team name or keyword.\n      ",
+        "upcomingText": "\n        🔍\n        No Matches Found\n        No matches found for \"NO_MATCH_XYZ\"\n        Try searching with a different team name or keyword.\n      ",
+        "liveReflectsQuery": true,
+        "upcomingReflectsQuery": true,
+        "liveRole": "status",
+        "liveAriaLive": "polite",
+        "upcomingRole": "status",
+        "visibleCardsCount": 0
+      }
+    },
+    {
+      "name": "Empty-state has accessible semantics (role=\"status\" and aria-live=\"polite\")",
+      "passed": true,
+      "data": {
+        "liveRole": "status",
+        "liveAriaLive": "polite"
+      }
+    },
+    {
+      "name": "Clearing search restores all match cards and removes empty-state display",
+      "passed": true,
+      "data": {
+        "emptyStatesCount": 0,
+        "visibleCardsCount": 9,
+        "totalCardsCount": 9
+      }
+    },
+    {
+      "name": "Network failure states render accessible error container (role=\"alert\", aria-live=\"assertive\", retry action)",
+      "passed": true,
+      "data": {
+        "hasErrorContainer": true,
+        "role": "alert",
+        "ariaLive": "assertive",
+        "title": "Failed to Load Matches",
+        "message": "Network connection lost. Please check your internet connection.",
+        "hasRetryButton": true
+      }
+    }
+  ]
+}
