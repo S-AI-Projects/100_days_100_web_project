@@ -36,25 +36,51 @@ The application features:
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started & Executable Walkthrough
 
-### 1. Clone the repository
-
+### 1. Launch from Repository Root
+Run a local static HTTP server directly from the root of the repository:
 ```bash
-git clone https://github.com/100_days_100_web_project.git
+npx serve .
+```
+Then navigate your browser to:
+```text
+http://localhost:3000/public/video-synthesis-engine/index.html
 ```
 
-### 2. Navigate to the project directory
+### 2. Executable Walkthrough & Expected Baseline Observations
 
+Follow these structured steps to verify the synthesis pipeline:
+
+1. **Dashboard Layout Verification (`#dashboard-layout`)**:
+   - Confirm that `#dashboard-layout` renders a balanced two-column flex container:
+     - **Left Column**: Hosts the procedural canvas viewport (`#synthesisCanvas`) and live HUD telemetry (`.metrics-hud`).
+     - **Right Column**: Hosts the parameter Control Console (Interpolation Mode, Motion Frequency, Noise Density, Timeline Scrub).
+
+2. **Canvas Mounting & Pixel Matrix Synthesis (`#synthesisCanvas`)**:
+   - Verify that `#synthesisCanvas` is mounted with explicit dimensions (480×360 px).
+   - Observe real-time dynamic pixel updates computed from time-variable trigonometric wave equations and procedural noise directly injected into the raw `ImageData` byte buffer.
+
+3. **Metrics Telemetry (`#metric-latency` & `#metric-frame`)**:
+   - **Render Latency (`#metric-latency`)**: Displays per-frame execution profiling in milliseconds formatted to two decimal places (e.g., `0.00` to `5.00` ms).
+   - **Active Frame Index (`#metric-frame`)**: Starts with baseline counter `0` on initial load and increments monotonically over time as subsequent frames are rendered via `requestAnimationFrame`.
+
+4. **Interactive Parameter Manipulation**:
+   - Switch **Timeline Interpolation Mode** (`#interpolationMode`) between `Linear (Lerp)`, `Step Function`, and `Sinusoidal Transform`.
+   - Adjust **Motion Vector Frequency** (`#motionFrequency`) and **Render Noise Density** (`#noiseDensity`) to observe immediate alterations in wave curvature and granularity.
+   - Drag the **Timeline Scrub** (`#timelineScrub`) slider to pause continuous playback and manually scrub through animation time slices.
+
+### 3. Automated Validation
+Run the automated Playwright test suite from the repository root:
 ```bash
-cd video-synthesis-engine
+node tests/course/r60-t027.mjs
 ```
-
-### 3. Launch the application
-
-Open **index.html** in any modern web browser.
-
-No installation or external dependencies are required.
+The test verifies:
+- `#dashboard-layout` is rendered with two functional panels.
+- `#synthesisCanvas` is mounted with 480×360 dimensions and active 2D rendering.
+- Initial frame counter starts at `0` and `#metric-frame` increments monotonically over time.
+- `#metric-latency` is non-negative and properly formatted.
+- Test execution outputs a structured report to `work/R60-T027/results-latest.json`.
 
 ---
 
