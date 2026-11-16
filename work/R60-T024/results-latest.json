@@ -1,0 +1,67 @@
+{
+  "taskId": "R60-T024",
+  "timestamp": "2026-11-16T18:51:17.962Z",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Source anchors exist (#themeToggleBtn, #addCardBtn, #todo-count, #todo-lane)",
+      "passed": true,
+      "data": {
+        "themeToggleBtn": true,
+        "addCardBtn": true,
+        "todoCount": true,
+        "todoLane": true
+      }
+    },
+    {
+      "name": "window.__KANBAN_INITIALIZED__ guard flag is set upon initial execution",
+      "passed": true,
+      "data": {
+        "isInitiallyInitialized": true
+      }
+    },
+    {
+      "name": "Card counts and elements remain intact after repeat script execution",
+      "passed": true,
+      "data": {
+        "stateBefore": {
+          "theme": "light",
+          "todoCount": "0",
+          "progressCount": "0",
+          "doneCount": "0",
+          "cardElements": 0
+        },
+        "stateAfterSecondRun": {
+          "theme": "light",
+          "todoCount": "0",
+          "progressCount": "0",
+          "doneCount": "0",
+          "cardElements": 0
+        }
+      }
+    },
+    {
+      "name": "Theme toggles exactly once from 'light' to 'dark' without flip-flop",
+      "passed": true,
+      "data": {
+        "themeBefore": "light",
+        "expectedTheme": "dark",
+        "finalTheme": "dark",
+        "themeChanges": [
+          "dark"
+        ]
+      }
+    },
+    {
+      "name": "Adding a task increments card count exactly once (no duplicate modal submit listeners)",
+      "passed": true,
+      "data": {
+        "expectedTodoCount": 1,
+        "postAddState": {
+          "todoCount": 1,
+          "todoCards": 1
+        }
+      }
+    }
+  ]
+}

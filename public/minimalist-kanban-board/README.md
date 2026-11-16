@@ -13,6 +13,46 @@ A modern, lightweight, and responsive Kanban board built with **HTML, CSS, and V
 * 📱 Responsive and minimalist UI
 * 🔢 Live task counters for each workflow stage
 * 🛡️ Safe HTML rendering using input sanitization
+* 🔄 Idempotent initialization: protected against duplicate listener registration on repeat script execution via `window.__KANBAN_INITIALIZED__` guard
+
+---
+
+## 🔄 Idempotent Initialization
+
+The board's core logic and event listeners are encapsulated within an idempotent `initKanban` function guarded by `window.__KANBAN_INITIALIZED__`.
+
+### Key Benefits:
+- **No Duplicate Listeners**: Re-injecting or re-evaluating `app.js` will not attach duplicate event listeners to `#themeToggleBtn`, preventing the theme from toggling twice in rapid succession (theme flip-flop).
+- **Safe Drag & Drop Zones**: Lane dragover, dragleave, and drop event handlers are attached exactly once.
+- **Accurate Counter & UI State**: Synchronizes cards and counter state (`#todo-count`, `#progress-count`, `#done-count`) without duplicating cards or re-rendering unnecessarily.
+- **Global Safe Invocation**: `window.initKanban()` can be called safely at any time.
+
+---
+
+## 🧪 Testing Instructions
+
+### Manual Verification
+1. Open `index.html` in your browser.
+2. Open Browser Developer Tools Console (`F12` / `Cmd+Option+I`).
+3. Note the current theme (e.g. `dark`).
+4. Re-inject or execute `app.js` a second time by evaluating its script or adding a `<script>` tag.
+5. Click the theme toggle button (`#themeToggleBtn`) once.
+6. **Verify**:
+   - The theme switches cleanly once (e.g. from `dark` to `light`) and does **not** flip back immediately.
+   - Lane counters remain accurate and cards are not duplicated.
+   - Adding a task via the modal creates exactly one card.
+
+### Automated Testing
+Run the automated Playwright test suite:
+```bash
+node tests/course/r60-t024.mjs
+```
+The test verifies:
+- Source anchors (`#themeToggleBtn`, `#addCardBtn`, `#todo-count`, `#todo-lane`) exist.
+- Script re-execution / double-injection is guarded by `window.__KANBAN_INITIALIZED__`.
+- Clicking `#themeToggleBtn` after second execution toggles theme exactly once.
+- Card counts remain accurate and no duplicate elements/listeners exist.
+- Results are saved to `work/R60-T024/results-latest.json`.
 
 ---
 
