@@ -1,0 +1,191 @@
+{
+  "taskId": "R60-T022",
+  "timestamp": "2026-11-16T18:22:02.977Z",
+  "passed": true,
+  "viewports": {
+    "mobile": {
+      "viewport": {
+        "name": "mobile",
+        "width": 360,
+        "height": 800
+      },
+      "scrollMetrics": {
+        "docClientWidth": 360,
+        "docScrollWidth": 360,
+        "bodyClientWidth": 360,
+        "bodyScrollWidth": 360,
+        "hasHorizontalOverflow": false
+      },
+      "timeDateMetrics": {
+        "dateRect": {
+          "x": -278.015625,
+          "y": 133,
+          "width": 193,
+          "height": 20.390625,
+          "top": 133,
+          "right": -85.015625,
+          "bottom": 153.390625,
+          "left": -278.015625
+        },
+        "timeRect": {
+          "x": -278.015625,
+          "y": 161.390625,
+          "width": 193,
+          "height": 23.03125,
+          "top": 161.390625,
+          "right": -85.015625,
+          "bottom": 184.421875,
+          "left": -278.015625
+        },
+        "dateText": "Mon Nov 16 2026",
+        "timeText": "11:52:03 PM"
+      },
+      "noControlsClipped": true
+    },
+    "desktop": {
+      "viewport": {
+        "name": "desktop",
+        "width": 1280,
+        "height": 800
+      },
+      "scrollMetrics": {
+        "docClientWidth": 1280,
+        "docScrollWidth": 1280,
+        "bodyClientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "hasHorizontalOverflow": false
+      },
+      "timeDateMetrics": {
+        "dateRect": {
+          "x": 43,
+          "y": 133,
+          "width": 213,
+          "height": 20.390625,
+          "top": 133,
+          "right": 256,
+          "bottom": 153.390625,
+          "left": 43
+        },
+        "timeRect": {
+          "x": 43,
+          "y": 161.390625,
+          "width": 213,
+          "height": 26.875,
+          "top": 161.390625,
+          "right": 256,
+          "bottom": 188.265625,
+          "left": 43
+        },
+        "dateText": "Mon Nov 16 2026",
+        "timeText": "11:52:03 PM"
+      },
+      "noControlsClipped": true
+    }
+  },
+  "checks": [
+    {
+      "name": "[mobile 360px] Source anchors exist (#mobileOverlay, #sidebar, #currentDate, #currentTime)",
+      "passed": true,
+      "data": {
+        "mobileOverlay": true,
+        "sidebar": true,
+        "currentDate": true,
+        "currentTime": true
+      }
+    },
+    {
+      "name": "[mobile 360px] document.documentElement.scrollWidth <= document.documentElement.clientWidth",
+      "passed": true,
+      "data": {
+        "docClientWidth": 360,
+        "docScrollWidth": 360,
+        "bodyClientWidth": 360,
+        "bodyScrollWidth": 360,
+        "hasHorizontalOverflow": false
+      }
+    },
+    {
+      "name": "[mobile 360px] overflow-x: hidden on html, body, and .app",
+      "passed": true,
+      "data": {
+        "html": "hidden",
+        "body": "hidden",
+        "app": "hidden"
+      }
+    },
+    {
+      "name": "[mobile 360px] Closed #sidebar has visibility: hidden",
+      "passed": true,
+      "data": {
+        "visibility": "hidden",
+        "left": "-360px",
+        "width": "280px",
+        "hasClassShow": false
+      }
+    },
+    {
+      "name": "[mobile 360px] Open #sidebar has visibility: visible",
+      "passed": true,
+      "data": {
+        "visibility": "visible",
+        "left": "-298.578px",
+        "hasClassShow": true
+      }
+    },
+    {
+      "name": "[mobile 360px] No controls clipped within viewport",
+      "passed": true,
+      "data": {
+        "clippedCount": 0,
+        "clippedControls": []
+      }
+    },
+    {
+      "name": "[desktop 1280px] Source anchors exist (#mobileOverlay, #sidebar, #currentDate, #currentTime)",
+      "passed": true,
+      "data": {
+        "mobileOverlay": true,
+        "sidebar": true,
+        "currentDate": true,
+        "currentTime": true
+      }
+    },
+    {
+      "name": "[desktop 1280px] document.documentElement.scrollWidth <= document.documentElement.clientWidth",
+      "passed": true,
+      "data": {
+        "docClientWidth": 1280,
+        "docScrollWidth": 1280,
+        "bodyClientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "hasHorizontalOverflow": false
+      }
+    },
+    {
+      "name": "[desktop 1280px] overflow-x: hidden on html, body, and .app",
+      "passed": true,
+      "data": {
+        "html": "hidden",
+        "body": "hidden",
+        "app": "hidden"
+      }
+    },
+    {
+      "name": "[desktop 1280px] Desktop #sidebar is visible in layout",
+      "passed": true,
+      "data": {
+        "visibility": "visible",
+        "display": "block",
+        "position": "sticky"
+      }
+    },
+    {
+      "name": "[desktop 1280px] No controls clipped within viewport",
+      "passed": true,
+      "data": {
+        "clippedCount": 0,
+        "clippedControls": []
+      }
+    }
+  ]
+}
