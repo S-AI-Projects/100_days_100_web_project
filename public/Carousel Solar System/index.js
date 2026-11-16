@@ -43,9 +43,12 @@ document.addEventListener("click", (e) => {
       miniPlanets[currentIndex].classList.add("active");
     }
 
+    const prefersReducedMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: prefersReducedMotion ? "auto" : "smooth"
     });
   }
 
@@ -62,26 +65,10 @@ document.addEventListener("click", (e) => {
   }
 
   planetItems.forEach((item, index) => {
-  item.addEventListener("click", () => {
-    showSlide(index);
+    item.addEventListener("click", () => {
+      showSlide(index);
+    });
   });
-});
-
-function showSlide(index) {
-  slides.forEach(slide => slide.classList.remove("active"));
-  miniPlanets.forEach(planet => planet.classList.remove("active"));
-
-  if (index < 0) {
-    currentIndex = slides.length - 1;
-  } else if (index >= slides.length) {
-    currentIndex = 0;
-  } else {
-    currentIndex = index;
-  }
-
-  slides[currentIndex].classList.add("active");
-  miniPlanets[currentIndex].classList.add("active");
-}
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") {
