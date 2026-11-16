@@ -66,3 +66,17 @@ Change the action name with the `data-action` attribute:
 ## Notes
 
 The Spline scene is loaded from `https://prod.spline.design`, so the 3D background requires an internet connection. The button UI, themes, and interaction states still render without the 3D scene.
+
+## Accessibility: Motion & Focus Preferences
+
+- **Reduced Motion Support**: Respects `prefers-reduced-motion: reduce`. Infinite background animations (`moveBackground` on `.animated-image-bg`), continuous ring rotations (`spin` on `.button-ring`), and transform lifts/transitions are disabled when reduced motion is preferred.
+- **Focus Indicators**: Interactive elements (`.project-back-button`, `#holoButton`, `.theme-option`, `.utility-button`) provide high-contrast `3px solid var(--accent-strong)` outlines on `:focus-visible` ensuring a contrast ratio $\ge 3:1$ against the background.
+
+## Automated Testing
+
+Run the automated Playwright test suite to verify reduced motion and focus indicators:
+
+```bash
+node tests/course/r60-t029.mjs
+```
+

@@ -1,0 +1,85 @@
+{
+  "taskId": "R60-T029",
+  "timestamp": "2026-11-16T19:41:42.046Z",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Source anchors exist (#container, #canvas3d, #holo-title, #statusText)",
+      "passed": true,
+      "data": {
+        "container": true,
+        "canvas3d": true,
+        "holoTitle": true,
+        "statusText": true
+      }
+    },
+    {
+      "name": "Animations (.button-ring and .animated-image-bg) disabled under prefers-reduced-motion: reduce",
+      "passed": true,
+      "data": {
+        "bgAnimationName": "none",
+        "ringAnimationName": "none",
+        "ringActiveAnimationName": "none",
+        "bgAnimation": "none",
+        "ringAnimation": "none"
+      }
+    },
+    {
+      "name": "Interactive controls (.project-back-button, #holoButton, .theme-option, .utility-button) have clear :focus-visible outlines",
+      "passed": true,
+      "data": [
+        {
+          "selector": ".project-back-button",
+          "hasVisibleOutline": true,
+          "outlineInfo": {
+            "found": true,
+            "outlineWidth": "3px",
+            "outlineStyle": "solid",
+            "outlineColor": "rgb(138, 252, 255)",
+            "outlineOffset": "4px"
+          }
+        },
+        {
+          "selector": "#holoButton",
+          "hasVisibleOutline": true,
+          "outlineInfo": {
+            "found": true,
+            "outlineWidth": "3px",
+            "outlineStyle": "solid",
+            "outlineColor": "rgb(138, 252, 255)",
+            "outlineOffset": "4px"
+          }
+        },
+        {
+          "selector": ".theme-option",
+          "hasVisibleOutline": true,
+          "outlineInfo": {
+            "found": true,
+            "outlineWidth": "3px",
+            "outlineStyle": "solid",
+            "outlineColor": "rgb(138, 252, 255)",
+            "outlineOffset": "4px"
+          }
+        },
+        {
+          "selector": ".utility-button",
+          "hasVisibleOutline": true,
+          "outlineInfo": {
+            "found": true,
+            "outlineWidth": "3px",
+            "outlineStyle": "solid",
+            "outlineColor": "rgb(138, 252, 255)",
+            "outlineOffset": "4px"
+          }
+        }
+      ]
+    },
+    {
+      "name": "README.md documents motion preference handling and focus outlines",
+      "passed": true,
+      "data": {
+        "docsVerified": true
+      }
+    }
+  ]
+}
