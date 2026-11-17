@@ -175,6 +175,25 @@ Potential improvements include:
 
 ---
 
+## 🧪 Deterministic Browser Testing & Local Fixtures
+
+To ensure automated regression tests are completely reliable, offline-capable, and deterministic across independent test runs:
+
+- **Network Interception**: External TMDb API requests (`api.themoviedb.org/3/discover/movie*`) are intercepted via Playwright routing and fulfilled with deterministic local JSON movie fixtures.
+- **Media Asset Fixtures**: Image resources from TMDb and Unsplash are fulfilled with lightweight local image fixtures, avoiding network latency and external image availability issues.
+- **Randomness & Viewport Locking**: Browser test contexts lock viewport dimensions (`1280x800`) and seed the pseudo-random generator so that two separate browser contexts produce the exact same asserted DOM state.
+- **Safe Offline Fallback**: In the absence of an API key or when offline, the application gracefully provides curated local fallback recommendations across all genres.
+
+### Run Automated Tests
+
+Execute the Playwright deterministic regression suite:
+
+```bash
+node tests/course/r60-t015.mjs
+```
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome!

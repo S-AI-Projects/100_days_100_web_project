@@ -1,0 +1,182 @@
+{
+  "taskId": "R60-T015",
+  "timestamp": "2026-11-17T08:11:43.366Z",
+  "toolVersions": {
+    "node": "v26.13.1",
+    "playwright": "chromium",
+    "chromiumVersion": "159.0.8154.6"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "name": "Source anchors exist (#genreDropdownWrapper, #genreTrigger, #genreTriggerLabel, #genreMenu)",
+      "passed": true,
+      "data": {
+        "wrapperExists": true,
+        "wrapperTag": "DIV",
+        "triggerExists": true,
+        "triggerTag": "BUTTON",
+        "labelExists": true,
+        "labelText": "Choose genre(s)…",
+        "menuExists": true,
+        "menuIsHidden": true,
+        "checkboxCount": 12
+      }
+    },
+    {
+      "name": "Genre dropdown toggles open and closes upon outside click with accessible attributes",
+      "passed": true,
+      "data": {
+        "menuOpenState": {
+          "menuVisible": true,
+          "triggerOpen": true,
+          "ariaExpanded": "true"
+        },
+        "menuClosedState": {
+          "menuHidden": true,
+          "triggerClosed": true
+        }
+      }
+    },
+    {
+      "name": "Context 1 produces expected asserted state using local network & asset fixtures",
+      "passed": true,
+      "data": {
+        "movie": {
+          "title": "Interstellar",
+          "rating": "⭐ 8.4",
+          "release": "2014",
+          "overview": "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations of human space travel.",
+          "posterSrc": "https://image.tmdb.org/t/p/w400/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+          "saveBtnText": "♥ Saved"
+        },
+        "genreLabel": "Action, Sci-Fi",
+        "watchlist": {
+          "count": "1",
+          "titles": [
+            "Interstellar"
+          ]
+        },
+        "openedUrls": [
+          "https://www.youtube.com/results?search_query=Interstellar%202014%20official%20trailer"
+        ],
+        "alerts": [],
+        "layout": {
+          "cardWidth": 638,
+          "cardHeight": 290
+        }
+      }
+    },
+    {
+      "name": "Context 2 produces expected asserted state in fresh browser context",
+      "passed": true,
+      "data": {
+        "movie": {
+          "title": "Interstellar",
+          "rating": "⭐ 8.4",
+          "release": "2014",
+          "overview": "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations of human space travel.",
+          "posterSrc": "https://image.tmdb.org/t/p/w400/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+          "saveBtnText": "♥ Saved"
+        },
+        "genreLabel": "Action, Sci-Fi",
+        "watchlist": {
+          "count": "1",
+          "titles": [
+            "Interstellar"
+          ]
+        },
+        "openedUrls": [
+          "https://www.youtube.com/results?search_query=Interstellar%202014%20official%20trailer"
+        ],
+        "alerts": [],
+        "layout": {
+          "cardWidth": 638,
+          "cardHeight": 290
+        }
+      }
+    },
+    {
+      "name": "Two fresh browser contexts produce byte-for-byte identical asserted DOM & layout state",
+      "passed": true,
+      "data": {
+        "state1": {
+          "movie": {
+            "title": "Interstellar",
+            "rating": "⭐ 8.4",
+            "release": "2014",
+            "overview": "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations of human space travel.",
+            "posterSrc": "https://image.tmdb.org/t/p/w400/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+            "saveBtnText": "♥ Saved"
+          },
+          "genreLabel": "Action, Sci-Fi",
+          "watchlist": {
+            "count": "1",
+            "titles": [
+              "Interstellar"
+            ]
+          },
+          "openedUrls": [
+            "https://www.youtube.com/results?search_query=Interstellar%202014%20official%20trailer"
+          ],
+          "alerts": [],
+          "layout": {
+            "cardWidth": 638,
+            "cardHeight": 290
+          }
+        },
+        "state2": {
+          "movie": {
+            "title": "Interstellar",
+            "rating": "⭐ 8.4",
+            "release": "2014",
+            "overview": "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations of human space travel.",
+            "posterSrc": "https://image.tmdb.org/t/p/w400/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+            "saveBtnText": "♥ Saved"
+          },
+          "genreLabel": "Action, Sci-Fi",
+          "watchlist": {
+            "count": "1",
+            "titles": [
+              "Interstellar"
+            ]
+          },
+          "openedUrls": [
+            "https://www.youtube.com/results?search_query=Interstellar%202014%20official%20trailer"
+          ],
+          "alerts": [],
+          "layout": {
+            "cardWidth": 638,
+            "cardHeight": 290
+          }
+        },
+        "identical": true
+      }
+    },
+    {
+      "name": "Offline fallback gracefully serves curated movie when no API key is provided without errors",
+      "passed": true,
+      "data": {
+        "title": "Spirited Away",
+        "rating": "⭐ 8.5",
+        "release": "2001",
+        "posterDisplayed": true
+      }
+    },
+    {
+      "name": "No uncaught runtime page errors or console error messages across all scenarios",
+      "passed": true,
+      "data": {
+        "pageErrors": [],
+        "consoleErrors": []
+      }
+    },
+    {
+      "name": "README.md documents deterministic testing, local fixtures, and test command",
+      "passed": true,
+      "data": {
+        "docsVerified": true
+      }
+    }
+  ]
+}

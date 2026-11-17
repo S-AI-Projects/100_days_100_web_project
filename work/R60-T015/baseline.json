@@ -1,0 +1,22 @@
+{
+  "taskId": "R60-T015",
+  "timestamp": "2026-11-17T08:11:46.176Z",
+  "item": "public/movie-selector",
+  "anchors": [
+    "#genreDropdownWrapper",
+    "#genreTrigger",
+    "#genreTriggerLabel",
+    "#genreMenu"
+  ],
+  "deterministicFixtures": {
+    "networkRouting": "TMDb Discover API intercepted via context.route returning deterministic JSON fixture",
+    "mediaAssets": "Poster images intercepted returning 1x1 SVG fixture without external requests",
+    "randomness": "Seeded PRNG injected via addInitScript locking Math.random sequence",
+    "viewport": "Locked at 1280x800 across both browser contexts",
+    "hardwareAndPermissions": "Native window.open and alert stubbed to prevent unhandled modals or popups"
+  },
+  "baselineVsChangedBehavior": {
+    "baseline": "Unstubbed requests depend on external TMDb API & key availability, random page generation produces divergent movie recommendations",
+    "changed": "Two fresh browser contexts produce 100% byte-for-byte identical DOM and layout state independent of external network availability"
+  }
+}
