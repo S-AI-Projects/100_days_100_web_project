@@ -1,0 +1,38 @@
+{
+  "taskId": "R60-T020",
+  "timestamp": "2026-11-17T09:01:15.359Z",
+  "item": "public/CountDown Timer",
+  "anchors": [
+    "#app",
+    "#statsBtn",
+    "#fullscreenBtn",
+    "#themeBtn"
+  ],
+  "visibleInteractions": {
+    "themeToggle": {
+      "element": "#themeBtn",
+      "event": "click",
+      "expectedEffect": "Toggles html[data-theme] between 'dark' and 'light' and updates button emoji"
+    },
+    "statsDialog": {
+      "element": "#statsBtn",
+      "event": "click",
+      "expectedEffect": "Removes .hidden on #statsOverlay, rendering session stats; closes on .close-btn click"
+    },
+    "fullscreenMode": {
+      "element": "#fullscreenBtn",
+      "event": "click",
+      "expectedEffect": "Toggles body.fullscreen-mode class, scaling timer display and app max-width"
+    },
+    "timerLifecycle": {
+      "presets": "Updates duration display instantly upon clicking preset pills (e.g. 1m -> 01:00)",
+      "startPause": "Toggles timer status and updates button label between '▶ Start' and '⏸ Pause'",
+      "reset": "Restores initial duration and resets circle progress offset"
+    }
+  },
+  "regressionFixture": {
+    "mutationType": "Severed #themeBtn event binding in temporary fixture route",
+    "expectedFailure": "Clicking #themeBtn in mutated fixture leaves html[data-theme='dark'] instead of transitioning to 'light'",
+    "productionIntegrity": "The actual public/CountDown Timer application contains no mutation and passes all checks"
+  }
+}

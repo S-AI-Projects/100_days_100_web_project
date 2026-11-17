@@ -501,12 +501,17 @@ $('keyboardBtn').addEventListener('click', () => {
 // FULLSCREEN
 // =============================================
 function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen().catch(() => {});
+  const isFullscreenActive = !!document.fullscreenElement || document.body.classList.contains('fullscreen-mode');
+  if (!isFullscreenActive) {
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    }
     document.body.classList.add('fullscreen-mode');
     $('fullscreenBtn').textContent = '⛶';
   } else {
-    document.exitFullscreen();
+    if (document.fullscreenElement && document.exitFullscreen) {
+      document.exitFullscreen().catch(() => {});
+    }
     document.body.classList.remove('fullscreen-mode');
   }
 }
@@ -739,3 +744,15 @@ function init() {
 }
 
 init();
+
+if (typeof window !== 'undefined') {
+  window.FocusTimer = {
+    getState: () => ({ ...state }),
+    startTimer,
+    pauseTimer,
+    resetTimer,
+    switchMode,
+    openStats,
+    toggleFullscreen,
+  };
+}
