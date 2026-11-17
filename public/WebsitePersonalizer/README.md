@@ -182,6 +182,31 @@ This project explores how user-driven preferences can instantly influence:
 It demonstrates how far personalization can go using only front-end technologies.
 
 ---
+
+## 🛡️ Browser Feature Support & Explicit Fallbacks
+
+The application demonstrates graceful degradation across modern and legacy browser environments:
+
+- **System Preference Detection (`matchMedia`)**:
+  - **Supported Path**: The "Auto — match system preference" quiz option queries `prefers-color-scheme` to align with the OS theme.
+  - **Unsupported Path**: If `window.matchMedia` is unavailable, the option is explicitly disabled with fallback text (`Auto — (Unsupported)`) and a helpful title, leaving the standard manual choices fully functional.
+- **Clipboard API (`navigator.clipboard`)**:
+  - **Supported Path**: One-click "Export CSS" copies generated tokens to the clipboard.
+  - **Unsupported Path**: If `navigator.clipboard` is unavailable, an accessible export drawer opens containing the CSS tokens in a selectable textarea with explicit fallback guidance.
+- **CSS Color Mixing & Backdrop Filters**:
+  - Uses CSS `@supports not (color: color-mix(in srgb, red, blue))` and `@supports not (backdrop-filter: blur(12px))` rules to provide robust opaque/rgba fallbacks without layout breakdown.
+
+---
+
+## 🧪 Automated Testing
+
+Run the automated Playwright regression test validating feature-present and feature-absent execution paths:
+
+```bash
+node tests/course/r60-t016.mjs
+```
+
+---
 ## 📜 License
 
 This project is open-source and available under the MIT License.

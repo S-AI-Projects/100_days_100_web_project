@@ -78,8 +78,20 @@
           <a href="#" id="nav-3">Lab</a>
           <a href="#" id="nav-4">Contact</a>
         </div>
-        <button id="repersonalize-btn">Repersonalize</button>
+        <div class="nav-actions">
+          <button id="copy-config-btn" class="nav-btn secondary">Export CSS</button>
+          <button id="repersonalize-btn">Repersonalize</button>
+        </div>
       </nav>
+
+      <div id="export-drawer" class="export-drawer hidden" role="region" aria-label="Exported CSS Configuration">
+        <div class="export-header">
+          <span id="export-title">Personalized CSS Tokens</span>
+          <button id="close-export-btn" class="close-btn" aria-label="Close export dialog">✕</button>
+        </div>
+        <p id="export-feedback" class="export-feedback"></p>
+        <textarea id="export-textarea" class="export-textarea" readonly aria-label="CSS Tokens"></textarea>
+      </div>
 
       <header class="hero-section">
         <div class="hero-copy">

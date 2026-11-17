@@ -1,0 +1,86 @@
+{
+  "taskId": "R60-T016",
+  "timestamp": "2026-11-17T08:18:59.650Z",
+  "toolVersions": {
+    "node": "v26.13.1",
+    "playwright": "chromium",
+    "chromiumVersion": "159.0.8154.6"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "name": "Source anchors exist with expected initial quiz states (#quiz-phase, #progress-fill, #progress-label, #card-stack)",
+      "passed": true,
+      "data": {
+        "quizPhase": true,
+        "progressFill": true,
+        "progressLabel": true,
+        "cardStack": true
+      }
+    },
+    {
+      "name": "Feature-present path: matchMedia auto-option enabled and clipboard export succeeds without manual drawer",
+      "passed": true,
+      "data": {
+        "autoOptData": {
+          "disabled": false,
+          "hasDisabledClass": false,
+          "text": "⚙  Auto — match system preference"
+        },
+        "presentExportState": {
+          "btnText": "✓ Copied!",
+          "drawerHidden": true,
+          "copiedContainsTokens": true
+        }
+      }
+    },
+    {
+      "name": "Feature-absent path: unsupported matchMedia disables control with fallback text while supported choices work",
+      "passed": true,
+      "data": {
+        "absentAutoData": {
+          "disabled": true,
+          "hasDisabledClass": true,
+          "text": "⚙  Auto — match system preference (Unsupported)",
+          "title": "Feature not supported in this browser"
+        },
+        "afterClickProgress": "3 / 5"
+      }
+    },
+    {
+      "name": "Feature-absent path: unsupported clipboard gracefully reveals manual export drawer with fallback guidance",
+      "passed": true,
+      "data": {
+        "fallbackDrawerState": {
+          "drawerVisible": true,
+          "feedbackText": "Clipboard API is unsupported in this browser. Please copy your CSS tokens manually below:",
+          "textareaContent": "/* Website Personalizer — Exported Tokens */\n:root {\n  --selected-vibe: \"aesthetic\";\n  --selected-mode: \"light\";\n  --selected-color: \"rose\";\n  --selected-motion: \"subtle\";\n  --selected-typography: \"relaxed\";\n}",
+          "btnText": "View CSS"
+        },
+        "drawerClosed": true
+      }
+    },
+    {
+      "name": "CSS style.css defines explicit @supports not fallbacks for color-mix and backdrop-filter",
+      "passed": true,
+      "data": {
+        "hasSupportsRules": true
+      }
+    },
+    {
+      "name": "No uncaught runtime page errors or console error messages during test runs",
+      "passed": true,
+      "data": {
+        "pageErrors": [],
+        "consoleErrors": []
+      }
+    },
+    {
+      "name": "README.md documents feature-support fallback architecture and includes automated test command",
+      "passed": true,
+      "data": {
+        "docsVerified": true
+      }
+    }
+  ]
+}

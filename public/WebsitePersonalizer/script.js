@@ -15,6 +15,11 @@ const QUESTIONS = [
     opts: [
       { label: '☀  Light — bright & clean', val: 'light' },
       { label: '◐  Dark — easy on the eyes', val: 'dark' },
+      {
+        label: '⚙  Auto — match system preference',
+        val: 'system',
+        requires: 'matchMedia',
+      },
     ],
   },
   {
@@ -108,6 +113,30 @@ const BREW_LINES = [
   { text: '✓ done. launching in 3... 2... 1...', cls: 'ok' },
 ];
 
+// -----------------------------
+// FEATURE SUPPORT DETECTION
+// -----------------------------
+function isFeatureSupported(feature) {
+  if (feature === 'matchMedia') {
+    return typeof window.matchMedia === 'function';
+  }
+  if (feature === 'clipboard') {
+    return (
+      typeof navigator !== 'undefined' &&
+      !!navigator.clipboard &&
+      typeof navigator.clipboard.writeText === 'function'
+    );
+  }
+  if (feature === 'colorMix') {
+    return (
+      typeof window.CSS !== 'undefined' &&
+      typeof window.CSS.supports === 'function' &&
+      window.CSS.supports('color', 'color-mix(in srgb, red, blue)')
+    );
+  }
+  return true;
+}
+
 const answers = {};
 let current = 0;
 let isTransitioning = false;
@@ -119,6 +148,12 @@ const cardStack = document.getElementById('card-stack');
 const fillEl = document.getElementById('progress-fill');
 const labelEl = document.getElementById('progress-label');
 
+const copyConfigBtn = document.getElementById('copy-config-btn');
+const exportDrawer = document.getElementById('export-drawer');
+const exportFeedback = document.getElementById('export-feedback');
+const exportTextarea = document.getElementById('export-textarea');
+const closeExportBtn = document.getElementById('close-export-btn');
+
 function buildCard(q, idx) {
   const card = document.createElement('div');
   card.className = 'q-card';
@@ -126,10 +161,21 @@ function buildCard(q, idx) {
     <span class="q-num">Question ${idx + 1} of ${QUESTIONS.length}</span>
     <p class="q-text">${q.text}</p>
     <div class="q-options">
-      ${q.opts.map((o) => `<button class="q-opt" data-val="${o.val}">${o.label}</button>`).join('')}
+      ${q.opts
+        .map((o) => {
+          const supported = !o.requires || isFeatureSupported(o.requires);
+          const disabledAttr = supported ? '' : 'disabled';
+          const disabledClass = supported ? '' : ' disabled-feature';
+          const titleAttr = supported
+            ? ''
+            : ' title="Feature not supported in this browser"';
+          const displayLabel = supported ? o.label : `${o.label} (Unsupported)`;
+          return `<button class="q-opt${disabledClass}" data-val="${o.val}" ${disabledAttr}${titleAttr}>${displayLabel}</button>`;
+        })
+        .join('')}
     </div>
   `;
-  card.querySelectorAll('.q-opt').forEach((btn) => {
+  card.querySelectorAll('.q-opt:not([disabled])').forEach((btn) => {
     btn.addEventListener('click', () => pick(q.id, btn.dataset.val, card));
   });
   return card;
@@ -140,13 +186,19 @@ function pick(qid, val, card) {
 
   isTransitioning = true;
 
-  answers[qid] = val;
+  if (val === 'system') {
+    const isDark =
+      isFeatureSupported('matchMedia') &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches;
+    answers[qid] = isDark ? 'dark' : 'light';
+  } else {
+    answers[qid] = val;
+  }
 
   const options = card.querySelectorAll('.q-opt');
 
   options.forEach((btn) => {
     btn.disabled = true;
-
     btn.classList.toggle('selected', btn.dataset.val === val);
   });
 
@@ -196,6 +248,23 @@ function startBrew() {
   next();
 }
 
+function generateCssTokens() {
+  const vibe = answers.vibe || 'minimal';
+  const mode = answers.mode || 'light';
+  const color = answers.color || 'violet';
+  const motion = answers.motion || 'fluid';
+  const typo = answers.typo || 'default';
+
+  return `/* Website Personalizer — Exported Tokens */
+:root {
+  --selected-vibe: "${vibe}";
+  --selected-mode: "${mode}";
+  --selected-color: "${color}";
+  --selected-motion: "${motion}";
+  --selected-typography: "${typo}";
+}`;
+}
+
 function applyTheme() {
   const body = document.body;
   const vibe = answers.vibe || 'minimal';
@@ -230,13 +299,19 @@ function applyTheme() {
   });
 
   const shape = document.getElementById('hero-shape');
-  if (vibe === 'aesthetic') {
+  if (shape && vibe === 'aesthetic') {
     shape.style.width = '260px';
     shape.style.height = '260px';
-    shape.style.background = `radial-gradient(circle, color-mix(in srgb, var(--c-accent) 70%, white), color-mix(in srgb, var(--c-accent2) 70%, white))`;
-    shape.style.boxShadow =
-      '0 0 80px color-mix(in srgb, var(--c-accent) 40%, transparent)';
-  } else if (vibe === 'bold') {
+    if (isFeatureSupported('colorMix')) {
+      shape.style.background = `radial-gradient(circle, color-mix(in srgb, var(--c-accent) 70%, white), color-mix(in srgb, var(--c-accent2) 70%, white))`;
+      shape.style.boxShadow =
+        '0 0 80px color-mix(in srgb, var(--c-accent) 40%, transparent)';
+    } else {
+      // Documented fallback when color-mix is unsupported
+      shape.style.background = `radial-gradient(circle, var(--c-accent), var(--c-accent2))`;
+      shape.style.boxShadow = '0 0 80px rgba(124, 108, 252, 0.4)';
+    }
+  } else if (shape && vibe === 'bold') {
     shape.style.borderRadius = '0';
     shape.style.width = '200px';
     shape.style.height = '160px';
@@ -251,6 +326,52 @@ function revealSite() {
   window.scrollTo(0, 0);
 }
 
+// -----------------------------
+// EXPORT & REPERSONALIZE
+// -----------------------------
+if (copyConfigBtn) {
+  copyConfigBtn.addEventListener('click', async () => {
+    const tokens = generateCssTokens();
+
+    if (isFeatureSupported('clipboard')) {
+      try {
+        await navigator.clipboard.writeText(tokens);
+        copyConfigBtn.textContent = '✓ Copied!';
+        setTimeout(() => {
+          copyConfigBtn.textContent = 'Export CSS';
+        }, 2000);
+      } catch {
+        // Fallback to manual display if writeText rejects
+        showExportFallback(tokens);
+      }
+    } else {
+      // Explicit fallback path when Clipboard API is unsupported
+      showExportFallback(tokens);
+    }
+  });
+}
+
+function showExportFallback(tokens) {
+  if (exportDrawer && exportTextarea && exportFeedback) {
+    exportDrawer.classList.remove('hidden');
+    exportTextarea.value = tokens;
+    exportFeedback.textContent =
+      'Clipboard API is unsupported in this browser. Please copy your CSS tokens manually below:';
+    if (copyConfigBtn) {
+      copyConfigBtn.textContent = 'View CSS';
+    }
+  }
+}
+
+if (closeExportBtn && exportDrawer) {
+  closeExportBtn.addEventListener('click', () => {
+    exportDrawer.classList.add('hidden');
+    if (copyConfigBtn) {
+      copyConfigBtn.textContent = 'Export CSS';
+    }
+  });
+}
+
 document.getElementById('repersonalize-btn').addEventListener('click', () => {
   Object.keys(answers).forEach((k) => delete answers[k]);
   current = 0;
@@ -263,7 +384,10 @@ document.getElementById('repersonalize-btn').addEventListener('click', () => {
   );
 
   const shape = document.getElementById('hero-shape');
-  shape.removeAttribute('style');
+  if (shape) shape.removeAttribute('style');
+
+  if (exportDrawer) exportDrawer.classList.add('hidden');
+  if (copyConfigBtn) copyConfigBtn.textContent = 'Export CSS';
 
   sitePhase.classList.remove('active');
   quizPhase.classList.add('active');
@@ -271,5 +395,12 @@ document.getElementById('repersonalize-btn').addEventListener('click', () => {
   labelEl.textContent = '1 / 5';
   showCard(0);
 });
+
+// Expose API for regression tests
+window.WebsitePersonalizer = {
+  isFeatureSupported,
+  getAnswers: () => ({ ...answers }),
+  generateCssTokens,
+};
 
 showCard(0);

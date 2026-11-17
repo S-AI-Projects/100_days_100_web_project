@@ -1,0 +1,25 @@
+{
+  "taskId": "R60-T016",
+  "timestamp": "2026-11-17T08:19:26.610Z",
+  "item": "public/WebsitePersonalizer",
+  "anchors": [
+    "#quiz-phase",
+    "#progress-fill",
+    "#progress-label",
+    "#card-stack"
+  ],
+  "fallbacks": {
+    "matchMedia": {
+      "present": "Auto-detects prefers-color-scheme system theme",
+      "absent": "Disables control with (Unsupported) indicator, preserving functional manual choices"
+    },
+    "clipboard": {
+      "present": "Direct one-click copy to system clipboard via navigator.clipboard.writeText",
+      "absent": "Opens accessible export drawer containing CSS tokens and explicit manual copy instructions"
+    },
+    "cssModernFeatures": {
+      "colorMix": "CSS @supports not (color: color-mix(...)) provides opaque/rgba solid fallbacks",
+      "backdropFilter": "CSS @supports not (backdrop-filter: ...) provides solid surface fallbacks"
+    }
+  }
+}
