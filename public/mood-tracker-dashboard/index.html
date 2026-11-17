@@ -15,11 +15,13 @@
 
 <body>
 
+  <a href="#mainContent" class="skip-link">Skip to main content</a>
+
   <div class="bg-circle one"></div>
   <div class="bg-circle two"></div>
   <div class="bg-circle three"></div>
 
-  <div class="container">
+  <main id="mainContent" class="container" tabindex="-1">
 
     <h3>Mood Tracker</h3>
 
@@ -90,21 +92,21 @@
 
     </div>
 
-    <div class="buttons">
+    <div class="buttons" role="group" aria-label="Mood options">
 
-      <button onclick="addMood('great')">
+      <button type="button" aria-label="Log Great mood" onclick="addMood('great')">
         😊 Great
       </button>
 
-      <button onclick="addMood('good')">
+      <button type="button" aria-label="Log Good mood" onclick="addMood('good')">
         😄 Good
       </button>
 
-      <button onclick="addMood('neutral')">
+      <button type="button" aria-label="Log Neutral mood" onclick="addMood('neutral')">
         😐 Neutral
       </button>
 
-      <button onclick="addMood('bad')">
+      <button type="button" aria-label="Log Bad mood" onclick="addMood('bad')">
         😢 Bad
       </button>
 
@@ -118,7 +120,7 @@
 
     </div>
 
-  </div>
+  </main>
 
   <script src="script.js"></script>
 

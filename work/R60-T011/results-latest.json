@@ -1,0 +1,211 @@
+{
+  "taskId": "R60-T011",
+  "timestamp": "2026-11-17T05:08:15.430Z",
+  "toolVersions": {
+    "node": "v26.13.1",
+    "playwright": "chromium",
+    "chromiumVersion": "159.0.8154.6"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "name": "Source anchors exist and display initial metrics (#mainMood, #totalEntries, #greatCount, #goodCount)",
+      "passed": true,
+      "data": {
+        "mainMoodExists": true,
+        "mainMoodText": "Great 😊",
+        "totalEntriesExists": true,
+        "totalEntriesText": "2 mood entries this month",
+        "greatCountExists": true,
+        "greatCountText": "1",
+        "goodCountExists": true,
+        "goodCountText": "0"
+      }
+    },
+    {
+      "name": "No positive tabindex attribute introduced on any element",
+      "passed": true,
+      "data": {
+        "totalWithTabindex": 1,
+        "positiveTabindexes": []
+      }
+    },
+    {
+      "name": "Skip-to-content link exists, stays visually hidden until focused, and shows clear outline when focused",
+      "passed": true,
+      "data": {
+        "exists": true,
+        "href": "#mainContent",
+        "isOffscreenInitial": true,
+        "isVisibleFocused": true,
+        "focusedOutlineStyle": "solid",
+        "focusedOutlineWidth": "3px",
+        "focusedOutlineColor": "rgb(255, 77, 148)"
+      }
+    },
+    {
+      "name": "Tab key traverses interactive controls in natural sequential order (.skip-link -> Great -> Good -> Neutral -> Bad)",
+      "passed": true,
+      "data": [
+        {
+          "step": 1,
+          "expected": {
+            "type": "skip-link",
+            "selector": ".skip-link"
+          },
+          "actual": {
+            "tag": "a",
+            "className": "skip-link",
+            "id": "",
+            "text": "Skip to main content",
+            "type": null
+          }
+        },
+        {
+          "step": 2,
+          "expected": {
+            "type": "button",
+            "selector": ".buttons button:nth-of-type(1)",
+            "label": "Great"
+          },
+          "actual": {
+            "tag": "button",
+            "className": "",
+            "id": "",
+            "text": "😊 Great",
+            "type": "button"
+          }
+        },
+        {
+          "step": 3,
+          "expected": {
+            "type": "button",
+            "selector": ".buttons button:nth-of-type(2)",
+            "label": "Good"
+          },
+          "actual": {
+            "tag": "button",
+            "className": "",
+            "id": "",
+            "text": "😄 Good",
+            "type": "button"
+          }
+        },
+        {
+          "step": 4,
+          "expected": {
+            "type": "button",
+            "selector": ".buttons button:nth-of-type(3)",
+            "label": "Neutral"
+          },
+          "actual": {
+            "tag": "button",
+            "className": "",
+            "id": "",
+            "text": "😐 Neutral",
+            "type": "button"
+          }
+        },
+        {
+          "step": 5,
+          "expected": {
+            "type": "button",
+            "selector": ".buttons button:nth-of-type(4)",
+            "label": "Bad"
+          },
+          "actual": {
+            "tag": "button",
+            "className": "",
+            "id": "",
+            "text": "😢 Bad",
+            "type": "button"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Interactive mood buttons feature high-contrast visible focus outlines (:focus-visible >= 2px)",
+      "passed": true,
+      "data": [
+        {
+          "index": 0,
+          "label": "😊 Great",
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(179, 0, 75)",
+          "outlineOffset": "4px",
+          "hasOutline": true
+        },
+        {
+          "index": 1,
+          "label": "😄 Good",
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(179, 0, 75)",
+          "outlineOffset": "4px",
+          "hasOutline": true
+        },
+        {
+          "index": 2,
+          "label": "😐 Neutral",
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(179, 0, 75)",
+          "outlineOffset": "4px",
+          "hasOutline": true
+        },
+        {
+          "index": 3,
+          "label": "😢 Bad",
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(179, 0, 75)",
+          "outlineOffset": "4px",
+          "hasOutline": true
+        }
+      ]
+    },
+    {
+      "name": "Keyboard activation via Enter and Space operates controls, updates metrics and animations correctly",
+      "passed": true,
+      "data": {
+        "afterGreatEnter": {
+          "greatCount": "2",
+          "totalEntries": "3 mood entries this month",
+          "mainMood": "Great 😊",
+          "jarBallsCount": 3,
+          "chartItemsCount": 1
+        },
+        "afterGoodSpace": {
+          "goodCount": "1",
+          "totalEntries": "4 mood entries this month",
+          "jarBallsCount": 4,
+          "chartItemsCount": 2
+        },
+        "afterNeutralEnter": {
+          "neutralCount": "2",
+          "totalEntries": "5 mood entries this month"
+        },
+        "afterBadSpace": {
+          "badCount": "1",
+          "totalEntries": "6 mood entries this month"
+        }
+      }
+    },
+    {
+      "name": "No uncaught runtime page errors or console error messages during test",
+      "passed": true,
+      "data": {
+        "pageErrors": [],
+        "consoleErrors": []
+      }
+    },
+    {
+      "name": "README.md documents keyboard navigation, focus indicators and automated test command",
+      "passed": true,
+      "data": {
+        "docsVerified": true
+      }
+    }
+  ]
+}

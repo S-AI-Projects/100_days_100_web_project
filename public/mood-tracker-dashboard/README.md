@@ -219,6 +219,24 @@ This project demonstrates:
 
 ---
 
+## ♿ Accessibility & Keyboard Support
+
+This project provides comprehensive keyboard accessibility:
+* **Skip-to-Content Link**: Keyboard users can press `Tab` upon landing on the page to focus the "Skip to main content" link (`.skip-link`), bypassing repeated headers directly to the main interactive container.
+* **Logical Tab Order**: All interactive mood buttons (`😊 Great`, `😄 Good`, `😐 Neutral`, `😢 Bad`) follow the natural DOM reading sequence with zero positive `tabindex` attributes.
+* **Visible Focus Indicators**: Interactive elements feature high-contrast `:focus-visible` outlines (`3px solid #b3004b` with `outline-offset: 4px`), ensuring clear visual distinction for keyboard navigators with contrast ratio $\ge 3:1$ against the background.
+* **Keyboard Activation**: Each mood button can be activated using standard keyboard keys: `Enter` and `Space`.
+
+## 🧪 Automated Testing
+
+An automated regression test suite using Playwright verifies keyboard traversal, visible focus, keyboard activation of controls, and absence of unexpected runtime errors:
+
+```bash
+node tests/course/r60-t011.mjs
+```
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome.

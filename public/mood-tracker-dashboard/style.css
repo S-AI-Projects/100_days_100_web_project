@@ -13,6 +13,34 @@ body {
   position: relative;
 }
 
+/* Skip link for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 20px;
+  background: #222222;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 20px;
+  outline: 3px solid #ff4d94;
+  outline-offset: 4px;
+}
+
+#mainContent:focus {
+  outline: none;
+}
+
 /* Background Glow */
 
 .bg-circle {
@@ -210,12 +238,20 @@ h1 {
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 5px 15px rgba(255, 95, 162, 0.3);
 }
 
 .buttons button:hover {
   transform: translateY(-4px) scale(1.05);
+}
+
+.buttons button:focus,
+.buttons button:focus-visible {
+  outline: 3px solid #b3004b !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 4px rgba(255, 95, 162, 0.35), 0 5px 15px rgba(255, 95, 162, 0.4);
+  transform: translateY(-2px);
 }
 
 /* Chart */
