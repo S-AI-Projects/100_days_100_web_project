@@ -1,0 +1,22 @@
+{
+  "taskId": "R60-T017",
+  "timestamp": "2026-11-17T08:29:01.311Z",
+  "item": "public/Drawing-Canva",
+  "entryPoint": "public/Drawing-Canva/index.html",
+  "setupCommand": "node tests/course/r60-t017.mjs",
+  "anchors": [
+    "#app",
+    "#left",
+    "#brush",
+    "#eraser"
+  ],
+  "walkthroughSteps": [
+    "1. Layout Shell & Viewport (1280x800)",
+    "2. Default State Observation (Brush active, 980x720px canvas)",
+    "3. Freehand Draw with #brush (stroke rendering verified via pixel inspection)",
+    "4. Switch to #eraser & Erase Stroke",
+    "5. History Undo & Redo Verification",
+    "6. Clear Canvas Surface",
+    "7. Visual Screenshot Artifact generation (walkthrough.png)"
+  ]
+}

@@ -111,6 +111,41 @@ No additional dependencies or package installation are required.
 
 ![Drawing App interface](./screenshot.png)
 
+---
+
+## 📖 Tested Walkthrough
+
+This section provides a verified, reproducible walkthrough of the application's layout and core user interaction, executed and verified by automated browser checks.
+
+### 1. Page Entry Point & Setup
+- **Page Entry Point**: `public/Drawing-Canva/index.html`
+- **Automated Test / Setup Command**:
+  ```bash
+  node tests/course/r60-t017.mjs
+  ```
+- **Local Dev Server** (optional for manual verification):
+  ```bash
+  npx serve .
+  # Open http://localhost:3000/public/Drawing-Canva/index.html
+  ```
+
+### 2. Verified Interaction Walkthrough
+
+| Step | Action | Target Selector | Expected Result |
+| --- | --- | --- | --- |
+| **1. Layout Shell** | Load `index.html` at `1280×800` viewport | `#app`, `#left` | `#app` renders flex container; `#left` toolbar displays with width `300px` |
+| **2. Default State** | Observe active tool and status bar | `#brush`, `#currentTool`, `#canvasSize` | `#brush` has `.active` class; `#currentTool` shows `"Brush"`; `#canvasSize` shows canvas dimensions (`980 × 720 px`) |
+| **3. Brush Draw** | Drag mouse on canvas from `(150, 150)` to `(350, 250)` | `#canvas`, `#mousePos` | `#mousePos` displays current coordinates; canvas pixel at `(250, 200)` changes to black (`#000000`) |
+| **4. Switch Tool** | Click Eraser button in toolbar | `#eraser`, `#brush`, `#currentTool` | `#eraser` gains `.active`; `#brush` loses `.active`; `#currentTool` updates to `"Eraser"` |
+| **5. Erase Stroke** | Drag mouse over previous stroke at `(240, 195)` to `(260, 205)` | `#canvas` | Pixel at `(250, 200)` is restored to canvas background color (`#ffffff`) |
+| **6. History Undo** | Click Undo button in toolbar | `#undo` | Previous erased stroke is undone; pixel at `(250, 200)` reverts to black (`#000000`) |
+| **7. History Redo** | Click Redo button in toolbar | `#redo` | Re-applies erasure; pixel at `(250, 200)` returns to background white (`#ffffff`) |
+| **8. Clear Canvas** | Click Clear Canvas button | `.btn.clear` | Canvas is completely reset to background fill (`#ffffff`) |
+
+### 3. Visual Artifacts
+The automated walkthrough saves an execution screenshot for review:
+- Screenshot artifact path: `work/R60-T017/walkthrough.png`
+
 ## Notes
 
 - The application runs entirely in the browser.
