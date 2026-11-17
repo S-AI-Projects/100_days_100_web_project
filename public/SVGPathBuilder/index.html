@@ -34,6 +34,19 @@
                 <div class="code-block-wrapper">
                     <pre><code id="code-output">&lt;svg&gt;...&lt;/svg&gt;</code></pre>
                 </div>
+
+                <!-- Isolated text-rendering companion for path label / metadata -->
+                <div class="path-meta-container" id="path-meta-container">
+                    <label for="path-label-input" class="meta-label">Path Description / Label</label>
+                    <div class="meta-input-group">
+                        <input type="text" id="path-label-input" class="meta-input" placeholder="e.g. Wave Divider or Curve #1" />
+                        <button id="set-label-btn" class="btn secondary">Set Label</button>
+                    </div>
+                    <div class="meta-preview-box">
+                        <span class="preview-title">Rendered Label:</span>
+                        <span id="path-label-preview" class="path-label-preview">(No label set)</span>
+                    </div>
+                </div>
             </div>
         </main>
     </div>

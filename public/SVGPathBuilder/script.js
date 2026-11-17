@@ -4,6 +4,10 @@ const codeOutput = document.getElementById("code-output");
 const clearBtn = document.getElementById("clear-btn");
 const copyBtn = document.getElementById("copy-btn");
 
+const pathLabelInput = document.getElementById("path-label-input");
+const setLabelBtn = document.getElementById("set-label-btn");
+const pathLabelPreview = document.getElementById("path-label-preview");
+
 const NODE_RADIUS = 6;
 const STROKE_WIDTH = 2;
 const COPY_TIMEOUT = 2000;
@@ -44,14 +48,25 @@ function generatePathString() {
     return d;
 }
 
+function updatePathLabel() {
+    if (!pathLabelInput || !pathLabelPreview) return;
+    const rawText = pathLabelInput.value;
+    // Safe text rendering: assign directly to textContent to guarantee text is rendered as text without HTML parsing or script execution
+    pathLabelPreview.textContent = rawText || "(No label set)";
+    updateUI();
+}
+
 function updateUI() {
     const d = generatePathString();
 
     pathElement.setAttribute("d", d);
 
+    const labelText = pathLabelInput ? pathLabelInput.value.trim() : "";
+    const titleComment = labelText ? `\n  <!-- label: ${labelText.replace(/--/g, "__")} -->` : "";
+
     codeOutput.textContent =
         points.length > 0
-            ? `<svg viewBox="0 0 ${Math.round(svgRect.width)} ${Math.round(svgRect.height)}" xmlns="http://www.w3.org/2000/svg">
+            ? `<svg viewBox="0 0 ${Math.round(svgRect.width)} ${Math.round(svgRect.height)}" xmlns="http://www.w3.org/2000/svg">${titleComment}
   <path d="${d}" fill="none" stroke="currentColor" stroke-width="${STROKE_WIDTH}"/>
 </svg>`
             : "";
@@ -176,5 +191,27 @@ copyBtn.addEventListener("click", () => {
 
     copyToClipboard(codeOutput.textContent);
 });
+
+if (setLabelBtn) {
+    setLabelBtn.addEventListener("click", updatePathLabel);
+}
+if (pathLabelInput) {
+    pathLabelInput.addEventListener("input", updatePathLabel);
+}
+
+window.SVGPathBuilder = {
+    getPoints: () => [...points],
+    setPathLabel: (str) => {
+        if (pathLabelInput) {
+            pathLabelInput.value = str;
+            updatePathLabel();
+        }
+    },
+    getPathLabel: () => (pathLabelPreview ? pathLabelPreview.textContent : ""),
+    clear: () => {
+        points = [];
+        updateUI();
+    }
+};
 
 updateUI();
