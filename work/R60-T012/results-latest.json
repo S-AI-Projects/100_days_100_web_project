@@ -1,0 +1,128 @@
+{
+  "taskId": "R60-T012",
+  "timestamp": "2026-11-17T06:46:49.611Z",
+  "toolVersions": {
+    "node": "v26.13.1",
+    "playwright": "chromium",
+    "chromiumVersion": "159.0.8154.6"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "name": "Source anchors exist and render correctly (#modeScreen, #gameScreen, #card0, #pname0)",
+      "passed": true,
+      "data": {
+        "mobile": {
+          "modeScreen": true,
+          "gameScreen": true,
+          "card0": true,
+          "pname0": true,
+          "pname0Text": "Player 1"
+        },
+        "desktop": {
+          "modeScreen": true,
+          "gameScreen": true,
+          "card0": true,
+          "pname0": true
+        }
+      }
+    },
+    {
+      "name": "No unintended horizontal overflow at 360x800 viewport width (page and control rows fit viewport)",
+      "passed": true,
+      "data": {
+        "modeScrollWidth": 360,
+        "modeClientWidth": 360,
+        "gameScrollWidth": 360,
+        "gameClientWidth": 360,
+        "rows": [
+          {
+            "row": 1,
+            "scrollWidth": 310,
+            "clientWidth": 310,
+            "hasOverflow": false
+          },
+          {
+            "row": 2,
+            "scrollWidth": 310,
+            "clientWidth": 310,
+            "hasOverflow": false
+          },
+          {
+            "row": 3,
+            "scrollWidth": 310,
+            "clientWidth": 310,
+            "hasOverflow": false
+          },
+          {
+            "row": 4,
+            "scrollWidth": 310,
+            "clientWidth": 310,
+            "hasOverflow": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "No unintended horizontal overflow at 1280x800 viewport width (desktop layout fits cleanly)",
+      "passed": true,
+      "data": {
+        "modeScrollWidth": 1280,
+        "modeClientWidth": 1280,
+        "gameScrollWidth": 1280,
+        "gameClientWidth": 1280,
+        "rows": [
+          {
+            "row": 1,
+            "scrollWidth": 506,
+            "clientWidth": 506,
+            "hasOverflow": false
+          },
+          {
+            "row": 2,
+            "scrollWidth": 506,
+            "clientWidth": 506,
+            "hasOverflow": false
+          },
+          {
+            "row": 3,
+            "scrollWidth": 506,
+            "clientWidth": 506,
+            "hasOverflow": false
+          },
+          {
+            "row": 4,
+            "scrollWidth": 506,
+            "clientWidth": 506,
+            "hasOverflow": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "Interactive controls and header elements are unclipped, usable and non-overlapping at both widths",
+      "passed": true,
+      "data": {
+        "mobilePanelFits": true,
+        "mobileShootFits": true,
+        "mobileBackOverlapsH1": false,
+        "desktopBackOverlapsH1": false
+      }
+    },
+    {
+      "name": "No uncaught runtime page errors or console error messages during test",
+      "passed": true,
+      "data": {
+        "pageErrors": [],
+        "consoleErrors": []
+      }
+    },
+    {
+      "name": "README.md documents responsive layout behavior at tested widths and includes automated test command",
+      "passed": true,
+      "data": {
+        "docsVerified": true
+      }
+    }
+  ]
+}

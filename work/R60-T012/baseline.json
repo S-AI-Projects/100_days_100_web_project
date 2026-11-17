@@ -1,0 +1,29 @@
+{
+  "taskId": "R60-T012",
+  "timestamp": "2026-11-17T06:46:50.855Z",
+  "item": "public/mini carrom",
+  "testedWidths": [
+    "360x800",
+    "1280x800"
+  ],
+  "baselineFindings": {
+    "at360": {
+      "pageHorizontalOverflow": true,
+      "pageScrollWidth": 470,
+      "row3Overflow": true,
+      "backButtonOverlapsH1": true
+    },
+    "at1280": {
+      "pageHorizontalOverflow": false,
+      "pageScrollWidth": 1280,
+      "row3Overflow": false,
+      "backButtonOverlapsH1": false
+    }
+  },
+  "improvements": {
+    "repairedMobileControlRowOverflow": true,
+    "repositionedBackButtonOnSmallScreens": true,
+    "containedBoardWrapperAndControls": true,
+    "verifiedSourceAnchors": true
+  }
+}

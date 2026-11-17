@@ -79,6 +79,9 @@ canvas{ display:block; border-radius:5px; }
   font-size:.95rem; padding:8px 20px; letter-spacing:1px;
 }
 .cbtn.shoot:hover{ background:linear-gradient(135deg,#a06930,#7a4a28); }
+.ctrl-actions{ display:flex; gap:10px; justify-content:stretch; }
+.ctrl-actions .cbtn.shoot{ flex:2; text-align:center; }
+.ctrl-actions .cbtn{ flex:1; text-align:center; }
 .legend-row{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:8px; padding-top:8px; border-top:1px solid #3a1a00; }
 .leg{ display:flex; align-items:center; gap:5px; color:#b08040; font-size:.76rem; }
 .dot{ width:11px; height:11px; border-radius:50%; }
@@ -97,3 +100,50 @@ canvas{ display:block; border-radius:5px; }
 }
 .win-box h2{ font-family:'Playfair Display',serif; color:var(--gold); font-size:2.1rem; margin-bottom:10px; }
 .win-box p{ color:var(--cream); font-size:1.1rem; margin-bottom:18px; }
+
+/* RESPONSIVE LAYOUT */
+@media (max-width: 600px) {
+  body {
+    padding: 0 12px 24px;
+  }
+  .project-back-button {
+    position: static !important;
+    margin: 12px auto 4px !important;
+    display: inline-block !important;
+  }
+  h1 {
+    font-size: 1.8rem;
+    margin: 8px 0 2px;
+    letter-spacing: 2px;
+  }
+  .subtitle {
+    letter-spacing: 3px;
+    font-size: 0.75rem;
+    margin-bottom: 12px;
+  }
+  .board-wrapper {
+    padding: 10px;
+    box-shadow: 0 0 0 4px #3d1a00, 0 0 0 7px #5C3A1E, 0 12px 30px rgba(0,0,0,.8);
+  }
+  #ctrlPanel {
+    padding: 10px 12px;
+    width: 100%;
+  }
+  .scoreboard {
+    gap: 10px;
+    padding: 0 4px;
+  }
+  .player-card {
+    padding: 6px 10px;
+  }
+  .pscore {
+    font-size: 1.6rem;
+  }
+  .ctrl-row {
+    gap: 8px;
+  }
+  .ctrl-label {
+    min-width: 48px;
+    font-size: 0.75rem;
+  }
+}

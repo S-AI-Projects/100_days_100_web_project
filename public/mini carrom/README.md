@@ -112,14 +112,20 @@ The game includes a custom physics system built from scratch:
 
 ---
 
-# 📱 Responsive Design
+# 📱 Responsive Design & Viewport Protection
 
-The game automatically adjusts its board size according to the screen dimensions and provides a smooth experience on:
+The game automatically adjusts its board size and controls according to the screen dimensions, specifically verified at mobile (360×800) and desktop (1280×800) resolutions:
 
-* 💻 Desktop Computers
-* 🖥️ Laptops
-* 📱 Mobile Phones
-* 📲 Tablets
+* 📱 **Mobile Protection (360×800)**: Controls wrap gracefully into organized rows, eliminating unintended horizontal page overflow. The home navigation link flows cleanly above the title header to prevent clipping and control collision.
+* 💻 **Desktop View (1280×800)**: Fully centered layout with comfortable spacing, generous slider hit areas, and fixed navigation.
+
+### 🧪 Automated Responsive Testing
+
+An automated regression test suite using Playwright verifies layout stability, absence of horizontal overflow, source anchors, and control usability at 360×800 and 1280×800:
+
+```bash
+node tests/course/r60-t012.mjs
+```
 
 ---
 

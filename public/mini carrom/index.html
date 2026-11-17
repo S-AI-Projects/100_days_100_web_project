@@ -62,15 +62,18 @@
         style="background:linear-gradient(to right,#1a3a8a,#D4AF37,#8B1a1a);">
       <span id="aimVal" style="color:var(--gold);font-size:.82rem;min-width:36px;text-align:right;">0°</span>
     </div>
-    <!-- Row 3: Power + Shoot + Menu -->
+    <!-- Row 3: Power -->
     <div class="ctrl-row">
       <span class="ctrl-label">💪 Power</span>
       <input type="range" id="powerSlider" min="8" max="32" value="17"
         style="background:linear-gradient(to right,#2E7D32,#D4AF37,#c0392b);">
       <span id="powerVal" style="color:var(--gold);font-size:.82rem;min-width:24px;text-align:right;">17</span>
+    </div>
+    <!-- Row 4: Actions (Shoot, Reset, Menu) -->
+    <div class="ctrl-row ctrl-actions">
       <button class="cbtn shoot" id="shootBtn">🎱 Shoot</button>
-      <button class="cbtn" onclick="resetGame()">🔄</button>
-      <button class="cbtn" onclick="backToMenu()">🏠</button>
+      <button class="cbtn" id="resetBtn" onclick="resetGame()">🔄 Reset</button>
+      <button class="cbtn" id="menuBtn" onclick="backToMenu()">🏠 Menu</button>
     </div>
     <!-- Legend -->
     <div class="legend-row">
