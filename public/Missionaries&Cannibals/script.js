@@ -100,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ── GAME STATE ─────────────────────────────────── */
-    let state = {};
     let history = [];      // for undo
     let gameActive = false;
     let timerInterval = null;
@@ -117,17 +116,28 @@ document.addEventListener("DOMContentLoaded", () => {
         isOver: false,
         moveCount: 0,
     });
+    let state = defaultState();
 
     /* ── BEST SCORE ─────────────────────────────────── */
     const bestKey = () => `mc_best_${currentDiff}`;
+    const memoryBest = {};
+
     const getBest = () => {
-        const v = localStorage.getItem(bestKey());
-        return v ? parseInt(v) : null;
+        try {
+            const v = localStorage.getItem(bestKey());
+            return v ? parseInt(v, 10) : (memoryBest[bestKey()] || null);
+        } catch {
+            return memoryBest[bestKey()] || null;
+        }
     };
     const saveBest = (moves) => {
         const prev = getBest();
         if (prev === null || moves < prev) {
-            localStorage.setItem(bestKey(), moves);
+            try {
+                localStorage.setItem(bestKey(), moves);
+            } catch {
+                memoryBest[bestKey()] = moves;
+            }
             return true;
         }
         return false;

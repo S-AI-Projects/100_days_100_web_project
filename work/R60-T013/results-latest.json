@@ -1,0 +1,102 @@
+{
+  "taskId": "R60-T013",
+  "timestamp": "2026-11-17T07:42:20.041Z",
+  "toolVersions": {
+    "node": "v26.13.1",
+    "playwright": "chromium",
+    "chromiumVersion": "159.0.8154.6"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "name": "Source anchors exist and display initial state (#theme-toggle, #instructions-btn, #move-count, #timer-chip)",
+      "passed": true,
+      "data": {
+        "themeToggleExists": true,
+        "instructionsBtnExists": true,
+        "moveCountExists": true,
+        "moveCountText": "0",
+        "timerChipExists": true
+      }
+    },
+    {
+      "name": "Failed asset fixture (blocked external fonts) exercises robust readable system font fallback without crashing",
+      "passed": true,
+      "data": {
+        "fontRequestsBlocked": 1,
+        "bodyFontFamily": "Poppins, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, sans-serif",
+        "h1FontFamily": "Poppins, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, sans-serif",
+        "bodyHasFallback": true,
+        "h1Visible": true
+      }
+    },
+    {
+      "name": "Empty bank displays explicit 'Empty' status badge when containing zero characters",
+      "passed": true,
+      "data": {
+        "leftCountText": "3🐑 3🐯",
+        "rightCountText": "Empty"
+      }
+    },
+    {
+      "name": "Empty scoreboard renders clean '—' placeholder prior to any recorded games",
+      "passed": true,
+      "data": {
+        "bestText": "—"
+      }
+    },
+    {
+      "name": "Empty boat move error is captured with warning, prevents sailing, and cleanly recovers when passengers board",
+      "passed": true,
+      "data": {
+        "afterEmptyMove": {
+          "msgText": "At least one passenger needed to sail!",
+          "msgClass": "warning",
+          "boatHasRightClass": false,
+          "moveCount": "0"
+        },
+        "afterBoarding": {
+          "boatCap": "1/2",
+          "passengersCount": 1
+        },
+        "afterRecovery": {
+          "boatHasRightClass": true,
+          "moveCount": "1",
+          "msgText": "The sheep were outnumbered… 😱 Game Over!"
+        }
+      }
+    },
+    {
+      "name": "Outnumbered game over state triggers error display and cleanly recovers upon restart",
+      "passed": true,
+      "data": {
+        "afterOutnumbered": {
+          "msgText": "The sheep were outnumbered… 😱 Game Over!",
+          "modalVisible": true,
+          "modalTitle": "Game Over"
+        },
+        "afterResetRecovery": {
+          "modalClosed": true,
+          "moveCount": "0",
+          "boatAtLeft": true,
+          "leftCount": "3🐑 3🐯"
+        }
+      }
+    },
+    {
+      "name": "No uncaught runtime page errors or console error messages during test",
+      "passed": true,
+      "data": {
+        "pageErrors": [],
+        "consoleErrors": []
+      }
+    },
+    {
+      "name": "README.md documents empty & error states and includes automated test command",
+      "passed": true,
+      "data": {
+        "docsVerified": true
+      }
+    }
+  ]
+}

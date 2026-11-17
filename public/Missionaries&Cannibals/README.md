@@ -21,6 +21,26 @@ This is an interactive puzzle game built with vanilla HTML, CSS, and JavaScript.
 - 🔄 **Start / Reset** — Restart the game at any time
 - 📱 **Fully Responsive** — Adapts to mobile, tablet, and desktop screens
 - ♿ **Guidance Text** — Dynamic in-game messages tell players what to do next
+- 🛡️ **Empty & Error State Resilience** — Meaningful empty displays, input validation error warnings, and offline asset fallbacks
+
+---
+
+## 🛡️ Empty & Error States
+
+The game explicitly handles and recovers from empty and error states:
+- **Empty Bank Indicator**: When a bank has no characters (such as the Right Bank at start), it displays a clear `"Empty"` status label rather than collapsing or rendering blank space.
+- **Empty Scoreboard Placeholder**: When no previous best score exists in local storage, `#best-display` renders a fallback `"—"` placeholder and safely recovers in-memory if storage is unavailable.
+- **Empty Boat Validation**: Attempting to sail the boat without passengers triggers an explicit warning message (`"At least one passenger needed to sail!"`) without advancing moves, recovering immediately once passengers board.
+- **Failed Asset / Font Fallback**: When external font requests fail or are blocked, the page falls back cleanly to the robust system font stack (`system-ui, -apple-system, sans-serif`) with zero layout shift or console errors.
+- **Game Over & State Recovery**: Outnumbered sheep trigger an animated danger state and result modal, which recovers cleanly upon clicking the restart button.
+
+## 🧪 Automated Testing
+
+An automated Playwright regression suite verifies empty/error states, failed asset fallbacks, source anchors, and recovery workflows:
+
+```bash
+node tests/course/r60-t013.mjs
+```
 ---
  
 ## 🛠️ Technologies Used
