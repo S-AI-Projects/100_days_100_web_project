@@ -487,6 +487,14 @@ function renderComparison() {
 }
 
 // === COLLECTIONS FUNCTION ===
+function isMotionReduced() {
+  return (
+    typeof window !== 'undefined' &&
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
+}
+
 function renderCollection(collectionId) {
   const toolIds = collections[collectionId];
   if (!toolIds) return;
@@ -495,9 +503,11 @@ function renderCollection(collectionId) {
     .map((id) => toolsData.find((t) => t.id === id))
     .filter(Boolean);
 
-  // Scroll to tools section
+  // Scroll to tools section (respecting reduced motion preferences)
   const toolsSection = document.getElementById('tools');
-  toolsSection.scrollIntoView({ behavior: 'smooth' });
+  if (toolsSection) {
+    toolsSection.scrollIntoView({ behavior: isMotionReduced() ? 'auto' : 'smooth' });
+  }
 
   // Filter and show only collection tools (we'll just show a toast for now)
   const collectionNames = {
@@ -530,7 +540,10 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.scrollIntoView({
+        behavior: isMotionReduced() ? 'auto' : 'smooth',
+        block: 'start',
+      });
     }
   });
 });
@@ -554,12 +567,34 @@ function initAnimations() {
   const cardsToAnimate = document.querySelectorAll(
     '.tool-card, .category-card, .stat-card, .why-card, .trend-card, .collection-card'
   );
+
+  // If user prefers reduced motion, ensure all cards are immediately visible without motion transitions
+  if (isMotionReduced()) {
+    cardsToAnimate.forEach((card) => {
+      card.style.opacity = '1';
+      card.style.transform = 'none';
+      card.style.transition = 'none';
+    });
+    return;
+  }
+
   cardsToAnimate.forEach((card, index) => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(30px)';
     card.style.transition = `opacity 0.6s ease ${index * 0.05}s, transform 0.6s ease ${index * 0.05}s`;
     observer.observe(card);
   });
+}
+
+if (typeof window !== 'undefined' && window.matchMedia) {
+  try {
+    const motionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+    motionMedia.addEventListener('change', () => {
+      initAnimations();
+    });
+  } catch (err) {
+    // Graceful fallback for older environments
+  }
 }
 
 // === INITIALIZE ===
@@ -608,6 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 const button = document.createElement("button");
 button.id = "themeToggleBtn";
+button.setAttribute("aria-label", "Toggle color theme");
 button.style.position = "fixed";
 button.style.top = "15px";
 button.style.right = "15px";
@@ -704,3 +740,11 @@ document.addEventListener("DOMContentLoaded", () => {
   searchBox.addEventListener("input", filterTools);
   categoryFilter.addEventListener("change", filterTools);
 });
+
+// Expose AIToolsHub on window for automated verification and test inspection
+if (typeof window !== "undefined") {
+  window.AIToolsHub = {
+    isMotionReduced,
+    initAnimations,
+  };
+}

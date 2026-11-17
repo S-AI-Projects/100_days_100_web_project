@@ -72,6 +72,26 @@ All modern browsers are supported:
 - Safari (latest)
 - Edge (latest)
 
+## Motion & Keyboard Focus Accessibility
+
+This project respects user system accessibility preferences:
+- **`prefers-reduced-motion` Support**:
+  - Automatically respects user OS motion settings.
+  - When reduced motion is preferred, continuous floating background animations, gradient shifting, pulse micro-animations, and entrance translation transitions are neutralized.
+  - Smooth scrolling transitions (`scrollIntoView` and CSS `scroll-behavior`) instantly switch to `auto`, preventing motion disorientation.
+  - All information, tool collections, and controls remain fully visible, accessible, and functional.
+- **Visible Keyboard Focus**:
+  - High-contrast focus indicators (`outline: 3px solid #06b6d4` with `outline-offset: 2px` and dark backing contrast) are provided across all interactive elements (`#searchBox`, `#categoryFilter`, links, buttons, theme toggles, and collection triggers).
+  - Tested and fully visible across both desktop (1280px) and mobile (375px) viewports.
+
+## Automated Verification & Regression Testing
+
+To run the automated Playwright test suite verifying source anchors, motion preferences, focus indicator visibility, and layout responsiveness:
+
+```bash
+node tests/course/r60-t019.mjs
+```
+
 ## License
 
 MIT License - Feel free to use this project for personal or commercial purposes.

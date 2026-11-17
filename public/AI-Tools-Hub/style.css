@@ -849,9 +849,14 @@ html {
 
 /* Focus styles for accessibility */
 a:focus-visible,
-button:focus-visible {
-  outline: 3px solid rgba(99, 102, 241, 0.6);
-  outline-offset: 2px;
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--accent, #06b6d4) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.8) !important;
 }
 
 .controls {
@@ -881,7 +886,17 @@ button:focus-visible {
     padding: 15px 50px 15px 15px;
     border: none;
     border-radius: 50px;
-    outline: none;
+    background: #ffffff;
+    color: var(--text);
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.search-gradient input:focus,
+.search-gradient input:focus-visible {
+    outline: 3px solid var(--accent, #06b6d4) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.8) !important;
 }
 
 .search-gradient i {
@@ -911,10 +926,17 @@ button:focus-visible {
 }
 
 .filter select{
-    height: 40px;
+  height: 40px;
   border-radius: 20px;
   background-color: var(--accent) ;
   border-color: #00f5ff;
+}
+
+.filter select:focus,
+.filter select:focus-visible {
+  outline: 3px solid var(--accent, #06b6d4) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.8) !important;
 }
 
 .load-more {
@@ -932,4 +954,70 @@ button:focus-visible {
 
 .load-more:hover {
     background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+}
+
+@media (max-width: 600px) {
+  .controls {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .search-gradient {
+    width: 100%;
+  }
+  .filter {
+    width: 100%;
+    padding: 0;
+  }
+  .filter select {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Prefers-Reduced-Motion Accessibility Rules
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .circle-1,
+  .circle-2,
+  .circle-3,
+  .search-gradient,
+  .favorite-btn.active i,
+  .favorite-btn.favorited .heart-icon {
+    animation: none !important;
+  }
+
+  .tool-card,
+  .category-card,
+  .stat-card,
+  .why-card,
+  .trend-card,
+  .collection-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .btn:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .tool-card:hover,
+  .category-card:hover,
+  .stat-card:hover,
+  .collection-card:hover {
+    transform: none !important;
+  }
 }

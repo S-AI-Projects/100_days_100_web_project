@@ -1,0 +1,145 @@
+{
+  "taskId": "R60-T019",
+  "timestamp": "2026-11-17T08:55:34.363Z",
+  "toolVersions": {
+    "node": "v26.13.1",
+    "playwright": "chromium",
+    "chromiumVersion": "159.0.8154.6"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "name": "Source anchors exist with expected DOM elements (#categories, #collections, #tools, #searchBox)",
+      "passed": true,
+      "data": {
+        "categories": true,
+        "collections": true,
+        "tools": true,
+        "searchBox": true
+      }
+    },
+    {
+      "name": "Keyboard focus indicators are visibly rendered across key controls at desktop width (1280px)",
+      "passed": true,
+      "data": {
+        "searchBox": {
+          "found": true,
+          "hasOutline": true,
+          "outlineWidth": "3px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(6, 182, 212)",
+          "isVisible": true
+        },
+        "categoryFilter": {
+          "found": true,
+          "hasOutline": true,
+          "outlineWidth": "3px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(6, 182, 212)",
+          "isVisible": true
+        },
+        "navCta": {
+          "found": true,
+          "hasOutline": true,
+          "outlineWidth": "3px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(255, 255, 255)",
+          "isVisible": true
+        },
+        "collectionBtn": {
+          "found": true,
+          "hasOutline": true,
+          "outlineWidth": "3px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(255, 255, 255)",
+          "isVisible": true
+        },
+        "themeToggle": {
+          "found": true,
+          "hasOutline": true,
+          "outlineWidth": "3px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(6, 182, 212)",
+          "isVisible": true
+        }
+      }
+    },
+    {
+      "name": "Keyboard focus indicators remain visible and within viewport at mobile width (375px)",
+      "passed": true,
+      "data": {
+        "searchBox": {
+          "found": true,
+          "hasOutline": true,
+          "outlineWidth": "3px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(6, 182, 212)",
+          "withinViewport": true
+        },
+        "categoryFilter": {
+          "found": true,
+          "hasOutline": true,
+          "outlineWidth": "3px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(6, 182, 212)",
+          "withinViewport": true
+        },
+        "collectionBtn": {
+          "found": true,
+          "hasOutline": true,
+          "outlineWidth": "3px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(255, 255, 255)",
+          "withinViewport": true
+        }
+      }
+    },
+    {
+      "name": "Reduced-motion emulation neutralizes continuous animations, transitions, and smooth scrolling",
+      "passed": true,
+      "data": {
+        "mediaMatches": true,
+        "scrollBehaviorAuto": true,
+        "circle1NoMotion": true,
+        "searchGradientNoMotion": true,
+        "toolCardVisible": true,
+        "toolCardTransitionDisabled": true,
+        "categoryCardVisible": true
+      }
+    },
+    {
+      "name": "All information and interactive controls remain fully usable under reduced motion",
+      "passed": true,
+      "data": {
+        "categoryCount": 6,
+        "collectionCount": 5,
+        "toolCount": 19,
+        "searchFilteredCorrectly": true
+      }
+    },
+    {
+      "name": "Standard motion (no-preference) preserves intended animations and styles",
+      "passed": true,
+      "data": {
+        "reducedMotionMatches": false,
+        "circle1AnimationName": "float",
+        "searchGradAnimationName": "gradientMove"
+      }
+    },
+    {
+      "name": "No uncaught runtime page errors or console error messages during test runs",
+      "passed": true,
+      "data": {
+        "pageErrors": [],
+        "consoleErrors": []
+      }
+    },
+    {
+      "name": "README.md documents motion preferences and visible focus guidelines with test command",
+      "passed": true,
+      "data": {
+        "docsVerified": true
+      }
+    }
+  ]
+}

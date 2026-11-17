@@ -1,0 +1,39 @@
+{
+  "taskId": "R60-T019",
+  "timestamp": "2026-11-17T08:55:35.582Z",
+  "item": "public/AI-Tools-Hub",
+  "anchors": [
+    "#categories",
+    "#collections",
+    "#tools",
+    "#searchBox"
+  ],
+  "motionPreferences": {
+    "prefersReducedMotion": {
+      "supported": true,
+      "animationsDisabled": [
+        ".circle-1",
+        ".circle-2",
+        ".circle-3",
+        ".search-gradient",
+        ".favorite-btn"
+      ],
+      "scrollBehaviorFallback": "auto",
+      "contentVisibility": "All cards and controls immediately rendered with opacity: 1 without motion transitions"
+    },
+    "keyboardFocus": {
+      "indicator": "3px solid #06b6d4 with 2px offset",
+      "testedWidths": [
+        "1280px (desktop)",
+        "375px (mobile)"
+      ],
+      "controlsVerified": [
+        "#searchBox",
+        "#categoryFilter",
+        ".nav-cta",
+        ".collection-card button",
+        "#themeToggleBtn"
+      ]
+    }
+  }
+}
