@@ -1,0 +1,18 @@
+{
+  "taskId": "R60-T014",
+  "timestamp": "2026-11-17T08:00:33.679Z",
+  "item": "public/BordemBuster",
+  "anchors": [
+    "#themeBtn",
+    "#category",
+    "#participants",
+    "#budget"
+  ],
+  "lifecycleProtections": [
+    "Idempotent initialization via window.BoredomBuster.init()",
+    "Teardown and listener detachment via AbortController in window.BoredomBuster.cleanup()",
+    "Active timer tracking with cancellation of in-flight timeouts",
+    "SafeStorage memory fallback for restricted environments",
+    "DOM node count stability under rapid repeat interaction"
+  ]
+}

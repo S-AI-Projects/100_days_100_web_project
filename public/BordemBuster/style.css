@@ -290,6 +290,27 @@ label {
   border-bottom: 2px solid var(--accent);
 }
 
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.filter-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.results-count {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 6px;
+  margin-bottom: 8px;
+}
+
 /* ---------- LIST ---------- */
 .item-list {
   list-style: none;
