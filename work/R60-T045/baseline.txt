@@ -1,0 +1,10 @@
+round 1 stats: { opacity: '0.996827', pointerEvents: 'all' }
+round 1 prefs: { opacity: '0.996827', pointerEvents: 'all' }
+round 1 back: { opacity: '0', pointerEvents: 'none' }
+round 1 theme: { opacity: '0', pointerEvents: 'none' }
+round 1 reset: { opacity: '0', pointerEvents: 'none' }
+round 2 stats: { opacity: '0.996938', pointerEvents: 'all' }
+round 2 prefs: { opacity: '0.996938', pointerEvents: 'all' }
+round 2 back: { opacity: '0', pointerEvents: 'none' }
+round 2 theme: { opacity: '0', pointerEvents: 'none' }
+round 2 reset: { opacity: '0', pointerEvents: 'none' }

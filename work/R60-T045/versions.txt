@@ -1,0 +1,3 @@
+node v24.16.0
+playwright 1.65.1
+three 0.95.0 (local fixture for cdnjs three.js r95)

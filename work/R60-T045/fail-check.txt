@@ -1,0 +1,32 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
+    back: false,
+    prefs: true,
+    reset: false,
++   stats: true,
+-   stats: false,
+    theme: false
+  }
+
+    at file:///Users/bhavika/100_days_100_web_project/work/R60-T045/fail-check.mjs:78:12 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: { stats: true, prefs: true, back: false, theme: false, reset: false },
+  expected: {
+    stats: false,
+    prefs: true,
+    back: false,
+    theme: false,
+    reset: false
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.16.0

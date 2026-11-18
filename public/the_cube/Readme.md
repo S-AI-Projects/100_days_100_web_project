@@ -52,6 +52,16 @@ An interactive 3D Rubik's Cube simulator built with **Three.js**, **HTML**, **CS
 
 Open `index.html` in your browser or start a local server:
 
+## 🧪 Run the Browser Test
+
+The regression test checks the bottom button controls (stats, preferences, theme, back, reset) across screen changes, using a local copy of three.js instead of the CDN.
+
+```bash
+npm install
+node tests/course/r60-t045.mjs
+```
+
+The script starts a local server, opens two fresh browser contexts, and exits with a non-zero code if any assertion fails or the page throws an error.
 
 ## 📂 Project Structure
 
