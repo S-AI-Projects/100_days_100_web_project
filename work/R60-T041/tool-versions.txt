@@ -1,0 +1,3 @@
+node v24.16.0
+playwright Version 1.65.1
+serve 14.2.8

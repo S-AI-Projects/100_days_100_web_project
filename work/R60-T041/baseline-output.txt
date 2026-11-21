@@ -1,0 +1,6 @@
+CSS 200 http://127.0.0.1:4174/public/Travel_booking_website/style.css
+CSS 200 http://127.0.0.1:4174/public/Travel_booking_website/chatbot.css
+CSS 200 https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css
+CSS 200 https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css
+CSS 200 https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css
+{"display":"none","visibility":"visible","inlineStyle":null,"width":"380px","height":"580px"}

@@ -132,3 +132,23 @@ You are free to modify and use this project for personal development and practic
 ⭐ If you enjoyed this project, consider giving the repository a star!
 
 ---
+
+## ⌨️ Keyboard Regression Test (R60-T041)
+
+Checks keyboard use of the chatbot controls: `#chat-toggle`, `#chatbot-box`, `#close-chat` and `#export-chat`.
+
+**Prerequisites:** Node.js, and Playwright with Chromium (`npm install` at the repository root, then `npx playwright install chromium`).
+
+**Run (from the repository root):**
+```bash
+node tests/course/r60-t041.mjs
+```
+
+The check starts a local static server, opens the page in a fresh browser context and exits non-zero if any assertion fails or an unexpected page error occurs.
+
+**Verified:**
+- Tab reaches the toggle, close and export buttons, with a visible focus ring
+- Enter and Space operate the toggle; Enter operates close; Space triggers the export download
+- No positive `tabindex` is used on the page
+
+**Baseline:** the controls are native `<button>` elements and already behave correctly, so no source change was needed.
