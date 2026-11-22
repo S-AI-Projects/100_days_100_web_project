@@ -1,0 +1,28 @@
+{
+  "tool": "playwright chromium 159.0.8154.6",
+  "node": "v24.16.0",
+  "cases": {
+    "\"\"": {
+      "outputTail": "\n      \n\nWelcome to the Fake Hacker Terminal 😎\n\n\n      \n\nType \"help\" to see commands.\n\n\n    \n\n\nroot@terminal:~$ \n\n\n\n\n\nCommand not found ❌\n\nType \"help\"\n\n\n",
+      "inputAfter": ""
+    },
+    "\"   \"": {
+      "outputTail": "e to the Fake Hacker Terminal 😎\n\n\n      \n\nType \"help\" to see commands.\n\n\n    \n\n\nroot@terminal:~$ \n\n\n\n\n\nCommand not found ❌\n\nType \"help\"\n\n\n\n\n\nroot@terminal:~$ \n\n\n\n\n\nCommand not found ❌\n\nType \"help\"\n\n\n",
+      "inputAfter": ""
+    },
+    "\"xyz\"": {
+      "outputTail": "mmands.\n\n\n    \n\n\nroot@terminal:~$ \n\n\n\n\n\nCommand not found ❌\n\nType \"help\"\n\n\n\n\n\nroot@terminal:~$ \n\n\n\n\n\nCommand not found ❌\n\nType \"help\"\n\n\n\n\n\nroot@terminal:~$ xyz\n\n\n\n\n\nCommand not found ❌\n\nType \"help\"\n\n\n",
+      "inputAfter": ""
+    },
+    "\"constructor\"": {
+      "outputTail": "\n\n\nroot@terminal:~$ \n\n\n\n\n\nCommand not found ❌\n\nType \"help\"\n\n\n\n\n\nroot@terminal:~$ xyz\n\n\n\n\n\nCommand not found ❌\n\nType \"help\"\n\n\n\n\n\nroot@terminal:~$ constructor\n\n\n\n\n\nfunction Object() { [native code] }\n\n\n",
+      "inputAfter": ""
+    },
+    "\"help\"": {
+      "outputTail": "act    → Contact info\ndate       → Current date\nclear      → Clear terminal\nhack       → Start hacking 😈\npwd        → Show current directory\nwhoami     → Show current user\nls         → List files\n\n\n\n",
+      "inputAfter": ""
+    }
+  },
+  "pageErrors": [],
+  "failedRequests": []
+}

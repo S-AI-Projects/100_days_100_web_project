@@ -128,7 +128,7 @@ projects   documents   secrets.txt
     }
 
     // COMMANDS OBJECT
-    else if(commands[command]){
+    else if(Object.hasOwn(commands, command)){
 
       output.innerHTML += `
 <div class="response">

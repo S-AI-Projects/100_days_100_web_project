@@ -1,0 +1,13 @@
+FAIL AssertionError [ERR_ASSERTION]: [""] shows "Command found", got: 
+Command not found ❌
+
+Type "help"
+
+    at file:///Users/bhavika/100_days_100_web_project/tests/course/_neg43.mjs:62:12 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
