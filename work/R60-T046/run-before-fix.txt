@@ -1,0 +1,5 @@
+FAIL page.waitForFunction: Timeout 30000ms exceeded.
+    at /Users/bhavika/100_days_100_web_project/tests/course/r60-t046.mjs:81:16 {
+  log: [],
+  name: 'TimeoutError'
+}

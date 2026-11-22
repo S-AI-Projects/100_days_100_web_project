@@ -1,0 +1,9 @@
+FAIL AssertionError [ERR_ASSERTION]: unsupported: readable fallback text shown
+    at file:///Users/bhavika/100_days_100_web_project/tests/course/_neg46.mjs:82:12 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

@@ -23,7 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Safely save capsules
   function saveCapsules(capsules) {
-    localStorage.setItem('capsules', JSON.stringify(capsules));
+    try {
+      localStorage.setItem('capsules', JSON.stringify(capsules));
+      return true;
+    } catch (error) {
+      return false;
+    }
   }
 
   function totalMs() {
@@ -145,7 +150,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const capsules = getCapsules();
     capsules.push(newCapsule);
 
-    saveCapsules(capsules);
+    if (!saveCapsules(capsules)) {
+      errEl.textContent =
+        'Storage is not available in this browser, so the capsule cannot be sealed.';
+      return;
+    }
 
     // Hide previous revealed message if visible
     messageReveal.classList.add('hidden');

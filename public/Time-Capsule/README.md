@@ -188,3 +188,19 @@ This project is open-source and available under the MIT License.
 Created as a fun project to help users send messages into the future and rediscover them later.
 
 *"The best way to predict your future is to create it."*
+
+---
+
+## Run and Test
+
+From the repo root, start the dev server:
+
+    npm run dev
+
+Open http://localhost:3000/public/Time-Capsule/ (keep the trailing slash so style.css and script.js load).
+
+Run the browser check (needs Node.js and Playwright with Chromium):
+
+    node tests/course/r60-t046.mjs
+
+The page needs `localStorage` to keep sealed capsules. The check tests both paths: with storage available, a capsule is sealed and stored; with storage stubbed as blocked (SecurityError), the page shows "Storage is not available in this browser, so the capsule cannot be sealed.", does not show the capsule as sealed, keeps the message, and logs no page error. It then restores storage and checks that sealing works on the same page. It exits non-zero on any failed assertion or page error.

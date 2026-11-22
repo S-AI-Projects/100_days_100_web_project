@@ -1,0 +1,24 @@
+{
+  "tool": "playwright chromium 159.0.8154.6",
+  "node": "v24.16.0",
+  "cases": {
+    "supported": {
+      "capsuleRevealClass": "",
+      "revealTime": "Your message will be revealed at: 4:08:41 PM",
+      "errText": "",
+      "messageAfterSubmit": "",
+      "storedCapsules": "[{\"message\":\"hello future me\",\"revealAt\":1795343921798,\"revealed\":false}]",
+      "pageErrors": []
+    },
+    "storage-blocked": {
+      "capsuleRevealClass": "hidden",
+      "revealTime": "",
+      "errText": "",
+      "messageAfterSubmit": "hello future me",
+      "storedCapsules": "n/a",
+      "pageErrors": [
+        "SecurityError: The operation is insecure."
+      ]
+    }
+  }
+}
