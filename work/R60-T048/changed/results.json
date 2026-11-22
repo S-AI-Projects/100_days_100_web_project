@@ -1,0 +1,27 @@
+{
+  "input": "[image](https://github.com/S-AI-Projects/100_days_100_web_project/issues/x) <img src=x onerror=\"window.fixtureHandlerRan=true\">",
+  "expected": {
+    "renderedText": "[image](https://github.com/S-AI-Projects/100_days_100_web_project/issues/x) <img src=x onerror=\"window.fixtureHandlerRan=true\">",
+    "injectedElements": 0,
+    "handlerExecuted": false,
+    "pageErrors": []
+  },
+  "actual": {
+    "renderedText": "[image](https://github.com/S-AI-Projects/100_days_100_web_project/issues/x) <img src=x onerror=\"window.fixtureHandlerRan=true\">",
+    "injectedElements": 0,
+    "handlerExecuted": false,
+    "pageErrors": [],
+    "renderedLayout": {
+      "display": "block",
+      "width": 1264,
+      "height": 15
+    }
+  },
+  "versions": {
+    "node": "v24.16.0",
+    "npm": "11.13.0",
+    "playwright": "1.65.1",
+    "serve": "14.2.8",
+    "chromium": "159.0.8154.6"
+  }
+}

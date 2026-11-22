@@ -1,0 +1,12 @@
+{
+  "baseline": {
+    "textRenderingCompanion": "not present before the change"
+  },
+  "versions": {
+    "node": "v24.16.0",
+    "npm": "11.13.0",
+    "playwright": "1.65.1",
+    "serve": "14.2.8",
+    "chromium": "159.0.8154.6"
+  }
+}

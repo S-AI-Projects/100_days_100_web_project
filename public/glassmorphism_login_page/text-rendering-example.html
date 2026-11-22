@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Text Rendering Example</title>
+</head>
+<body>
+    <main>
+        <h1>Safe Text Rendering</h1>
+        <label for="fixtureText">Enter text to display:</label>
+        <textarea id="fixtureText"></textarea>
+        <button id="renderText" type="button">Render as text</button>
+        <h2>Rendered output</h2>
+        <pre id="renderedText"></pre>
+    </main>
+
+    <script>
+        const fixtureText = document.getElementById('fixtureText');
+        const renderButton = document.getElementById('renderText');
+        const renderedText = document.getElementById('renderedText');
+
+        renderButton.addEventListener('click', () => {
+            renderedText.textContent = fixtureText.value;
+        });
+    </script>
+</body>
+</html>
