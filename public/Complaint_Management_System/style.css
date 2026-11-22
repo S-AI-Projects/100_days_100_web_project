@@ -1048,3 +1048,36 @@ body {
     font-size: 24px;
     cursor: pointer;
 }
+
+/* ── Keyboard Accessibility & Focus Visibility ── */
+.skip-link {
+    position: absolute;
+    top: -120px;
+    left: 1.5rem;
+    background: #6366f1;
+    color: #ffffff;
+    padding: 0.65rem 1.25rem;
+    border-radius: 8px;
+    z-index: 9999;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    transition: top 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    top: 1.5rem;
+    outline: 3px solid #ffffff;
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #6366f1 !important;
+    outline-offset: 2px !important;
+}
