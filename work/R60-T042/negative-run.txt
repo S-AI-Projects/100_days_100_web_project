@@ -1,0 +1,14 @@
+FAIL AssertionError [ERR_ASSERTION]: [360] style.css was not applied
+
+'600px' !== '601px'
+
+    at file:///Users/bhavika/100_days_100_web_project/tests/course/_neg.mjs:101:12
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '600px',
+  expected: '601px',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

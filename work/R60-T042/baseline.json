@@ -1,0 +1,104 @@
+{
+  "tool": "playwright chromium 159.0.8154.6",
+  "node": "v24.16.0",
+  "widths": {
+    "360": {
+      "docScrollWidth": 360,
+      "docClientWidth": 360,
+      "container": {
+        "left": 20,
+        "right": 340,
+        "top": 165.28125,
+        "width": 320
+      },
+      "p1": {
+        "left": 50,
+        "right": 180,
+        "top": 294.71875,
+        "width": 130
+      },
+      "p2": {
+        "left": 180,
+        "right": 310,
+        "top": 294.71875,
+        "width": 130
+      },
+      "p1Score": {
+        "left": 77,
+        "right": 153,
+        "top": 362.71875,
+        "width": 76
+      },
+      "p2Score": {
+        "left": 207,
+        "right": 283,
+        "top": 362.71875,
+        "width": 76
+      },
+      "p1Box": {
+        "scrollWidth": 126,
+        "clientWidth": 126
+      },
+      "p2Box": {
+        "scrollWidth": 126,
+        "clientWidth": 126
+      },
+      "rollBtn": {
+        "left": 121.765625,
+        "right": 238.234375,
+        "top": 602.71875,
+        "width": 116.46875
+      },
+      "pageErrors": []
+    },
+    "1280": {
+      "docScrollWidth": 1280,
+      "docClientWidth": 1280,
+      "container": {
+        "left": 310,
+        "right": 970,
+        "top": 196.28125,
+        "width": 660
+      },
+      "p1": {
+        "left": 343,
+        "right": 637,
+        "top": 286.71875,
+        "width": 294
+      },
+      "p2": {
+        "left": 643,
+        "right": 937,
+        "top": 286.71875,
+        "width": 294
+      },
+      "p1Score": {
+        "left": 370,
+        "right": 610,
+        "top": 331.71875,
+        "width": 240
+      },
+      "p2Score": {
+        "left": 670,
+        "right": 910,
+        "top": 331.71875,
+        "width": 240
+      },
+      "p1Box": {
+        "scrollWidth": 290,
+        "clientWidth": 290
+      },
+      "p2Box": {
+        "scrollWidth": 290,
+        "clientWidth": 290
+      },
+      "rollBtn": {
+        "left": 581.765625,
+        "right": 698.234375,
+        "top": 571.71875,
+        "width": 116.46875
+      },
+      "pageErrors": []
+    }
+  }
+}
