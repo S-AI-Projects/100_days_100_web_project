@@ -1,0 +1,22 @@
+{
+  "taskId": "R60-T037",
+  "timestamp": "2026-11-22T18:57:44.174Z",
+  "item": "public/Markdown_Editor",
+  "entryPoint": "public/Markdown_Editor/index.html",
+  "setupCommand": "node tests/course/r60-t037.mjs",
+  "anchors": [
+    "#word-count",
+    "#char-count",
+    "#read-time",
+    "#theme-toggle"
+  ],
+  "walkthroughSteps": [
+    "1. Initial Page Load & Empty Baseline Observation (#word-count: 0, #char-count: 0, #read-time: 1m)",
+    "2. Input Markdown in #markdown-input with debounced real-time analytics updates",
+    "3. Live Preview Rendering in #preview-output (h1, strong, em, ul, code blocks)",
+    "4. Formatting Toolbar interaction (wrap selection with bold, insert h2 line start)",
+    "5. Theme Toggle Interaction (#theme-toggle dark/light mode toggle with persistence)",
+    "6. Resizer Dragbar (#dragbar) dual-pane dynamic resizing",
+    "7. Visual screenshot artifact generation (work/R60-T037/walkthrough.png)"
+  ]
+}
