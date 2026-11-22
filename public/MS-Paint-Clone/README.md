@@ -179,3 +179,34 @@ Feel free to modify, enhance, and use it for personal or portfolio development.
 If you like this project, consider giving it a ⭐ on GitHub.
 
 Happy Drawing! 🎨🚀
+
+---
+
+## Run and Test
+
+### Run locally
+
+From the repository root:
+
+    npm install
+    npm run dev
+
+Open `http://localhost:3000/public/MS-Paint-Clone/`.
+
+The entry point is `public/MS-Paint-Clone/index.html`, which loads `style.css` and `Script.js`.
+
+### Browser walkthrough
+
+1. Open the page. The toolbar should show Brush, Eraser, Fill, Line, Rect, and Circle, with Brush active initially.
+2. Select Brush and draw a stroke. The selected colour should appear on the canvas.
+3. Select Eraser and draw over the stroke. The erased area should return to white.
+4. Draw a closed rectangle with Brush.
+5. Select a fill colour, choose Fill, and click inside the rectangle. The enclosed area should change colour while the outside remains white.
+
+### Run the browser regression test
+
+From the repository root:
+
+    node tests/course/r60-t047.mjs
+
+The test checks toolbar visibility and layout, initial Brush selection, Brush drawing, Eraser behaviour, Fill behaviour, and browser/network errors.

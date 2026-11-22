@@ -1,0 +1,57 @@
+{
+  "title": "Paint Clone",
+  "entryPoint": "/public/MS-Paint-Clone/",
+  "scriptLoaded": true,
+  "stylesheetLoaded": true,
+  "canvas": {
+    "width": 1200,
+    "height": 596,
+    "background": [
+      255,
+      255,
+      255,
+      255
+    ]
+  },
+  "toolGroup": {
+    "exists": true,
+    "text": "Brush\nEraser\nFill\nLine\nRect\nCircle",
+    "visible": true,
+    "display": "flex",
+    "active": false
+  },
+  "brush": {
+    "exists": true,
+    "text": "Brush",
+    "visible": true,
+    "display": "flex",
+    "active": true
+  },
+  "eraser": {
+    "exists": true,
+    "text": "Eraser",
+    "visible": true,
+    "display": "flex",
+    "active": false
+  },
+  "fill": {
+    "exists": true,
+    "text": "Fill",
+    "visible": true,
+    "display": "flex",
+    "active": false
+  },
+  "toolButtons": [
+    "brush",
+    "eraser",
+    "fill",
+    "line",
+    "rect",
+    "circle"
+  ],
+  "versions": {
+    "node": "v24.16.0",
+    "playwright": "1.65.1",
+    "serve": "14.2.8"
+  }
+}

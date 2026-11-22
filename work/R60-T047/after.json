@@ -1,0 +1,71 @@
+{
+  "page": "http://127.0.0.1:4173/public/MS-Paint-Clone/",
+  "checks": {
+    "anchorsVisible": true,
+    "toolGroupDisplay": "flex",
+    "initialBrushActive": true,
+    "brushPixel": {
+      "expected": [
+        26,
+        26,
+        46,
+        255
+      ],
+      "actual": [
+        26,
+        26,
+        46,
+        255
+      ]
+    },
+    "eraserPixel": {
+      "expected": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "actual": [
+        255,
+        255,
+        255,
+        255
+      ]
+    },
+    "fillPixel": {
+      "expected": [
+        233,
+        69,
+        96,
+        255
+      ],
+      "actual": [
+        233,
+        69,
+        96,
+        255
+      ]
+    },
+    "outsideFill": {
+      "expected": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "actual": [
+        255,
+        255,
+        255,
+        255
+      ]
+    }
+  },
+  "errors": [],
+  "failedRequests": [],
+  "versions": {
+    "node": "v24.16.0",
+    "playwright": "1.65.1",
+    "serve": "14.2.8"
+  }
+}
