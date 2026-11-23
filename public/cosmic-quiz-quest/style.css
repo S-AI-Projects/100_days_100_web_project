@@ -1232,3 +1232,11 @@ body {
         padding: 1rem 1.25rem;
     }
 }
+/* Respect the user's reduced-motion setting */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-iteration-count: 1 !important;
+    }
+}

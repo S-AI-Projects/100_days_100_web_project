@@ -537,7 +537,9 @@ class Starfield {
             this.ctx.fill();
         });
 
-        this.animationId = requestAnimationFrame(this.animate);
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            this.animationId = requestAnimationFrame(this.animate);
+        }
     }
 }
 
