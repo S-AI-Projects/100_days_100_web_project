@@ -173,3 +173,20 @@ This project is open-source and available under the MIT License.
 ---
 
 Made with ❤️ using JavaScript.
+
+
+## R60-T034 browser regression
+
+From the repository root, use Node.js 20 or later:
+
+```sh
+npm ci --prefix tests/course
+npx --prefix tests/course playwright install chromium
+node tests/course/r60-t034.mjs
+```
+
+The check starts and waits for its own local Node HTTP server, opens fresh Chromium contexts and closes the server and browser on success or failure. It returns a nonzero exit status for a failed assertion, unexpected page error or console error. Dependencies are locked in `tests/course/package-lock.json`.
+
+Call start twice and restart twice, roll once per game and verify one log/update, two tokens, one canvas, one move and one turn change. Repeated confetti is bounded and removed. Web Audio is stubbed; no audio hardware is used.
+
+Results, tool versions, expected/actual values and screenshots are written to `work/R60-T034/after.json` and PNG files. Use `COURSE_PHASE=baseline` to record the original source before applying the source change. The task-specific GitHub Actions workflow records both phases against the pinned baseline and uploads the complete evidence directory. No Lighthouse score is required. Remove `work/R60-T034/` from a later upstream submission.

@@ -11,6 +11,20 @@ let players = [
 let currentPlayer = 0;
 let gameActive = false;
 let isAnimating = false;
+let boardUpdateTimer;
+let confettiTimer;
+
+// Coalesce rapid start/restart calls so only the latest setup renders and logs.
+function scheduleBoardUpdate(message, type = 'p1') {
+  clearTimeout(boardUpdateTimer);
+  boardUpdateTimer = setTimeout(() => {
+    boardUpdateTimer = undefined;
+    drawBoard();
+    renderTokens();
+    updateUI();
+    addLog(message, type);
+  }, 100);
+}
 
 // ===== AUDIO =====
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -335,17 +349,9 @@ function startGame() {
   currentPlayer = 0;
   players.forEach(p => { p.pos = 1; p.moves = 0; });
 
-  setTimeout(() => {
-    drawBoard();
-    renderTokens();
-    updateUI();
-    addLog(`🎮 Game started! ${players[0].name} goes first.`, 'p1');
-
-    // If AI is enabled and AI goes first (rare case if you want AI as Player 1)
-    if (aiEnabled && currentPlayer === 1) {
-      setTimeout(() => rollDice(), 800);
-    }
-  }, 100);
+  isAnimating = false;
+  document.getElementById('history-log').innerHTML = '';
+  scheduleBoardUpdate(`🎮 Game started! ${players[0].name} goes first.`);
 }
 
 
@@ -490,6 +496,7 @@ function addLog(msg, type = '') {
 // ===== CONFETTI =====
 function launchConfetti() {
   const container = document.getElementById('confetti-container');
+  clearTimeout(confettiTimer);
   container.innerHTML = '';
   const colors = ['#ff6b6b','#4ecdc4','#ffe66d','#a29bfe','#fd79a8','#55efc4','#fdcb6e'];
   for (let i = 0; i < 120; i++) {
@@ -507,7 +514,7 @@ function launchConfetti() {
     `;
     container.appendChild(piece);
   }
-  setTimeout(() => { container.innerHTML = ''; }, 4000);
+  confettiTimer = setTimeout(() => { container.innerHTML = ''; confettiTimer = undefined; }, 4000);
 }
 
 // ===== WINNER =====
@@ -536,12 +543,7 @@ function restartGame() {
   isAnimating = false;
   document.getElementById('history-log').innerHTML = '';
   document.getElementById('dice').textContent = '🎲';
-  setTimeout(() => {
-    drawBoard();
-    renderTokens();
-    updateUI();
-    addLog(`🔄 Game restarted! ${players[0].name} goes first.`, 'p1');
-  }, 100);
+  scheduleBoardUpdate(`🔄 Game restarted! ${players[0].name} goes first.`);
 }
 
 // ===== RESIZE =====
