@@ -1,0 +1,12 @@
+{
+  "task": "R60-T033",
+  "description": "stock-market-simulator empty and error state regression",
+  "dateRecorded": "2026-11-23T17:06:05.607Z",
+  "sourceAnchors": [
+    "#themeToggle",
+    "#balance",
+    "#portfolioValue",
+    "#pl"
+  ],
+  "baselineObservation": "Initial state lacked structured semantic empty-state placeholders in market and portfolio; added resilient empty states and verified recovery upon stock transactions."
+}
