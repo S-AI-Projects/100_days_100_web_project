@@ -1,0 +1,89 @@
+{
+  "task": "R60-T040",
+  "phase": "after",
+  "time": "2026-11-23T18:55:27.060Z",
+  "node": "v24.22.3",
+  "playwright": "1.61.1",
+  "observations": [
+    {
+      "name": "Real page responds to input",
+      "expected": [
+        "10",
+        "6",
+        "3",
+        "1",
+        "60.0%"
+      ],
+      "actual": [
+        "10",
+        "6",
+        "3",
+        "1",
+        "60.0%"
+      ]
+    },
+    {
+      "name": "Saved feedback",
+      "expected": "Statistics saved successfully.",
+      "actual": "Statistics saved successfully."
+    },
+    {
+      "name": "Saved values survive reload",
+      "expected": [
+        "10",
+        "6",
+        "3",
+        "1",
+        "60.0%"
+      ],
+      "actual": [
+        "10",
+        "6",
+        "3",
+        "1",
+        "60.0%"
+      ]
+    },
+    {
+      "name": "Broken fixture was actually served",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "Mutation leaves summary stale",
+      "expected": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0%"
+      ],
+      "actual": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0%"
+      ]
+    },
+    {
+      "name": "Real page resets all summary fields",
+      "expected": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0%"
+      ],
+      "actual": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0%"
+      ]
+    }
+  ],
+  "chromium": "149.0.7827.55",
+  "status": "passed"
+}
