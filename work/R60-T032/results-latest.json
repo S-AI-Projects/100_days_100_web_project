@@ -1,0 +1,75 @@
+{
+  "taskId": "R60-T032",
+  "page": "public/word-to-pdf/index.html",
+  "timestamp": "2026-11-23T17:01:56.497Z",
+  "viewports": {
+    "360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "noHorizontalOverflow": true,
+      "boundingBoxes": {
+        "#themeToggle": {
+          "x": 306,
+          "y": 13.5,
+          "width": 42,
+          "height": 42
+        },
+        "#dropzone": {
+          "x": 29,
+          "y": 103,
+          "width": 302,
+          "height": 248
+        },
+        "#btnBrowse": {
+          "x": 120.828125,
+          "y": 296,
+          "width": 118.34375,
+          "height": 33
+        },
+        ".converter-container": {
+          "x": 12,
+          "y": 86,
+          "width": 336,
+          "height": 1378.53125
+        }
+      },
+      "pageErrors": [],
+      "screenshot": "screenshot-360.png"
+    },
+    "1280": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "noHorizontalOverflow": true,
+      "boundingBoxes": {
+        "#themeToggle": {
+          "x": 1206,
+          "y": 18.5,
+          "width": 42,
+          "height": 42
+        },
+        "#dropzone": {
+          "x": 61,
+          "y": 141,
+          "width": 362,
+          "height": 288
+        },
+        "#btnBrowse": {
+          "x": 182.828125,
+          "y": 354,
+          "width": 118.34375,
+          "height": 33
+        },
+        ".converter-container": {
+          "x": 32,
+          "y": 112,
+          "width": 1216,
+          "height": 833.734375
+        }
+      },
+      "pageErrors": [],
+      "screenshot": "screenshot-1280.png"
+    }
+  },
+  "anchorsCheck": true,
+  "pageErrors": []
+}
