@@ -1,0 +1,12 @@
+{
+  "task": "R60-T034",
+  "description": "snakeladder repeated initialization and lifecycle idempotency",
+  "dateRecorded": "2026-11-23T17:10:02.972Z",
+  "sourceAnchors": [
+    "#confetti-container",
+    "#setup-screen",
+    "#p1-name",
+    "#p2-name"
+  ],
+  "baselineObservation": "Repeated start and restart calls previously risked accumulating orphaned timeouts; implemented timer tracking and asserted token rendering remains exactly 1 per player."
+}
