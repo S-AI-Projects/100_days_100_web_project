@@ -1,0 +1,203 @@
+{
+  "task": "R60-T039",
+  "phase": "after",
+  "time": "2026-11-23T18:57:57.417Z",
+  "node": "v24.22.3",
+  "playwright": "1.61.1",
+  "observations": [
+    {
+      "name": "360/no-preference: Tab reaches search button",
+      "expected": "search-btn",
+      "actual": "search-btn"
+    },
+    {
+      "name": "360/no-preference: focus visible",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360/no-preference: spinner motion preference",
+      "expected": "spin",
+      "actual": "spin"
+    },
+    {
+      "name": "360/no-preference: card motion preference",
+      "expected": "fadeInUp",
+      "actual": "fadeInUp"
+    },
+    {
+      "name": "360/no-preference: added movie",
+      "expected": "Local Movie",
+      "actual": "Local Movie"
+    },
+    {
+      "name": "360/no-preference: watched toggle works",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360/no-preference: stats available",
+      "expected": [
+        "1",
+        "1",
+        "8.0"
+      ],
+      "actual": [
+        "1",
+        "1",
+        "8.0"
+      ]
+    },
+    {
+      "name": "360/no-preference: removal works",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "360/reduce: Tab reaches search button",
+      "expected": "search-btn",
+      "actual": "search-btn"
+    },
+    {
+      "name": "360/reduce: focus visible",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360/reduce: spinner motion preference",
+      "expected": "none",
+      "actual": "none"
+    },
+    {
+      "name": "360/reduce: card motion preference",
+      "expected": "none",
+      "actual": "none"
+    },
+    {
+      "name": "360/reduce: added movie",
+      "expected": "Local Movie",
+      "actual": "Local Movie"
+    },
+    {
+      "name": "360/reduce: watched toggle works",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360/reduce: stats available",
+      "expected": [
+        "1",
+        "1",
+        "8.0"
+      ],
+      "actual": [
+        "1",
+        "1",
+        "8.0"
+      ]
+    },
+    {
+      "name": "360/reduce: removal works",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "1280/no-preference: Tab reaches search button",
+      "expected": "search-btn",
+      "actual": "search-btn"
+    },
+    {
+      "name": "1280/no-preference: focus visible",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280/no-preference: spinner motion preference",
+      "expected": "spin",
+      "actual": "spin"
+    },
+    {
+      "name": "1280/no-preference: card motion preference",
+      "expected": "fadeInUp",
+      "actual": "fadeInUp"
+    },
+    {
+      "name": "1280/no-preference: added movie",
+      "expected": "Local Movie",
+      "actual": "Local Movie"
+    },
+    {
+      "name": "1280/no-preference: watched toggle works",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280/no-preference: stats available",
+      "expected": [
+        "1",
+        "1",
+        "8.0"
+      ],
+      "actual": [
+        "1",
+        "1",
+        "8.0"
+      ]
+    },
+    {
+      "name": "1280/no-preference: removal works",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "1280/reduce: Tab reaches search button",
+      "expected": "search-btn",
+      "actual": "search-btn"
+    },
+    {
+      "name": "1280/reduce: focus visible",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280/reduce: spinner motion preference",
+      "expected": "none",
+      "actual": "none"
+    },
+    {
+      "name": "1280/reduce: card motion preference",
+      "expected": "none",
+      "actual": "none"
+    },
+    {
+      "name": "1280/reduce: added movie",
+      "expected": "Local Movie",
+      "actual": "Local Movie"
+    },
+    {
+      "name": "1280/reduce: watched toggle works",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280/reduce: stats available",
+      "expected": [
+        "1",
+        "1",
+        "8.0"
+      ],
+      "actual": [
+        "1",
+        "1",
+        "8.0"
+      ]
+    },
+    {
+      "name": "1280/reduce: removal works",
+      "expected": 0,
+      "actual": 0
+    }
+  ],
+  "chromium": "149.0.7827.55",
+  "status": "passed"
+}

@@ -1,0 +1,23 @@
+{
+  "task": "R60-T039",
+  "phase": "baseline",
+  "time": "2026-11-23T18:57:55.568Z",
+  "node": "v24.22.3",
+  "playwright": "1.61.1",
+  "observations": [
+    {
+      "name": "360/no-preference: Tab reaches search button",
+      "expected": "search-btn",
+      "actual": "search-btn"
+    },
+    {
+      "name": "360/no-preference: focus visible",
+      "expected": true,
+      "actual": false
+    }
+  ],
+  "chromium": "149.0.7827.55",
+  "status": "failed",
+  "error": "AssertionError [ERR_ASSERTION]: 360/no-preference: focus visible\n\nfalse !== true\n\n    at record (file:///home/runner/work/100_days_100_web_project/100_days_100_web_project/tests/course/harness.mjs:92:14)\n    at file:///home/runner/work/100_days_100_web_project/100_days_100_web_project/tests/course/r60-t039.mjs:18:7\n    at async run (file:///home/runner/work/100_days_100_web_project/100_days_100_web_project/tests/course/harness.mjs:95:5)\n    at async file:///home/runner/work/100_days_100_web_project/100_days_100_web_project/tests/course/r60-t039.mjs:4:1",
+  "pageErrors": []
+}
