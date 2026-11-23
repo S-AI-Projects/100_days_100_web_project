@@ -107,5 +107,6 @@ export async function run(task, check, { vite = false } = {}) {
     await browser?.close();
     await server?.close();
     await writeFile(resolve(evidence, `${phase}.json`), JSON.stringify(report, null, 2) + '\n');
+    console.log('COURSE_REPORT ' + JSON.stringify(report));
   }
 }

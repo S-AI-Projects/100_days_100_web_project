@@ -24,11 +24,11 @@ await run('R60-T032', async ({ origin, fresh, record, screenshot }) => {
     }
     record(`${width}: content order`, true, width === 360 ? layout.right.top >= layout.left.bottom - 1 : layout.right.left >= layout.left.right - 1);
     content.push(layout.headings);
+    record(`${width}: intentional preview scroll is labelled`, 'Scrollable document preview', await page.locator('#previewBody').getAttribute('aria-label'));
     await page.locator('#themeToggle').click();
     record(`${width}: theme works`, 'light', await page.locator('html').getAttribute('data-theme'));
-    const chooser = page.waitForEvent('filechooser');
-    await page.locator('#btnBrowse').click();
-    record(`${width}: browse activates native file input`, true, Boolean(await chooser));
+    const [chooser] = await Promise.all([page.waitForEvent('filechooser'), page.locator('#btnBrowse').press('Enter')]);
+    record(`${width}: browse activates native file input`, true, Boolean(chooser));
     await screenshot(page, `${width}`);
     await context.close();
   }
