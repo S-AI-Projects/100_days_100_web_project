@@ -1,0 +1,12 @@
+{
+  "task": "R60-T035",
+  "description": "Chronosphere deterministic browser fixtures and cross-context assertions",
+  "dateRecorded": "2026-11-23T17:12:05.794Z",
+  "sourceAnchors": [
+    "#aboutLink",
+    "#aboutModal",
+    "#aboutClose",
+    "#aboutTitle"
+  ],
+  "baselineObservation": "Page uses local events.json and canvas starfield; locked random generator and isolated network requests to ensure identical DOM rendering across runs."
+}

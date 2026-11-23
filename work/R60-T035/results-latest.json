@@ -1,0 +1,102 @@
+{
+  "taskId": "R60-T035",
+  "page": "public/Chronosphere/index.html",
+  "timestamp": "2026-11-23T17:12:03.057Z",
+  "anchorsCheck": true,
+  "deterministicMatch": true,
+  "rounds": [
+    {
+      "round": 1,
+      "stateSummary": {
+        "cardCount": 44,
+        "cardTitles": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "categoryOptions": [
+          "",
+          "AI",
+          "Civilization",
+          "Culture",
+          "Economy",
+          "Empire",
+          "Exploration",
+          "India",
+          "Infrastructure",
+          "Internet",
+          "Law",
+          "Music",
+          "Pandemic",
+          "Policy",
+          "Politics",
+          "Religion",
+          "Science",
+          "Society",
+          "Space",
+          "Technology",
+          "War"
+        ],
+        "eraOptions": [
+          "",
+          "Future",
+          "Space",
+          "Modern",
+          "Industrial",
+          "Middle Ages",
+          "Ancient"
+        ]
+      },
+      "pageErrors": []
+    },
+    {
+      "round": 2,
+      "stateSummary": {
+        "cardCount": 44,
+        "cardTitles": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "categoryOptions": [
+          "",
+          "AI",
+          "Civilization",
+          "Culture",
+          "Economy",
+          "Empire",
+          "Exploration",
+          "India",
+          "Infrastructure",
+          "Internet",
+          "Law",
+          "Music",
+          "Pandemic",
+          "Policy",
+          "Politics",
+          "Religion",
+          "Science",
+          "Society",
+          "Space",
+          "Technology",
+          "War"
+        ],
+        "eraOptions": [
+          "",
+          "Future",
+          "Space",
+          "Modern",
+          "Industrial",
+          "Middle Ages",
+          "Ancient"
+        ]
+      },
+      "pageErrors": []
+    }
+  ],
+  "pageErrors": []
+}
