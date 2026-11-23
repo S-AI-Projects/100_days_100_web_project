@@ -212,6 +212,23 @@ Feel free to use, modify, and enhance it for personal or portfolio development.
 
 ---
 
+## ♿ Accessibility & Motion Preferences
+
+- **Reduced Motion Support**: Implements `@media (prefers-reduced-motion: reduce)` to minimize animation and transition durations for users sensitive to motion.
+- **Keyboard Navigation & Focus Indicators**: High-contrast `:focus-visible` styling ensures clear visual cues when navigating interactive controls via keyboard.
+
+---
+
+## 🧪 Testing
+
+Automated Playwright regression tests verify keyboard focus visibility and reduced motion compliance across desktop (1280px) and mobile (360px) viewports:
+
+```bash
+node tests/course/r60-t039.mjs
+```
+
+---
+
 ## ⭐ Support
 
 If you like this project, consider giving it a ⭐ on GitHub.

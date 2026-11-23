@@ -1,0 +1,57 @@
+{
+  "task": "R60-T039",
+  "student": "Ayushi Sinha",
+  "page": "public/movie-watchlist/index.html",
+  "sourceAnchors": [
+    "#search-input",
+    "#search-btn",
+    "#movie-result",
+    "#stats-bar"
+  ],
+  "viewportsTested": [
+    {
+      "width": 360,
+      "height": 640,
+      "label": "mobile"
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "label": "desktop"
+    }
+  ],
+  "tests": [
+    {
+      "viewport": "mobile",
+      "width": 360,
+      "height": 640,
+      "anchorsVerified": true,
+      "reducedMotionEnforced": true,
+      "reducedAnimationDuration": "1e-05s",
+      "keyboardFocusVisible": true,
+      "focusOutline": {
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(255, 255, 255)"
+      },
+      "functionalSearchAndAddPassed": true,
+      "errors": 0
+    },
+    {
+      "viewport": "desktop",
+      "width": 1280,
+      "height": 800,
+      "anchorsVerified": true,
+      "reducedMotionEnforced": true,
+      "reducedAnimationDuration": "1e-05s",
+      "keyboardFocusVisible": true,
+      "focusOutline": {
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(255, 255, 255)"
+      },
+      "functionalSearchAndAddPassed": true,
+      "errors": 0
+    }
+  ]
+}
