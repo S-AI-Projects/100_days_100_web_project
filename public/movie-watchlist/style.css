@@ -268,3 +268,31 @@ hr {
     grid-template-columns: 1fr;
   }
 }
+/* Keep keyboard focus explicit on every interactive control. */
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 3px;
+}
+
+/* Retain loading text, content and actions while removing optional motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .movie-card:hover,
+  .watch-item:hover,
+  button:active,
+  .fade-out {
+    transform: none;
+  }
+
+  .toast {
+    transform: translateX(-50%);
+  }
+}
