@@ -1,7 +1,7 @@
 import { run } from './harness.mjs';
 
 const caption = 'A local caption fixture, ready to copy.';
-await run('R60-T036', async ({ origin, fresh, record, screenshot }) => {
+await run('R60-T036', async ({ origin, fresh, record, evidence }) => {
   for (const mode of ['supported', 'absent', 'rejected']) {
     const { context, page } = await fresh();
     await context.addInitScript(({ mode, caption }) => {
@@ -24,7 +24,12 @@ await run('R60-T036', async ({ origin, fresh, record, screenshot }) => {
     record(`${mode}: useful feedback`, true, await page.getByText(expected, { exact: true }).isVisible());
     record(`${mode}: write results`, mode === 'supported' ? [caption] : [], await page.evaluate(() => window.__copies));
     record(`${mode}: caption stays available`, caption, await page.locator('.log-caption-text').innerText());
-    await screenshot(page, mode);
+    // Let the toast entry finish, then capture without fast-forwarding its
+    // auto-close progress animation (which would hide the feedback).
+    await page.locator('.Toastify__toast').evaluate(async (el) => {
+      await Promise.all(el.getAnimations().map((animation) => animation.finished));
+    });
+    await page.screenshot({ path: `${evidence}/${process.env.COURSE_PHASE || 'after'}-${mode}.png`, fullPage: true });
     await context.close();
   }
 }, { vite: true });
