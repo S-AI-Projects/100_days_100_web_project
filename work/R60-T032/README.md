@@ -17,3 +17,24 @@ Run `node tests/course/r60-t032.mjs` after the setup in the example README.
 The local macOS sandbox blocks Chromium startup (MachPortRendezvous permission denied), so local browser success is not claimed. See the attached GitHub Actions run for executed browser results. Source syntax checks were run locally.
 
 No real device or permission-dependent feature was exercised. Keep this coursework evidence in the organisation fork only.
+
+## Verified results
+
+Browser run: https://github.com/ayushisinha111106-cpu/100_days_100_web_project/actions/runs/45243360964
+
+| Phase | Result | Recorded checks |
+| --- | --- | --- |
+| Baseline | failed | 27 |
+| Final | passed | 59 |
+
+Tool versions: Node.js v24.22.3, Playwright 1.61.1, Chromium 149.0.7827.55.
+
+The JSON files contain the exact inputs, expected/actual values and failure details. A failing baseline is an observed application regression, not a passing result. The final check exited 0.
+
+### Before
+
+![Baseline](baseline-failure-0-0.png)
+
+### After
+
+![Final](after-1280.png)

@@ -1,0 +1,320 @@
+{
+  "task": "R60-T032",
+  "phase": "after",
+  "time": "2026-11-23T18:55:27.207Z",
+  "node": "v24.22.3",
+  "playwright": "1.61.1",
+  "observations": [
+    {
+      "name": "360: document fits",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: .app-header inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: .app-header content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #themeToggle inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #themeToggle content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #dropzone inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #dropzone content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #btnBrowse inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #btnBrowse content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #settingsCard inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #settingsCard content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #pdfFilename inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #pdfFilename content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #btnPrintPdf inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #btnPrintPdf content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #btnDownloadPdf inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #btnDownloadPdf content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: .workspace-right inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: .workspace-right content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: .preview-header inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: .preview-header content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #btnZoomIn inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #btnZoomIn content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #btnZoomOut inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: #btnZoomOut content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: content order",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "360: intentional preview scroll is labelled",
+      "expected": "Scrollable document preview",
+      "actual": "Scrollable document preview"
+    },
+    {
+      "name": "360: theme works",
+      "expected": "light",
+      "actual": "light"
+    },
+    {
+      "name": "360: browse activates native file input",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: document fits",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: .app-header inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: .app-header content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #themeToggle inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #themeToggle content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #dropzone inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #dropzone content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #btnBrowse inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #btnBrowse content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #settingsCard inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #settingsCard content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #pdfFilename inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #pdfFilename content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #btnPrintPdf inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #btnPrintPdf content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #btnDownloadPdf inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #btnDownloadPdf content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: .workspace-right inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: .workspace-right content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: .preview-header inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: .preview-header content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #btnZoomIn inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #btnZoomIn content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #btnZoomOut inside viewport",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: #btnZoomOut content not clipped",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: content order",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "1280: intentional preview scroll is labelled",
+      "expected": "Scrollable document preview",
+      "actual": "Scrollable document preview"
+    },
+    {
+      "name": "1280: theme works",
+      "expected": "light",
+      "actual": "light"
+    },
+    {
+      "name": "1280: browse activates native file input",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "Both widths contain the same headings",
+      "expected": [
+        "WordyPDF.",
+        "Drag & drop your Word document here",
+        "Export Options",
+        "Document Preview",
+        "Reading document...",
+        "Preparing PDF..."
+      ],
+      "actual": [
+        "WordyPDF.",
+        "Drag & drop your Word document here",
+        "Export Options",
+        "Document Preview",
+        "Reading document...",
+        "Preparing PDF..."
+      ]
+    }
+  ],
+  "chromium": "149.0.7827.55",
+  "status": "passed"
+}
