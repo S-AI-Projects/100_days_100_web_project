@@ -1,0 +1,12 @@
+http 403 https://kit.fontawesome.com/58a810656e.js
+console: Failed to load resource: the server responded with a status of 403 ()
+buttons: 6
+0 "Open Discord" before: rgb(255, 255, 255) after hover: rgb(96, 165, 250)
+1 "Download for Windows" before: rgb(255, 255, 255) after hover: rgb(96, 165, 250)
+2 "Open Discord in your browser" before: rgb(0, 0, 0) after hover: rgb(96, 165, 250)
+3 "Download for Windows" before: rgb(255, 255, 255) after hover: rgb(29, 78, 216)
+4 "Sign up" before: rgb(88, 101, 242) after hover: rgb(88, 101, 242)
+5 "Download" hidden
+images: 8 loaded: 8
+not loaded: []
+anchors: 36 with href: 36 href="#": 35

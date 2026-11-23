@@ -1,0 +1,4 @@
+Node.js: v24.16.0
+Playwright: 1.65.1
+serve: 14.2.8
+Browser: Chromium
