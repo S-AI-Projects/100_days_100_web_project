@@ -47,3 +47,20 @@ npx http-server -p 8000
 ```
 
 Once running, navigate to `http://localhost:8000` in your web browser.
+
+---
+
+## 🧪 Testing & Verification (R60-T032)
+
+Automated layout and responsive regression tests verify that the interface renders cleanly without unintended horizontal overflow or clipped controls at both mobile (360×800) and desktop (1280×800) viewports:
+
+```bash
+node tests/course/r60-t032.mjs
+```
+
+### Verified Checks
+- **Source Anchors**: Validates `#themeToggle`, `#dropzone`, `#fileInput`, and `#btnBrowse` presence and interactive visibility.
+- **Responsive Viewports**: Asserts zero horizontal overflow (`scrollWidth <= clientWidth`) and full element containment at 360×800 and 1280×800 viewports.
+- **Content Flow**: Verifies vertical flow of controls, settings, and document preview panels.
+- **Evidence**: Generates screenshots and baseline results in `work/R60-T032/`.
+

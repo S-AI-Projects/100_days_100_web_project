@@ -1,0 +1,16 @@
+{
+  "task": "R60-T032",
+  "description": "word-to-pdf responsive layout at 360px and 1280px",
+  "dateRecorded": "2026-11-23T17:01:57.628Z",
+  "testedWidths": [
+    360,
+    1280
+  ],
+  "sourceAnchors": [
+    "#themeToggle",
+    "#dropzone",
+    "#fileInput",
+    "#btnBrowse"
+  ],
+  "baselineObservation": "Mobile viewport 360px caused horizontal overflow with grid min-content column; fixed by setting container min-width: 0 and adaptive mobile padding."
+}

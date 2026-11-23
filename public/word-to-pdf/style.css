@@ -886,6 +886,19 @@ body {
 }
 
 @media (max-width: 600px) {
+  .app-wrapper {
+    padding: 0 0.75rem;
+  }
+
+  .converter-container,
+  .workspace-left,
+  .workspace-right,
+  .card,
+  .preview-panel {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   .app-header {
     height: 70px;
     margin-bottom: 1rem;
@@ -905,15 +918,21 @@ body {
   }
 
   .card {
-    padding: 1.25rem;
+    padding: 1rem;
   }
 
   .upload-dropzone {
-    padding: 1.75rem 1rem;
+    padding: 1.25rem 0.75rem;
+  }
+
+  .preview-header {
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .preview-body {
-    padding: 1rem;
+    padding: 0.75rem;
   }
 }
 
