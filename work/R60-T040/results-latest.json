@@ -1,0 +1,30 @@
+{
+  "task": "R60-T040",
+  "student": "Ayushi Sinha",
+  "page": "public/StatisticsDashboard/index.html",
+  "sourceAnchors": [
+    "#totalGamesInput",
+    "#xWinsInput",
+    "#oWinsInput",
+    "#drawsInput"
+  ],
+  "runs": {
+    "correctPage": {
+      "passed": true,
+      "baselineResult": {
+        "totalDisplay": "10",
+        "xWinsDisplay": "6",
+        "oWinsDisplay": "3",
+        "drawsDisplay": "1",
+        "winRateText": "60.0%"
+      },
+      "savedToLocalStorage": true,
+      "incrementButtonVerified": true,
+      "errors": 0
+    },
+    "mutatedFixture": {
+      "mutationCaught": true,
+      "detectedError": "Expected Player X Win Rate to be 60.0%, got 0.6%\n\n'0.6%' !== '60.0%'\n"
+    }
+  }
+}

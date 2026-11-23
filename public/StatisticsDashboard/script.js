@@ -128,6 +128,7 @@ increaseButtons.forEach(button => {
             button.dataset.target
         );
         input.value = Number(input.value) + 1;
+        input.dispatchEvent(new Event("input"));
     });
 });
 /* Decrease */
@@ -138,6 +139,7 @@ decreaseButtons.forEach(button => {
         );
         if (Number(input.value) > 0) {
             input.value = Number(input.value) - 1;
+            input.dispatchEvent(new Event("input"));
         }
     });
 });

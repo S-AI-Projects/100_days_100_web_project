@@ -1,0 +1,12 @@
+{
+  "description": "Baseline visible behavior for Statistics Dashboard",
+  "baselineResult": {
+    "totalDisplay": "10",
+    "xWinsDisplay": "6",
+    "oWinsDisplay": "3",
+    "drawsDisplay": "1",
+    "winRateText": "60.0%"
+  },
+  "savedToLocalStorage": true,
+  "timestamp": "2026-11-23T17:29:48.576Z"
+}

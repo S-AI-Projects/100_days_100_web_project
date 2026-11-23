@@ -131,6 +131,16 @@ The updated interface includes:
 
 ---
 
+## 🧪 Testing & Regression Checks
+
+A Playwright regression test suite verifies input controls, calculations, and distinguishes between correct application behavior and deliberate event/calculation regressions:
+
+```bash
+node tests/course/r60-t040.mjs
+```
+
+---
+
 ## 🔮 Future Improvements
 
 Some ideas for future enhancements include:
