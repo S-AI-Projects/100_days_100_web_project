@@ -217,3 +217,20 @@ Feel free to use, modify, and enhance it for personal or portfolio development.
 If you like this project, consider giving it a ⭐ on GitHub.
 
 Happy Watching! 🎬🍿
+
+
+## R60-T039 browser regression
+
+From the repository root, use Node.js 20 or later:
+
+```sh
+npm ci --prefix tests/course
+npx --prefix tests/course playwright install chromium
+node tests/course/r60-t039.mjs
+```
+
+The check starts and waits for its own local Node HTTP server, opens fresh Chromium contexts and closes the server and browser on success or failure. It returns a nonzero exit status for a failed assertion, unexpected page error or console error. Dependencies are locked in `tests/course/package-lock.json`.
+
+At 360×800 and 1280×800, emulate both motion preferences. Assert Tab/Enter search activation and computed visible focus, pending spinner and card animation preferences, add/watch/stats/remove. OMDb and poster responses are local fixtures.
+
+Results, tool versions, expected/actual values and screenshots are written to `work/R60-T039/after.json` and PNG files. Use `COURSE_PHASE=baseline` to record the original source before applying the source change. The task-specific GitHub Actions workflow records both phases against the pinned baseline and uploads the complete evidence directory. No Lighthouse score is required. Remove `work/R60-T039/` from a later upstream submission.
