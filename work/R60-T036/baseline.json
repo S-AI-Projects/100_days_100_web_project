@@ -1,0 +1,9 @@
+{
+  "task": "R60-T036",
+  "description": "SnapScribe camera feature-support fallback and regression check",
+  "dateRecorded": "2026-11-23T17:16:26.130Z",
+  "sourceAnchors": [
+    "#root"
+  ],
+  "baselineObservation": "SnapScribe uses navigator.mediaDevices.getUserMedia for in-app camera capture; verified supported video capture path and graceful fallback when mediaDevices is unavailable."
+}

@@ -31,5 +31,19 @@ An AI-powered social media caption generator. Upload an image, snap a photo, or 
 ## Screenshots
 ![alt text](image.png)
 
+## 🧪 Testing & Verification (R60-T036)
+
+Automated browser regression test validating browser feature detection for camera media devices (`navigator.mediaDevices.getUserMedia`) across both feature-present and feature-absent paths:
+
+```bash
+node tests/course/r60-t036.mjs
+```
+
+### Verified Checks
+- **Source Anchor**: Validates `#root` presence and successful application mounting.
+- **Feature-Present Path**: Tests opening the in-app camera modal with a stubbed video media stream.
+- **Feature-Absent Path**: Tests unsupported environment (missing `getUserMedia`), asserting graceful fallback notification and error-free DOM state.
+- **Evidence**: Generates test logs, baseline data, and visual artifact in `work/R60-T036/`.
+
 ## Author
 gc_MayankPun — [GitHub](https://github.com/gc-MayankPun)
