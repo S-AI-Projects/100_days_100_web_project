@@ -1,0 +1,44 @@
+name: R60-T036 browser regression
+on:
+  push:
+    branches: ["student/e26b07f0592/R60-T036"]
+  pull_request:
+    paths:
+      - "public/SnapScribe/**"
+      - "tests/course/**"
+      - ".github/workflows/r60-t036.yml"
+permissions:
+  contents: read
+jobs:
+  browser-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - run: npm ci --prefix tests/course
+      - run: npx --prefix tests/course playwright install --with-deps chromium
+      - run: npm ci --prefix public/SnapScribe
+      - name: Record original behavior
+        shell: bash
+        run: |
+          git fetch --depth=1 origin 038e8b7697e6c424b79219312874797421822f82
+          git restore --source=038e8b7697e6c424b79219312874797421822f82 --worktree -- public/SnapScribe
+          set +e
+          COURSE_PHASE=baseline node tests/course/r60-t036.mjs
+          baseline_status=$?
+          set -e
+          mkdir -p work/R60-T036
+          echo "$baseline_status" > work/R60-T036/baseline-exit-status.txt
+          git restore --worktree -- public/SnapScribe
+      - name: Verify PR behavior
+        run: node tests/course/r60-t036.mjs
+      - name: Upload before/after evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: R60-T036-evidence
+          path: work/R60-T036/
+          retention-days: 30

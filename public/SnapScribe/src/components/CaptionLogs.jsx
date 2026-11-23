@@ -11,9 +11,17 @@ const platformColors = {
 };
 
 const CaptionLogs = memo(({ captionLogs, handleDelete, setConfirmDelete}) => {
-  const handleCopy = (text) => {
-    navigator.clipboard.writeText(text);
-    toast.success("Copied to clipboard!");
+  const handleCopy = async (text) => {
+    if (!navigator.clipboard?.writeText) {
+      toast.info("Clipboard is unavailable. Select the caption text and copy it manually.");
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success("Copied to clipboard!");
+    } catch {
+      toast.error("Could not copy. Select the caption text and copy it manually.");
+    }
   };
 
   if (captionLogs.length === 0) {
