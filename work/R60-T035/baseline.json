@@ -1,0 +1,154 @@
+{
+  "task": "R60-T035",
+  "phase": "baseline",
+  "time": "2026-11-23T18:47:12.893Z",
+  "node": "v24.22.3",
+  "playwright": "1.61.1",
+  "observations": [
+    {
+      "name": "Context 0: ordered fixture titles",
+      "expected": [
+        "Moon landing fixture",
+        "Pyramid fixture"
+      ],
+      "actual": [
+        "Moon landing fixture",
+        "Pyramid fixture"
+      ]
+    },
+    {
+      "name": "Context 0: years",
+      "expected": [
+        "1969 CE",
+        "2560 BCE"
+      ],
+      "actual": [
+        "1969 CE",
+        "2560 BCE"
+      ]
+    },
+    {
+      "name": "Context 0: about opens",
+      "expected": "false",
+      "actual": "false"
+    },
+    {
+      "name": "Context 0: about title visible",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "Context 0: about closes",
+      "expected": "true",
+      "actual": "true"
+    },
+    {
+      "name": "Context 0: filter preserves one card",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "Context 0: local images loaded",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "Context 1: ordered fixture titles",
+      "expected": [
+        "Moon landing fixture",
+        "Pyramid fixture"
+      ],
+      "actual": [
+        "Moon landing fixture",
+        "Pyramid fixture"
+      ]
+    },
+    {
+      "name": "Context 1: years",
+      "expected": [
+        "1969 CE",
+        "2560 BCE"
+      ],
+      "actual": [
+        "1969 CE",
+        "2560 BCE"
+      ]
+    },
+    {
+      "name": "Context 1: about opens",
+      "expected": "false",
+      "actual": "false"
+    },
+    {
+      "name": "Context 1: about title visible",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "Context 1: about closes",
+      "expected": "true",
+      "actual": "true"
+    },
+    {
+      "name": "Context 1: filter preserves one card",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "Context 1: local images loaded",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "Two fresh contexts have identical asserted DOM",
+      "expected": {
+        "titles": [
+          "Moon landing fixture",
+          "Pyramid fixture"
+        ],
+        "years": [
+          "1969 CE",
+          "2560 BCE"
+        ],
+        "about": "true",
+        "images": [
+          {
+            "alt": "Moon landing fixture",
+            "width": 150,
+            "height": 150
+          },
+          {
+            "alt": "Pyramid fixture",
+            "width": 150,
+            "height": 150
+          }
+        ]
+      },
+      "actual": {
+        "titles": [
+          "Moon landing fixture",
+          "Pyramid fixture"
+        ],
+        "years": [
+          "1969 CE",
+          "2560 BCE"
+        ],
+        "about": "true",
+        "images": [
+          {
+            "alt": "Moon landing fixture",
+            "width": 150,
+            "height": 150
+          },
+          {
+            "alt": "Pyramid fixture",
+            "width": 150,
+            "height": 150
+          }
+        ]
+      }
+    }
+  ],
+  "chromium": "149.0.7827.55",
+  "status": "passed"
+}
