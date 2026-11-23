@@ -1,0 +1,75 @@
+{
+  "task": "R60-T036",
+  "phase": "after",
+  "time": "2026-11-23T19:04:30.915Z",
+  "node": "v24.22.3",
+  "playwright": "1.61.1",
+  "observations": [
+    {
+      "name": "supported: caption remains readable",
+      "expected": "A local caption fixture, ready to copy.",
+      "actual": "A local caption fixture, ready to copy."
+    },
+    {
+      "name": "supported: useful feedback",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "supported: write results",
+      "expected": [
+        "A local caption fixture, ready to copy."
+      ],
+      "actual": [
+        "A local caption fixture, ready to copy."
+      ]
+    },
+    {
+      "name": "supported: caption stays available",
+      "expected": "A local caption fixture, ready to copy.",
+      "actual": "A local caption fixture, ready to copy."
+    },
+    {
+      "name": "absent: caption remains readable",
+      "expected": "A local caption fixture, ready to copy.",
+      "actual": "A local caption fixture, ready to copy."
+    },
+    {
+      "name": "absent: useful feedback",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "absent: write results",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "name": "absent: caption stays available",
+      "expected": "A local caption fixture, ready to copy.",
+      "actual": "A local caption fixture, ready to copy."
+    },
+    {
+      "name": "rejected: caption remains readable",
+      "expected": "A local caption fixture, ready to copy.",
+      "actual": "A local caption fixture, ready to copy."
+    },
+    {
+      "name": "rejected: useful feedback",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "rejected: write results",
+      "expected": [],
+      "actual": []
+    },
+    {
+      "name": "rejected: caption stays available",
+      "expected": "A local caption fixture, ready to copy.",
+      "actual": "A local caption fixture, ready to copy."
+    }
+  ],
+  "chromium": "149.0.7827.55",
+  "status": "passed"
+}

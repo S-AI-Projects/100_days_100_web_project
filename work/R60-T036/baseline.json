@@ -1,0 +1,44 @@
+{
+  "task": "R60-T036",
+  "phase": "baseline",
+  "time": "2026-11-23T19:04:15.721Z",
+  "node": "v24.22.3",
+  "playwright": "1.61.1",
+  "observations": [
+    {
+      "name": "supported: caption remains readable",
+      "expected": "A local caption fixture, ready to copy.",
+      "actual": "A local caption fixture, ready to copy."
+    },
+    {
+      "name": "supported: useful feedback",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "supported: write results",
+      "expected": [
+        "A local caption fixture, ready to copy."
+      ],
+      "actual": [
+        "A local caption fixture, ready to copy."
+      ]
+    },
+    {
+      "name": "supported: caption stays available",
+      "expected": "A local caption fixture, ready to copy.",
+      "actual": "A local caption fixture, ready to copy."
+    },
+    {
+      "name": "absent: caption remains readable",
+      "expected": "A local caption fixture, ready to copy.",
+      "actual": "A local caption fixture, ready to copy."
+    }
+  ],
+  "chromium": "149.0.7827.55",
+  "status": "failed",
+  "error": "locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n  - waiting for getByText('Clipboard is unavailable. Select the caption text and copy it manually.', { exact: true }) to be visible\n\n    at run.vite (/home/runner/work/100_days_100_web_project/100_days_100_web_project/tests/course/r60-t036.mjs:23:53)\n    at async run (/home/runner/work/100_days_100_web_project/100_days_100_web_project/tests/course/harness.mjs:95:5)\n    at async file:///home/runner/work/100_days_100_web_project/100_days_100_web_project/tests/course/r60-t036.mjs:4:1",
+  "pageErrors": [
+    "Cannot read properties of undefined (reading 'writeText')"
+  ]
+}
