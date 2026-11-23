@@ -47,3 +47,20 @@ npx http-server -p 8000
 ```
 
 Once running, navigate to `http://localhost:8000` in your web browser.
+
+
+## R60-T032 browser regression
+
+From the repository root, use Node.js 20 or later:
+
+```sh
+npm ci --prefix tests/course
+npx --prefix tests/course playwright install chromium
+node tests/course/r60-t032.mjs
+```
+
+The check starts and waits for its own local Node HTTP server, opens fresh Chromium contexts and closes the server and browser on success or failure. It returns a nonzero exit status for a failed assertion, unexpected page error or console error. Dependencies are locked in `tests/course/package-lock.json`.
+
+Responsive layout at 360×800 and 1280×800; no clipped controls; left controls before/right beside preview; theme and file chooser activation. Document scrolling is intentional and labelled.
+
+Results, tool versions, expected/actual values and screenshots are written to `work/R60-T032/after.json` and PNG files. Use `COURSE_PHASE=baseline` to record the original source before applying the source change. The task-specific GitHub Actions workflow records both phases against the pinned baseline and uploads the complete evidence directory. No Lighthouse score is required. Remove `work/R60-T032/` from a later upstream submission.

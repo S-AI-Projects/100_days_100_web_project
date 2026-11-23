@@ -189,7 +189,7 @@ body {
 .converter-container {
   flex: 1;
   display: grid;
-  grid-template-columns: 420px 1fr;
+  grid-template-columns: 420px minmax(0, 1fr);
   gap: 2rem;
   margin-bottom: 2rem;
   align-items: start;
@@ -876,7 +876,7 @@ body {
   }
 
   .converter-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .workspace-right {
@@ -1030,5 +1030,18 @@ body {
     height: auto !important;
     min-height: auto !important;
     display: block !important;
+  }
+}
+/* Keep the controls outside the intentionally scrollable document preview. */
+.workspace-left,
+.workspace-right {
+  min-width: 0;
+}
+
+@media (max-width: 600px) {
+  .preview-header {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.25rem;
   }
 }
