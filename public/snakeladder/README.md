@@ -166,6 +166,22 @@ Contributions, bug reports, and feature suggestions are welcome.
 
 ---
 
+## 🧪 Testing & Verification (R60-T034)
+
+Automated lifecycle regression test verifying repeated initializations, restarts, and theme toggles do not duplicate DOM nodes, timers, or event listeners:
+
+```bash
+node tests/course/r60-t034.mjs
+```
+
+### Verified Checks
+- **Source Anchors**: Validates `#confetti-container`, `#setup-screen`, `#p1-name`, and `#p2-name`.
+- **Repeat Initialization**: Asserts that consecutive `startGame()`, `restartGame()`, and `newGame()` invocations do not duplicate token elements or create extraneous DOM nodes.
+- **Timer & Listener Cleanup**: Asserts timers are properly tracked and cleared across lifecycle changes with zero uncaught console errors.
+- **Evidence**: Generates screenshots and baseline results in `work/R60-T034/`.
+
+---
+
 ## 📄 License
 
 This project is open-source and available under the MIT License.

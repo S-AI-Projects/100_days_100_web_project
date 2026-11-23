@@ -312,6 +312,11 @@ const sysLogger = {
   error: (...args) => { if (ENV === 'development') console.error('[GameError]:', ...args); }
 };
 
+// ===== TIMER TRACKING FOR CLEAN LIFECYCLE =====
+let startTimer = null;
+let restartTimer = null;
+let confettiTimer = null;
+
 // ===== GAME LOGIC =====
 function startGame() {
   const p1n = document.getElementById('p1-name').value.trim() || 'Player 1';
@@ -335,7 +340,8 @@ function startGame() {
   currentPlayer = 0;
   players.forEach(p => { p.pos = 1; p.moves = 0; });
 
-  setTimeout(() => {
+  if (startTimer) clearTimeout(startTimer);
+  startTimer = setTimeout(() => {
     drawBoard();
     renderTokens();
     updateUI();
@@ -345,6 +351,7 @@ function startGame() {
     if (aiEnabled && currentPlayer === 1) {
       setTimeout(() => rollDice(), 800);
     }
+    startTimer = null;
   }, 100);
 }
 
@@ -507,7 +514,8 @@ function launchConfetti() {
     `;
     container.appendChild(piece);
   }
-  setTimeout(() => { container.innerHTML = ''; }, 4000);
+  if (confettiTimer) clearTimeout(confettiTimer);
+  confettiTimer = setTimeout(() => { container.innerHTML = ''; confettiTimer = null; }, 4000);
 }
 
 // ===== WINNER =====
@@ -519,7 +527,11 @@ function showWinner(player) {
 }
 
 function newGame() {
+  if (startTimer) { clearTimeout(startTimer); startTimer = null; }
+  if (restartTimer) { clearTimeout(restartTimer); restartTimer = null; }
+  if (confettiTimer) { clearTimeout(confettiTimer); confettiTimer = null; }
   document.getElementById('winner-screen').classList.remove('active');
+  document.getElementById('game-screen').classList.remove('active');
   document.getElementById('setup-screen').classList.add('active');
   players.forEach(p => { p.pos = 1; p.moves = 0; });
   document.getElementById('history-log').innerHTML = '';
@@ -536,11 +548,13 @@ function restartGame() {
   isAnimating = false;
   document.getElementById('history-log').innerHTML = '';
   document.getElementById('dice').textContent = '🎲';
-  setTimeout(() => {
+  if (restartTimer) clearTimeout(restartTimer);
+  restartTimer = setTimeout(() => {
     drawBoard();
     renderTokens();
     updateUI();
     addLog(`🔄 Game restarted! ${players[0].name} goes first.`, 'p1');
+    restartTimer = null;
   }, 100);
 }
 
@@ -590,3 +604,15 @@ themeToggles.forEach(btn => {
 
 // Initialize on page load
 updateTheme();
+
+// Expose clean interface for lifecycle tests
+window.snakeLadder = {
+  startGame,
+  restartGame,
+  newGame,
+  renderTokens,
+  drawBoard,
+  updateTheme,
+  launchConfetti,
+  getPlayers: () => players,
+};
