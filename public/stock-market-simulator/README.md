@@ -173,6 +173,22 @@ This project is intended for educational and entertainment purposes only. Stock 
 
 ---
 
+## 🧪 Testing & Verification (R60-T033)
+
+Automated tests exercise empty, fallback, and recovery states across the stock market dashboard:
+
+```bash
+node tests/course/r60-t033.mjs
+```
+
+### Verified Checks
+- **Source Anchors**: Verifies `#themeToggle`, `#balance`, `#portfolioValue`, and `#pl` exist and render initial financial stats.
+- **Empty & Fallback States**: Tests clean empty states for `#portfolio-empty` and `#history-empty` before trading, and `#market-empty` fallback if stock prices are unavailable.
+- **State Recovery**: Verifies that simulated stock purchases transition the UI from empty holding state to active portfolio item without uncaught console errors.
+- **Evidence**: Generates test results and baseline metrics in `work/R60-T033/`.
+
+---
+
 ## 📜 License
 
 This project is open source and available under the MIT License.

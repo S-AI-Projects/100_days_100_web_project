@@ -32,6 +32,25 @@ let history = [];
 let prices = {};
 let priceChanges = {};
 
+window.stockSim = {
+  get balance() { return balance; },
+  set balance(v) { balance = v; },
+  get portfolio() { return portfolio; },
+  set portfolio(v) { portfolio = v; },
+  get history() { return history; },
+  set history(v) { history = v; },
+  get prices() { return prices; },
+  set prices(v) { prices = v; },
+  get priceChanges() { return priceChanges; },
+  set priceChanges(v) { priceChanges = v; },
+  renderMarket,
+  renderPortfolio,
+  renderHistory,
+  renderAll,
+  buyStock,
+  sellStock
+};
+
 /* LOAD SAVED */
 const saved = JSON.parse(localStorage.getItem("stockSim"));
 if(saved){
@@ -73,12 +92,14 @@ function loadMarket(){
 /* RENDER */
 function renderMarket(){
   market.innerHTML="";
+  let renderedCount = 0;
   STOCKS.forEach(stock=>{
     const s = stock.symbol;
     const price = prices[s];
     
     // Skip if price is not available yet (null, undefined, or 0)
     if(!price || price === null || typeof price === 'undefined') return;
+    renderedCount++;
     
     const change = priceChanges[s] || 0;
     const changePercent = ((change / price) * 100).toFixed(2);
@@ -101,6 +122,10 @@ function renderMarket(){
         </td>
       </tr>`;
   });
+
+  if(renderedCount === 0){
+    market.innerHTML = `<tr><td colspan="3" class="empty-state" id="market-empty" style="text-align:center; padding:1.5rem; color:var(--text-secondary);">No stock data available. Market is currently offline.</td></tr>`;
+  }
 }
 
 function renderPortfolio(){
@@ -132,7 +157,7 @@ function renderPortfolio(){
         </div>
       </div>`;
   }
-  portfolioDiv.innerHTML = html || "No holdings yet";
+  portfolioDiv.innerHTML = html || '<div class="empty-state" id="portfolio-empty" style="text-align:center; padding:1rem; color:var(--text-secondary);">No holdings yet</div>';
   portfolioValue.textContent="₹" + value.toFixed(2);
 
   const totalPnl = value + balance - BASE_BALANCE;
@@ -170,7 +195,7 @@ function renderNews(){
 function renderHistory(){
   historyDiv.innerHTML = history.length
     ? history.slice(0, 10).map(h=>`<div class="history-item">${h}</div>`).join("")
-    : "No transactions yet";
+    : '<div class="empty-state" id="history-empty" style="text-align:center; padding:1rem; color:var(--text-secondary);">No transactions yet</div>';
 }
 
 function renderAll(){
