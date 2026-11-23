@@ -180,3 +180,20 @@ This project is open source and available under the MIT License.
 ---
 
 ### ⭐ If you found this project useful, consider giving it a star!
+
+
+## R60-T033 browser regression
+
+From the repository root, use Node.js 20 or later:
+
+```sh
+npm ci --prefix tests/course
+npx --prefix tests/course playwright install chromium
+node tests/course/r60-t033.mjs
+```
+
+The check starts and waits for its own local Node HTTP server, opens fresh Chromium contexts and closes the server and browser on success or failure. It returns a nonzero exit status for a failed assertion, unexpected page error or console error. Dependencies are locked in `tests/course/package-lock.json`.
+
+Fresh storage produces readable empty holdings, transactions and news. Buy two AAPL shares at ₹175, reload, sell both and verify recovery to the empty state. Fixed clock and random fixture; no market API.
+
+Results, tool versions, expected/actual values and screenshots are written to `work/R60-T033/after.json` and PNG files. Use `COURSE_PHASE=baseline` to record the original source before applying the source change. The task-specific GitHub Actions workflow records both phases against the pinned baseline and uploads the complete evidence directory. No Lighthouse score is required. Remove `work/R60-T033/` from a later upstream submission.
