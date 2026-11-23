@@ -1,0 +1,21 @@
+{
+  "taskId": "R60-T031",
+  "timestamp": "2026-11-22T19:01:47.701Z",
+  "item": "public/Complaint_Management_System",
+  "entryPoint": "public/Complaint_Management_System/index.html",
+  "setupCommand": "node tests/course/r60-t031.mjs",
+  "anchors": [
+    "#theme-toggle",
+    "#page-title",
+    "#user-profile",
+    "#profile-avatar"
+  ],
+  "keyboardChecks": [
+    "1. No positive tabindex in DOM",
+    "2. Skip-to-content accessible skip link",
+    "3. Sequential Tab navigation across interactive controls",
+    "4. High-contrast visible focus outline (:focus-visible)",
+    "5. Enter and Space keyboard activation on controls",
+    "6. Visual screenshot artifact generation (work/R60-T031/keyboard-check.png)"
+  ]
+}
