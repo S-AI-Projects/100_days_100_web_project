@@ -148,3 +148,20 @@ Some ideas for future enhancements include:
 ## 👩‍💻 Author
 
 **Shikha Kumari**
+
+
+## R60-T040 browser regression
+
+From the repository root, use Node.js 20 or later:
+
+```sh
+npm ci --prefix tests/course
+npx --prefix tests/course playwright install chromium
+node tests/course/r60-t040.mjs
+```
+
+The check starts and waits for its own local Node HTTP server, opens fresh Chromium contexts and closes the server and browser on success or failure. It returns a nonzero exit status for a failed assertion, unexpected page error or console error. Dependencies are locked in `tests/course/package-lock.json`.
+
+Fill total=10, X=6, O=3, draws=1; assert live 60.0% summary, save/reload and reset. In an isolated response fixture rename only the input event binding; the same live-summary assertion must reject the stale 0% display. No application mutation is saved.
+
+Results, tool versions, expected/actual values and screenshots are written to `work/R60-T040/after.json` and PNG files. Use `COURSE_PHASE=baseline` to record the original source before applying the source change. The task-specific GitHub Actions workflow records both phases against the pinned baseline and uploads the complete evidence directory. No Lighthouse score is required. Remove `work/R60-T040/` from a later upstream submission.
