@@ -1,0 +1,81 @@
+{
+  "task": "R60-T033",
+  "phase": "after",
+  "time": "2026-11-23T18:42:20.588Z",
+  "node": "v24.22.3",
+  "playwright": "1.61.1",
+  "observations": [
+    {
+      "name": "Empty holdings",
+      "expected": "No holdings yet",
+      "actual": "No holdings yet"
+    },
+    {
+      "name": "Empty transaction history",
+      "expected": "No transactions yet",
+      "actual": "No transactions yet"
+    },
+    {
+      "name": "Empty news",
+      "expected": "No recent news",
+      "actual": "No recent news"
+    },
+    {
+      "name": "Initial balance",
+      "expected": "₹100000.00",
+      "actual": "₹100000.00"
+    },
+    {
+      "name": "Initial portfolio value",
+      "expected": "₹0.00",
+      "actual": "₹0.00"
+    },
+    {
+      "name": "Initial profit/loss",
+      "expected": "₹0.00",
+      "actual": "₹0.00"
+    },
+    {
+      "name": "Recovery creates one holding",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "Recovery creates one transaction",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "Purchase balance",
+      "expected": "₹99650.00",
+      "actual": "₹99650.00"
+    },
+    {
+      "name": "Purchase portfolio value",
+      "expected": "₹350.00",
+      "actual": "₹350.00"
+    },
+    {
+      "name": "Purchase preserves profit/loss",
+      "expected": "₹0.00",
+      "actual": "₹0.00"
+    },
+    {
+      "name": "Holding survives reload",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "Selling all shares restores empty state",
+      "expected": "No holdings yet",
+      "actual": "No holdings yet"
+    },
+    {
+      "name": "Sale restores balance",
+      "expected": "₹100000.00",
+      "actual": "₹100000.00"
+    }
+  ],
+  "chromium": "149.0.7827.55",
+  "status": "passed"
+}
