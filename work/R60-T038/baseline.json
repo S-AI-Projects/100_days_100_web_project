@@ -1,0 +1,56 @@
+{
+  "task": "R60-T038",
+  "phase": "baseline",
+  "time": "2026-11-23T18:50:55.783Z",
+  "node": "v24.22.3",
+  "playwright": "1.61.1",
+  "observations": [
+    {
+      "name": "Fixture cell rendered literally",
+      "expected": "<img src=x onerror=\"window.__injected=1\">",
+      "actual": "<img src=x onerror=\"window.__injected=1\">"
+    },
+    {
+      "name": "No fixture-created image in table",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "Highlight preserves text",
+      "expected": "SELECT name FROM employees WHERE name = '<img src=x onerror=\"window.__injected=1\">'",
+      "actual": "SELECT name FROM employees WHERE name = '<img src=x onerror=\"window.__injected=1\">'"
+    },
+    {
+      "name": "No injected element in editor",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "Saved query round trip",
+      "expected": "SELECT name FROM employees WHERE name = '<img src=x onerror=\"window.__injected=1\">'",
+      "actual": "SELECT name FROM employees WHERE name = '<img src=x onerror=\"window.__injected=1\">'"
+    },
+    {
+      "name": "Result text matches fixture",
+      "expected": "<img src=x onerror=\"window.__injected=1\">",
+      "actual": "<img src=x onerror=\"window.__injected=1\">"
+    },
+    {
+      "name": "No injected element in result",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "No handler executed",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "No unexpected x request",
+      "expected": 0,
+      "actual": 0
+    }
+  ],
+  "chromium": "149.0.7827.55",
+  "status": "passed"
+}
