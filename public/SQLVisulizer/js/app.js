@@ -63,8 +63,8 @@ function initSidebar() {
         <line x1="3" y1="15" x2="21" y2="15"/>
         <line x1="9" y1="3" x2="9" y2="21"/>
       </svg>
-      ${name}
     `;
+    btn.appendChild(document.createTextNode(name));
     btn.addEventListener('click', () => showTablePreview(name));
     tableList.appendChild(btn);
   }
@@ -73,10 +73,14 @@ function initSidebar() {
   for (const example of EXAMPLE_QUERIES) {
     const btn = document.createElement('button');
     btn.className = 'example-item';
-    btn.innerHTML = `
-      <span class="example-label">${example.label}</span>
-      <span class="example-desc">${example.description}</span>
-    `;
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'example-label';
+    labelSpan.textContent = example.label;
+    const descSpan = document.createElement('span');
+    descSpan.className = 'example-desc';
+    descSpan.textContent = example.description;
+    btn.appendChild(labelSpan);
+    btn.appendChild(descSpan);
     btn.addEventListener('click', () => {
       editor.setValue(example.sql);
       runQuery();

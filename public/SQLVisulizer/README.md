@@ -105,6 +105,21 @@ Contributions are welcome.
 
 ---
 
+## 🧪 Testing & Verification (R60-T038)
+
+Automated safe text-rendering and injection-prevention regression test:
+
+```bash
+node tests/course/r60-t038.mjs
+```
+
+### Verified Checks
+- **Source Anchors**: Validates `#theme-toggle`, `#save-query`, `#load-query`, and `#table-list`.
+- **Safe Text Rendering**: Traces user input containing malicious markup (e.g. `<img src=x onerror=...>`) into the SQL editor, table names, and query outputs, verifying that markup is escaped as plain text without executing event handlers or injecting arbitrary DOM elements.
+- **Evidence**: Generates test report, baseline metrics, and visual screenshot in `work/R60-T038/`.
+
+---
+
 ## 📄 License
 
 This project is part of the **100 Days 100 Web Projects** repository and is intended for educational purposes.
