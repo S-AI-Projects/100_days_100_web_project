@@ -1,0 +1,18 @@
+{
+  "task": "R60-T034",
+  "phase": "baseline",
+  "time": "2026-11-23T18:45:02.072Z",
+  "node": "v24.22.3",
+  "playwright": "1.61.1",
+  "observations": [
+    {
+      "name": "Double start creates one history entry",
+      "expected": 1,
+      "actual": 2
+    }
+  ],
+  "chromium": "149.0.7827.55",
+  "status": "failed",
+  "error": "AssertionError [ERR_ASSERTION]: Double start creates one history entry\n\n2 !== 1\n\n    at record (file:///home/runner/work/100_days_100_web_project/100_days_100_web_project/tests/course/harness.mjs:92:14)\n    at file:///home/runner/work/100_days_100_web_project/100_days_100_web_project/tests/course/r60-t034.mjs:21:3\n    at async run (file:///home/runner/work/100_days_100_web_project/100_days_100_web_project/tests/course/harness.mjs:95:5)\n    at async file:///home/runner/work/100_days_100_web_project/100_days_100_web_project/tests/course/r60-t034.mjs:3:1",
+  "pageErrors": []
+}

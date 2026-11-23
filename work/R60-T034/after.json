@@ -1,0 +1,101 @@
+{
+  "task": "R60-T034",
+  "phase": "after",
+  "time": "2026-11-23T18:45:04.091Z",
+  "node": "v24.22.3",
+  "playwright": "1.61.1",
+  "observations": [
+    {
+      "name": "Double start creates one history entry",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "Exactly two player tokens",
+      "expected": 2,
+      "actual": 2
+    },
+    {
+      "name": "One canvas",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "Player name",
+      "expected": "Ayushi",
+      "actual": "Ayushi"
+    },
+    {
+      "name": "Restart 0: one log",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "Restart 0: two tokens",
+      "expected": 2,
+      "actual": 2
+    },
+    {
+      "name": "Restart 0: moves reset",
+      "expected": "0",
+      "actual": "0"
+    },
+    {
+      "name": "Restart 0: one roll increments once",
+      "expected": "1",
+      "actual": "1"
+    },
+    {
+      "name": "Restart 0: one move to square 5",
+      "expected": "5",
+      "actual": "5"
+    },
+    {
+      "name": "Restart 0: turn changes once",
+      "expected": "Guest",
+      "actual": "Guest"
+    },
+    {
+      "name": "Restart 1: one log",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "Restart 1: two tokens",
+      "expected": 2,
+      "actual": 2
+    },
+    {
+      "name": "Restart 1: moves reset",
+      "expected": "0",
+      "actual": "0"
+    },
+    {
+      "name": "Restart 1: one roll increments once",
+      "expected": "1",
+      "actual": "1"
+    },
+    {
+      "name": "Restart 1: one move to square 5",
+      "expected": "5",
+      "actual": "5"
+    },
+    {
+      "name": "Restart 1: turn changes once",
+      "expected": "Guest",
+      "actual": "Guest"
+    },
+    {
+      "name": "Repeated celebration has 120 pieces",
+      "expected": 120,
+      "actual": 120
+    },
+    {
+      "name": "Celebration cleans up",
+      "expected": 0,
+      "actual": 0
+    }
+  ],
+  "chromium": "149.0.7827.55",
+  "status": "passed"
+}
