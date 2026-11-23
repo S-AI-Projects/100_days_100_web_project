@@ -108,3 +108,19 @@ Contributions are welcome.
 ## 📄 License
 
 This project is part of the **100 Days 100 Web Projects** repository and is intended for educational purposes.
+
+## R60-T038 browser regression
+
+From the repository root, use Node.js 20 or later:
+
+```sh
+npm ci --prefix tests/course
+npx --prefix tests/course playwright install chromium
+node tests/course/r60-t038.mjs
+```
+
+The check starts and waits for its own local Node HTTP server, opens fresh Chromium contexts and closes the server and browser on success or failure. It returns a nonzero exit status for a failed assertion, unexpected page error or console error. Dependencies are locked in `tests/course/package-lock.json`.
+
+Replace one employee name in the local sample-data module with <img src=x onerror="window.__injected=1">. Test literal table preview, editor highlighting, save/load and final query result; assert no img is created and no handler runs. Static engine-authored explanation markup is the separate trusted rich-HTML contract.
+
+Results, tool versions, expected/actual values and screenshots are written to `work/R60-T038/after.json` and PNG files. Use `COURSE_PHASE=baseline` to record the original source before applying the source change. The task-specific GitHub Actions workflow records both phases against the pinned baseline and uploads the complete evidence directory. No Lighthouse score is required. Remove `work/R60-T038/` from a later upstream submission.
